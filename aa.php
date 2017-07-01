@@ -8,4 +8,10 @@
 
 echo 1111;
 
-echo 2w[''];
+echo 222;
+
+
+echo 'this is a cat';
+
+
+
