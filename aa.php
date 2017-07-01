@@ -7,4 +7,3 @@
  */
 
 echo 1111;
-echo 'this is test 6666';
