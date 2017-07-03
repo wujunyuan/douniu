@@ -31,7 +31,7 @@ class douniu
     }
 
     /**
-     * 发牌
+     * 发牌 你你你
      */
     public function create()
     {
@@ -104,8 +104,9 @@ class douniu
     }
 
     /**
-     * 计算牛的组合
+     * 计算牛的组合 aakel
      * @param array $cards
+     * @return array
      */
     public function niucount($cards = array())
     {
@@ -122,6 +123,7 @@ class douniu
 
     /**
      * @param $cards 5张纸牌的数组
+     * @return mixed
      */
     public function getniu($cards)
     {
