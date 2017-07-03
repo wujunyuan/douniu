@@ -10,7 +10,7 @@ namespace app\game\controller;
 
 
 use think\Controller;
-
+use Hooklife\ThinkphpWechat\Wechat;
 class Login extends Controller
 {
     /**
@@ -18,6 +18,7 @@ class Login extends Controller
      */
     public function index()
     {
+        //使用微信登录，直接跳转到微信授权地址，这里要用微信的开发包了
 
     }
 
