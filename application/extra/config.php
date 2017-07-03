@@ -15,8 +15,8 @@ return [
     /**
      * 账号基本信息，请从微信公众平台/开放平台获取
      */
-    'app_id'  => 'your-app-id',         // AppID
-    'secret'  => 'your-app-secret',     // AppSecret
+    'app_id'  => 'wx986be43013041ce3',         // AppID
+    'secret'  => 'e6ce575d4c2b0b5381736f1beac26f92',     // AppSecret
     'token'   => 'your-token',          // Token
     'aes_key' => '',                    // EncodingAESKey，安全模式下请一定要填写！！！
     /**
