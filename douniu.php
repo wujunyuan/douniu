@@ -123,6 +123,7 @@ class douniu
 
     /**
      * @param $cards 5张纸牌的数组
+     * @return mixed
      */
     public function getniu($cards)
     {
