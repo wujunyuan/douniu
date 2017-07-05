@@ -74,4 +74,12 @@ class Login extends Controller
             }
         }
     }
+
+    /**
+     * 退出登录
+     */
+    public function logout(){
+        Session::set('member_id', NULL);
+        $this->redirect(url('Index/index'));
+    }
 }
