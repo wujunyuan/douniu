@@ -12,6 +12,7 @@ namespace app\game\controller;
 use think\Controller;
 use Hooklife\ThinkphpWechat\Wechat;
 use think\Session;
+
 class Login extends Controller
 {
     /**
@@ -50,30 +51,33 @@ class Login extends Controller
         $ret = $user->toArray();
         //数据模型
         $db = model('member');
-        //$map['openid'] = $ret['id'];
-        //$result = $db->where($map)->find();
-        $result = $db -> where(array('openid' => $ret['id'])) -> find();
-
-        if($result){
-            $result = $result -> toArray();
-            Session::set('member_id' ,$result['id']);
-            var_dump($result);
-            $this->success('登录成功',url('Index/index'));
-        }else{
-            //用户不存在，写入数据再设置session
+        //查询用户的条件
+        $map['openid'] = $ret['id'];
+        //
+        $member = $db->where($map)->find();
+        //用户存在了，设置session，直接登录
+        if ($member) {
+            $member = $member -> toArray();
+            Session::set('member_id', $member['id']);
+            $this->redirect(url('Index/index'));
+        } else {
+            //用户不存在，写入数据，然后设置session再登录
             $data['openid'] = $ret['id'];
             $data['nickname'] = $ret['nickname'];
-            $res = $db ->insert($data);
-            var_dump($res);
-            echo 222;
-            //$res is id
-            if($res){
-                Session::set('member_id',$res);
+            //写入数据库信息，返回一个ID，注意$member是一个id
+            $memberid = $db -> insert($data);
+            if($memberid){
+                Session::set('member_id', $memberid);
+                $this->redirect(url('Index/index'));
             }else{
-                $this->error($db ->getError());
+                $this->error($db -> getError());
             }
         }
     }
+
+    /**
+     * 退出登录
+     */
     public function logout(){
         Session::set('member_id', NULL);
         $this->redirect(url('Index/index'));

@@ -19,6 +19,7 @@ class Index extends Common
      */
     public function index()
     {
+        echo '这里游戏大厅';
         return $this->fetch();
     }
 
