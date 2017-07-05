@@ -35,7 +35,7 @@ class Member extends Model{
 	 * @param $member_id
 	 * @param $room_id
 	 */
-	public function comein($member_id, $room_id){
+	public function comein($room_id){
 		return $this -> update(array('room_id' => $room_id));
 	}
 }
