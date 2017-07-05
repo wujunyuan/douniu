@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="23271e7b-eee0-41cc-b56f-4808a3809929" name="斗牛" url="http://douniu.sppcms.com">
+        <fileTransfer host="121.42.29.115" port="22" rootFolder="/home/wwwroot/douniu.sppcms.com/douniu" accessType="SFTP" password="df9bdf92df98df9adf9adf9ddf9fdf9ddf9adf9adf98dfebdfcedfc7" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
