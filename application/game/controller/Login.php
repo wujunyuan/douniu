@@ -11,6 +11,8 @@ namespace app\game\controller;
 
 use think\Controller;
 use Hooklife\ThinkphpWechat\Wechat;
+use think\Session;
+
 class Login extends Controller
 {
     /**
@@ -47,7 +49,27 @@ class Login extends Controller
     {
         $user = Wechat::app()->oauth->user();
         $ret = $user->toArray();
-		echo '授权正确，获取的用户信息如下：';
-		dump($ret);
+        //数据模型
+        $db = model('member');
+        //查询用户的条件
+        $map['openid'] = $ret['id'];
+        //
+        $member = $db->where($map)->find()->toArray();
+        //用户存在了，设置session，直接登录
+        if ($member) {
+            Session::set('memberid', $member['id']);
+            $this->redirect(url('Index/index'));
+        } else {
+            //用户不存在，写入数据，然后设置session再登录
+            $data['openid'] = $ret['id'];
+            $data['nickname'] = $ret['nickname'];
+            //写入数据库信息，返回一个ID，注意$member是一个id
+            $memberid = $db -> insert($data);
+            if($memberid){
+                Session::set('memberid', $memberid);
+            }else{
+                $this->error($db -> getError());
+            }
+        }
     }
 }
