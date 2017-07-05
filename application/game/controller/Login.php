@@ -67,6 +67,7 @@ class Login extends Controller
             $memberid = $db -> insert($data);
             if($memberid){
                 Session::set('memberid', $memberid);
+                $this->redirect(url('Index/index'));
             }else{
                 $this->error($db -> getError());
             }
