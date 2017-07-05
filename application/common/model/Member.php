@@ -32,10 +32,18 @@ class Member extends Model{
 
 	/**
 	 * 用户进入房间
-	 * @param $member_id
 	 * @param $room_id
+	 * @return $this
 	 */
 	public function comein($room_id){
 		return $this -> update(array('room_id' => $room_id));
+	}
+
+	/**
+	 * 会员退出房间
+	 * @return $this
+	 */
+	public function comeout(){
+		return $this -> update(array('room_id' => 0));
 	}
 }
