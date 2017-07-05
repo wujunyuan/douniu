@@ -19,7 +19,8 @@ class Login extends Controller
     public function index()
     {
         //使用微信登录，直接跳转到微信授权地址，这里要用微信的开发包了
-
+        return Wechat::app()->oauth->scopes(['snsapi_userinfo'])->redirect();
+        //dump($list);
     }
 
     /**
@@ -44,6 +45,9 @@ class Login extends Controller
      */
     public function weixinloginback()
     {
-
+        $user = Wechat::app()->oauth->user();
+        $ret = $user->toArray();
+		echo '授权正确，获取的用户信息如下：';
+		dump($ret);
     }
 }
