@@ -54,10 +54,11 @@ class Login extends Controller
         //查询用户的条件
         $map['openid'] = $ret['id'];
         //
-        $member = $db->where($map)->find()->toArray();
+        $member = $db->where($map)->find();
         //用户存在了，设置session，直接登录
         if ($member) {
-            Session::set('memberid', $member['id']);
+            $member = $member -> toArray();
+            Session::set('member_id', $member['id']);
             $this->redirect(url('Index/index'));
         } else {
             //用户不存在，写入数据，然后设置session再登录
@@ -66,7 +67,7 @@ class Login extends Controller
             //写入数据库信息，返回一个ID，注意$member是一个id
             $memberid = $db -> insert($data);
             if($memberid){
-                Session::set('memberid', $memberid);
+                Session::set('member_id', $memberid);
                 $this->redirect(url('Index/index'));
             }else{
                 $this->error($db -> getError());
