@@ -29,4 +29,13 @@ class Member extends Model{
 			return $result;
 		}
 	}
+
+	/**
+	 * 用户进入房间
+	 * @param $member_id
+	 * @param $room_id
+	 */
+	public function comein($member_id, $room_id){
+		return $this -> update(array('room_id' => $room_id));
+	}
 }
