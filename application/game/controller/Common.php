@@ -24,5 +24,9 @@ class Common extends Controller
             //跳转到登录页面
             $this->redirect(url('Login/index'));
         }
+        //用户的所有信息
+        $map['id'] = Session::get('member_id');
+        $member = Db::name('member') -> where($map)->find();
+        $this->assign('memberinfo', $member);
     }
 }
