@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: wujunyuan
+ * User: glp
  * Date: 2017/7/3
  * Time: 13:26
  */
@@ -11,8 +11,16 @@ namespace app\game\controller;
 use think\Controller;
 use think\Loader;
 
+/**
+ * @property  cards
+ */
 class Douniu extends Common
 {
+    private $cards;
+
+    /**
+     * Douniu constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -27,7 +35,17 @@ class Douniu extends Common
      */
     public function roomcreate()
     {
-
+        $array = array();
+        $cards = $this->cards;
+        $i = 0;
+        foreach($cards as $k => $v){
+            if($cards < 5){
+               $array[] = $cards[$k];
+                unset($cards[$k]);
+            }
+        }
+        $this->cards = $cards;
+        return $array;
     }
 
     /**
