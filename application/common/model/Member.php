@@ -46,4 +46,11 @@ class Member extends Model{
 	public function comeout(){
 		return $this -> update(array('room_id' => 0));
 	}
+
+	/**
+	 * 获取会员的房卡数量
+	 */
+	public function getcardnum(){
+		return (int)$this->value('cards');
+	}
 }
