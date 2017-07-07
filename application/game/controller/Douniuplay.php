@@ -30,7 +30,7 @@ class Douniuplay extends Common
     /**
      * 创建房间
      */
-    public function roomcreate()
+    public function create_room()
     {
 
     }
@@ -44,6 +44,5 @@ class Douniuplay extends Common
     {
         $p = $this->douniu -> create();
         dump($p);
-
     }
 }

@@ -2,6 +2,7 @@
 namespace app\common\model;
 use think\Model;
 use think\Db;
+use think\Session;
 /**
  * Created by PhpStorm.
  * User: Administrator
@@ -19,12 +20,42 @@ class Room extends Model
         return $num;
     }
 
-
     /**
      * 创建房间
+     * @param $memberid
+     * @param $rule
+     * @return $this|bool|int|mixed|string
      */
-    public function create_room()
+    public function roomcreate($memberid, $rule = array())
     {
-
+        $cards = model('member') ->getcardnum();
+        if($cards == 0){
+            //没有房卡
+            $this->error = '当前会员没有房卡。';
+            return false;
+        }
+        $room = $this->where(array('member_id' => $memberid)) -> find();
+        //会员的房间存在了，不要再创建了
+        if(!$room){
+            $data['member_id'] = $memberid;
+            $data['open_time'] = time();
+            //房间号重复没有关系，好看就行了，A开头
+            $data['room_num'] = 'A'.rand(10,99);
+            $ret = $this->insert($data);
+            if($ret){
+                //成功后返回房间的ID，注意这不是房间号
+                return $ret;
+            }else{
+                return false;
+            }
+        }else{
+            $ret = $this->where(array('id' => $room['id'])) -> update(array('open_time' => time()));
+            if($ret !== false){
+                return $room['id'];
+            }else{
+                return false;
+            }
+        }
     }
+
 }

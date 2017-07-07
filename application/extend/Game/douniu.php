@@ -144,13 +144,13 @@ class douniu
 $n = new douniu();
 $ret = $n->create();
 
-if($n->getniu($ret) === 0){
-    echo '牛牛啦啦啦';
-}else if($n -> getniu($ret) === false){
-    echo '没牛';
-}else echo '牛'.$n -> getniu($ret);
-echo '<hr>';
-
-foreach ($ret as $k => $v) {
-    echo $v . ':' . $n->getcardname($v) . ' 点数：' . $n->getscore($v) . '  <br>';
-}
+//if($n->getniu($ret) === 0){
+//    echo '牛牛啦啦啦';
+//}else if($n -> getniu($ret) === false){
+//    echo '没牛';
+//}else echo '牛'.$n -> getniu($ret);
+//echo '<hr>';
+//
+//foreach ($ret as $k => $v) {
+//    echo $v . ':' . $n->getcardname($v) . ' 点数：' . $n->getscore($v) . '  <br>';
+//}
