@@ -13,6 +13,11 @@ use think\Loader;
 
 class Douniuplay extends Common
 {
+    //显示玩家玩游戏的页面
+    public function index()
+    {
+        return $this->fetch();
+    }
     public function __construct()
     {
         parent::__construct();
@@ -39,5 +44,6 @@ class Douniuplay extends Common
     {
         $p = $this->douniu -> create();
         dump($p);
+
     }
 }

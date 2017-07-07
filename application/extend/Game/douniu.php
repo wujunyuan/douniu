@@ -144,10 +144,6 @@ class douniu
 $n = new douniu();
 $ret = $n->create();
 
-
-echo $n -> getniu($ret).'<br>';
-///var_dump();
-echo '<hr>';
 if($n->getniu($ret) === 0){
     echo '牛牛啦啦啦';
 }else if($n -> getniu($ret) === false){

@@ -17,7 +17,6 @@ class Room extends Model
         $room = $this->find() -> toArray();
         $num = $db -> where(array('room_id' => $room['id'])) -> count();
         return $num;
-
     }
 
 
