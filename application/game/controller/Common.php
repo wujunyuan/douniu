@@ -16,6 +16,7 @@ use think\Session;
 
 class Common extends Controller
 {
+    protected $memberinfo = array();
     public function __construct()
     {
         $request = Request::instance();
@@ -28,6 +29,7 @@ class Common extends Controller
         //用户的所有信息
         $map['id'] = Session::get('member_id');
         $member = Db::name('member') -> where($map)->find();
+        $this->memberinfo = $member;
         $this->assign('memberinfo', $member);
     }
 }

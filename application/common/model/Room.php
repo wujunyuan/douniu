@@ -15,11 +15,32 @@ class Room extends Model
     public function get_num()
     {
         $db = model('member');
-        $room = $this->find() -> toArray();
+        $room = $this->find();
+        if(!$room){
+            $this->error = '房间不存在！';
+            return false;
+        }
+        $room = $room ->toArray();
         $num = $db -> where(array('room_id' => $room['id'])) -> count();
         return $num;
     }
 
+    /**
+     * 获取房间中的所有会员
+     * @return int|string
+     */
+    public function getmember($where = array())
+    {
+        $room = $this->where($where) ->find();
+        if(!$room){
+            $this->error = '房间不存在！';
+            return false;
+        }
+        $room = $room ->toArray();
+        $map['room_id'] = $room['id'];
+        $member = Db::name('member') -> where(array('room_id' => $room['id'])) -> select();
+        return $member;
+    }
     /**
      * 创建房间
      * @param $memberid
@@ -28,7 +49,8 @@ class Room extends Model
      */
     public function roomcreate($memberid, $rule = array())
     {
-        $cards = model('member') ->getcardnum();
+        $memberdb = model('member');
+        $cards = $memberdb ->getcardnum(array('id' => $memberid));
         if($cards == 0){
             //没有房卡
             $this->error = '当前会员没有房卡。';
