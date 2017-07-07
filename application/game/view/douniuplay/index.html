@@ -1,0 +1,115 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="description" content="不超过150个字符"/>
+    <meta name="keywords" content="">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="index,follow"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/game/css/play.css">
+    <!--[if lt IE 9]>      
+	    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="rules" style="display: none;">
+        <img src="__STATIC__/game/img/closes.png">
+        <div class="cons">
+              <h2>游戏规则</h2>
+              <ul>
+                  <p>创建房间,游戏未进行,不消耗房卡</p>
+                  <li>模式:<span>通比牛牛</span></li>
+                  <li>底分:<span>5分</span></li>
+                  <li>规则:<span>牛牛x3牛九x2牛八x2</span></li>
+                  <li>牌型:<span>五小牛(8倍)</span></li>
+                  <li>局数:<span>10局x1房卡</span></li>
+              </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+        <img src="__STATIC__/game/img/tb.png" width="100%" style="position: absolute;z-index: -1;height: 3.2rem;">
+            <img src="__STATIC__/game/img/roomCard.png" style="width: 2em;margin:0.3rem 0 0 1rem;vertical-align: middle;"><span style="display: inline-block;padding:0.3rem 0.6rem 0.3rem 0.4rem;background:#564C4A;color: #eee;font-size: 1rem;line-height:1rem;border-top-right-radius: 0.9rem;border-bottom-right-radius: 0.9rem;border: 1px solid #666;vertical-align: bottom;margin-bottom: 0.4rem;">6张</span>
+            <p class="round"><span>3</span>/<span>10</span>&nbsp;局</p>
+            <p class="msg-action"><img src="__STATIC__/game/img/guize.png" class="rule"><img src="__STATIC__/game/img/guanzhu.png"><img src="__STATIC__/game/img/invite.png"></p>
+        </div>
+        <div class="desk">
+           <div class="players1">
+               <div class="photo">
+                    <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
+                    <p><span style="max-width: 2.2rem;font-size: 0.6rem;">玩家1</span><br/><span>34</span></p>
+               </div>
+               <div class="photo">
+                    <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
+                    <p><span style="max-width: 2.2rem;font-size: 0.6rem;">玩家2</span><br/><span>34</span></p>
+               </div>
+           </div>
+           <div class="players2">
+               <div class="photo">
+                    <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
+                    <p><span style="max-width: 2.2rem;font-size: 0.6rem;">玩家3</span><br/><span>34</span></p>
+               </div>
+               <div class="photo">
+                    <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
+                    <p><span style="max-width: 2.2rem;font-size: 0.6rem;">玩家4</span><br/><span>34</span></p>
+               </div>
+           </div>
+           <div class="players3">
+               <div class="photo">
+                    <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
+                    <p><span style="max-width: 2.2rem;font-size: 0.6rem;">玩家5</span><br/><span>34</span></p>
+               </div>
+           </div>
+           <p class="last-time">等待摊牌<span>15</span></p>
+           <img src="__STATIC__/game/img/tanpai.png" class="tanpai">
+           <div class="cards">
+               <img src="__STATIC__/game/img/77.png"><img src="__STATIC__/game/img/77.png"><img src="__STATIC__/game/img/77.png"><img src="__STATIC__/game/img/77.png"><img src="__STATIC__/game/img/77.png">
+           </div>
+        </div>
+        <div class="msg">
+            <div class="photo">
+                <img src="{$memberinfo.photo}" style="width: 3.5rem;height: 3.5rem;">
+                <p><span>{$memberinfo.nickname}</span><br/><span>{$memberinfo.money}</span></p>
+            </div>
+            <div class="base-bet">
+                <p>底注：<span>5</span>分</p>
+            </div>
+            <img src="__STATIC__/game/img/xiaoxi.png" style="width: 2.6rem;height: 2.2rem;">
+            <ul>
+                <li>我出去叫人</li>
+                <li>我出去叫人</li>
+                <li>我出去叫人</li>
+                <li>我出去叫人</li>
+                <li>我出去叫人</li>
+                <li>我出去叫人</li>
+            </ul>
+        </div>
+    </div>
+    <script src="__STATIC__/game/js/jquery-1.12.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(".msg>img").click(function(){
+                $(".msg ul").toggle();
+            })
+            $(".rule").click(function(){
+                $(".rules").add(".overlay").show();
+            })
+            $(".rules>img").click(function(){
+                $(".rules").add(".overlay").hide();
+            })
+        })
+
+    </script>
+</body>
+</html>

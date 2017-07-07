@@ -64,6 +64,7 @@ class Login extends Controller
             //用户不存在，写入数据，然后设置session再登录
             $data['openid'] = $ret['id'];
             $data['nickname'] = $ret['nickname'];
+            $data['photo'] = $ret['avatar'];
             //写入数据库信息，返回一个ID，注意$member是一个id
             $memberid = $db -> insert($data);
             if($memberid){

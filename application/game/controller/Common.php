@@ -16,9 +16,10 @@ use think\Session;
 
 class Common extends Controller
 {
-    public function __construct(Request $request)
+    public function __construct()
     {
-        parent::__construct();
+        $request = Request::instance();
+        parent::__construct($request);
         //用户没有登录，让他去登录
         if (!Session::has('member_id')) {
             //跳转到登录页面
