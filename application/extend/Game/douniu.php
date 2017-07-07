@@ -137,18 +137,9 @@ class douniu
             }
             $return[] =  $socre%10;
         }
-        return max($return);
+        if(count($return) > 0){
+            return max($return);
+        }
+        return false;
     }
-}
-
-$n = new douniu();
-$ret = $n->create();
-
-
-echo $n -> getniu($ret).'<br>';
-///var_dump();
-
-
-foreach ($ret as $k => $v) {
-    echo $v . ':' . $n->getcardname($v) . ' 点数：' . $n->getscore($v) . '  <br>';
 }
