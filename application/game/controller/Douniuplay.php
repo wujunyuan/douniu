@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: glp
+ * User: wujunyuan
  * Date: 2017/7/3
  * Time: 13:26
  */
@@ -11,23 +11,15 @@ namespace app\game\controller;
 use think\Controller;
 use think\Loader;
 
-/**
- * @property  cards
- */
-class Douniu extends Common
+class Douniuplay extends Common
 {
-    private $cards;
-
-    /**
-     * Douniu constructor.
-     */
     public function __construct()
     {
         parent::__construct();
         //加载斗牛类
         Loader::import('extend.Game.douniu');
         //创建一个斗牛实例
-        $this->douniu = new douniu();
+        $this->douniu = new \douniu(array());
     }
 
     /**
@@ -35,17 +27,7 @@ class Douniu extends Common
      */
     public function roomcreate()
     {
-        $array = array();
-        $cards = $this->cards;
-        $i = 0;
-        foreach($cards as $k => $v){
-            if($cards < 5){
-               $array[] = $cards[$k];
-                unset($cards[$k]);
-            }
-        }
-        $this->cards = $cards;
-        return $array;
+
     }
 
     /**
@@ -55,6 +37,7 @@ class Douniu extends Common
      */
     public function init()
     {
-
+        $p = $this->douniu -> create();
+        dump($p);
     }
 }

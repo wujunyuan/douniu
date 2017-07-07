@@ -31,7 +31,7 @@ class douniu
     }
 
     /**
-     * 发牌 你你你
+     * 发牌
      */
     public function create()
     {
@@ -131,13 +131,13 @@ class douniu
         $count = $this->niucount($cards);
         foreach ($count as $k => $v) {
            $ret = array_diff($cards, $v);
-            $socre = 0;
+            $score = 0;
             foreach($ret as $val){
-                $socre += $this->getscore($val);
+                $score += $this->getscore($val);
             }
-            $return[] =  $socre%10;
+            $return[] = $score % 10;
         }
-        return max($return);
+        return empty($return) ? false : max($return);
     }
 }
 
@@ -147,7 +147,13 @@ $ret = $n->create();
 
 echo $n -> getniu($ret).'<br>';
 ///var_dump();
-
+echo '<hr>';
+if($n->getniu($ret) === 0){
+    echo '牛牛啦啦啦';
+}else if($n -> getniu($ret) === false){
+    echo '没牛';
+}else echo '牛'.$n -> getniu($ret);
+echo '<hr>';
 
 foreach ($ret as $k => $v) {
     echo $v . ':' . $n->getcardname($v) . ' 点数：' . $n->getscore($v) . '  <br>';

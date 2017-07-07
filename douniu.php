@@ -137,7 +137,7 @@ class douniu
             }
             $return[] =  $socre%10;
         }
-        return max($return);
+        return empty($return) ? false : max($return);
     }
 }
 
@@ -145,10 +145,16 @@ $n = new douniu();
 $ret = $n->create();
 
 
-echo $n -> getniu($ret).'<br>';
+//echo $n -> getniu($ret).'<br>';
 ///var_dump();
-
+    echo '<hr>';
+    if($n->getniu($ret) === 0){
+        echo '牛牛啦啦啦';
+    }else if($n -> getniu($ret) === false){
+        echo '没牛';
+    }else echo '牛'.$n -> getniu($ret);
+    echo '<hr>';
 
 foreach ($ret as $k => $v) {
-    echo $v . ':' . $n->getcardname($v) . ' 点数：' . $n->getscore($v) . '  <br>';
+    echo $v . ':' . $n->getcardname($v) . ' 点数：' . $n->getscore($v) . '</br>';
 }
