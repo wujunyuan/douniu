@@ -36,7 +36,7 @@ class Douniuplaywjy extends Common
         $ret = $roomdb->roomcreate($this->memberinfo['id'], $rule);
 
         if ($ret) {
-            model('member') -> comein($ret, array('id' => $this->memberinfo['id']));
+            model('member')->comein($ret, array('id' => $this->memberinfo['id']));
             $this->success('创建成功', url('index'));
         } else {
             $this->error($roomdb->getError());
@@ -85,12 +85,20 @@ class Douniuplaywjy extends Common
             if ($memberid != $v['id']) {
                 //发给除了当前会员之外的房间中所有人
                 $this->workermandata['to'] = $v['id'];
-                $data['info'] = $this->memberinfo['nickname'].'说：“'.input('post.data')."”";
+                $data['info'] = $this->memberinfo['nickname'] . '说：“' . input('post.data') . "”";
                 $data['type'] = 1;
-                $this->workermandata['content']=json_encode($data);
+                $this->workermandata['content'] = json_encode($data);
                 echo $this->curlRequest($this->workermanurl, $this->workermandata);
             }
         }
+    }
+
+
+    private function workermansend($to, $data)
+    {
+        $this->workermandata['to'] = $to;
+        $this->workermandata['content'] = $data;
+        return $this->curlRequest($this->workermanurl, $this->workermandata);
     }
 
     /**
@@ -99,8 +107,52 @@ class Douniuplaywjy extends Common
      */
     public function index()
     {
+        //进入房间的ID
+        $room_id = input('room_id');
+        if ($room_id > 0) {
+            $db = model('member');
+            $db->comein($room_id, array('id' => $this->memberinfo['id']));
+            //$this->memberinfo['room_id'] = $room_id;
+        }
         return $this->fetch();
     }
+
+    public function comeout()
+    {
+        //进入房间的ID
+        $memberid = input('memberid') ? input('memberid') : $this->memberinfo['id'];
+
+        $db = model('member');
+        //$db->comeout(array('id' => $memberid));
+    }
+
+    /**
+     * 通知一个会员更新他自己的玩家界面
+     */
+    public function allmember()
+    {
+        $db = model('member');
+        //只查询在线的人，不在线的把人踢出房间
+        $userlist = array_keys((array)json_decode(input('post.userlist')));
+        //dump($userlist);
+        //会员进入房间时通知所有人更新玩家
+        $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
+        //通知所有会员更新界面
+
+        foreach ($allmember as $v) {
+            if (in_array($v['id'], $userlist)) {
+                $ret = $db->getothermember($v['id']);
+                $return['data'] = ($ret);
+                $return['type'] = 4;
+                echo $this->workermansend($v['id'], json_encode($return));
+            } else {
+                //不在线的用户让他退出房间,这样做有问题，应该在用户断线时将他踢出房间
+                //$db ->comeout(array('id' => $v['id']));
+            }
+
+        }
+    }
+
 
     /**
      * 这里要引入斗牛类了

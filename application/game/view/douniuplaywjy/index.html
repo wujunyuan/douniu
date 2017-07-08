@@ -22,6 +22,11 @@
     <![endif]-->
 </head>
 <body>
+
+<style>
+    .photo{display: none;}
+</style>
+
 <div class="overlay"></div>
 <div class="rules" style="display: none;">
     <img src="__STATIC__/game/img/closes.png">
@@ -52,34 +57,34 @@
     </div>
     <div class="desk">
         <div class="players1">
-            <div class="photo">
+            <div class="photo" id="player_1">
                 <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
 
-                <p><span style="max-width: 2.2rem;font-size: 0.6rem;">不一样的烟火不一样的烟火</span><br/><span>34</span></p>
+                <p><span style="max-width: 2.2rem;font-size: 0.6rem;" class="nickname">不一样的烟火不一样的烟火</span><br/><span class="money">34</span></p>
             </div>
-            <div class="photo">
+            <div class="photo" id="player_2">
                 <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
 
-                <p><span style="max-width: 2.2rem;font-size: 0.6rem;">不一样的烟火不一样的烟火</span><br/><span>34</span></p>
+                <p><span style="max-width: 2.2rem;font-size: 0.6rem;" class="nickname">不一样的烟火不一样的烟火</span><br/><span class="money">34</span></p>
             </div>
         </div>
         <div class="players2">
-            <div class="photo">
+            <div class="photo"  id="player_3">
                 <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
 
-                <p><span style="max-width: 2.2rem;font-size: 0.6rem;">不一样的烟火不一样的烟火</span><br/><span>34</span></p>
+                <p><span style="max-width: 2.2rem;font-size: 0.6rem;" class="nickname">不一样的烟火不一样的烟火</span><br/><span class="money">34</span></p>
             </div>
-            <div class="photo">
+            <div class="photo"  id="player_4">
                 <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
 
-                <p><span style="max-width: 2.2rem;font-size: 0.6rem;">不一样的烟火不一样的烟火</span><br/><span>34</span></p>
+                <p><span style="max-width: 2.2rem;font-size: 0.6rem;" class="nickname">不一样的烟火不一样的烟火</span><br/><span class="money">34</span></p>
             </div>
         </div>
         <div class="players3">
-            <div class="photo">
+            <div class="photo" id="player_0">
                 <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
 
-                <p><span style="max-width: 2.2rem;font-size: 0.6rem;">不一样的烟火不一样的烟火</span><br/><span>34</span></p>
+                <p><span style="max-width: 2.2rem;font-size: 0.6rem;" class="nickname">不一样的烟火不一样的烟火</span><br/><span class="money">34</span></p>
             </div>
         </div>
         <p class="last-time">等待摊牌<span>15</span></p>
@@ -92,7 +97,7 @@
         </div>
     </div>
     <div class="msg">
-        <div class="photo">
+        <div class="photo" style="display: block;">
             <img src="{$memberinfo.photo}" style="width: 3.5rem;height: 3.5rem;">
 
             <p><span>{$memberinfo.nickname}</span><br/><span>{$memberinfo.money}</span></p>
@@ -136,6 +141,24 @@
         socket.on('connect', function () {
             socket.emit('login', {$memberinfo.id});
         });
+
+        socket.on('update_online_count', function (userlist) {
+            //有人加入时更新界面，服务器发来所有用户数据
+            $.post('{:url('allmember')}', {userlist:userlist}, function (ret) {
+
+            }, 'json'
+            );
+        });
+        socket.on('update_offline', function (userid) {
+            //有人退出\断线时
+            $('.member__'+userid).hide();
+            $.post('{:url('comeout')}', {memberid:userid}, function (ret) {
+
+            }, 'json'
+            );
+
+        });
+
         // 后端推送来消息时
         socket.on('new_msg', function (msg) {
             var ret = strToJson(msg);
@@ -143,7 +166,22 @@
             if (ret.type == 1) {
                 alert(ret.info);
             }
+
+
+            //传来房间中其它会员的信息，得到后加入到界面中显示出来，数据是一个json数组
+            if(ret.type == 4){
+                for(var i =0; i < ret.data.length; i++){
+                    $('#player_'+i).find('img').attr('src', ret.data[i].photo);
+                    $('#player_'+i).find('.nickname').html(ret.data[i].nickname);
+                    $('#player_'+i).find('.money').html(ret.data[i].money);
+                    $('#player_'+i).addClass('member__'+ret.data[i].id);
+                    $('#player_'+i).show();
+                }
+            }
+
         });
+
+
 
     });
 
@@ -155,6 +193,9 @@
     )
         ;
     }
+
+
+
 </script>
 
 </body>

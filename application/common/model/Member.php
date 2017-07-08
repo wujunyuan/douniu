@@ -2,7 +2,7 @@
 namespace app\common\model;
 
 use think\Model;
-
+use think\Db;
 class Member extends Model
 {
     public function checklogin($data)
@@ -58,5 +58,21 @@ class Member extends Model
     public function getcardnum($where = array())
     {
         return (int)$this->where($where)->value('cards');
+    }
+
+    /**
+     * 获取一个会员在同一房间中的其它会员
+     * @param $memberid
+     */
+    public function getothermember($memberid){
+        $db = Db::name('member');
+        //查询一个会员在房间中（如果他不在房间中，返回false）
+        $member = $db -> where(array('id' => $memberid, 'room_id' => array('gt', 0))) -> find();
+        if(!$member){
+            $this->error = '会员不在房间中';
+            return false;
+        }
+        $ret = $db -> where(array('id' => array('neq', $memberid), 'room_id' => $member['room_id']))->select();
+        return $ret;
     }
 }
