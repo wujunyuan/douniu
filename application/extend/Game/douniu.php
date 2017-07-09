@@ -4,9 +4,15 @@
  * User: 10510
  * Date: 2017/6/26
  * Time: 21:17
+ * 定义游戏规则配置数据格式如下
+ * 底分：score【1,3,5,10,20】
+ * 规则、牌型倍数：rule【1,2】，types【1,2,3】
+ * 房卡游戏局数：gamenum【10:1,20:2】
+ * 固定上庄：openroom【0,100,300,500】
  */
 class douniu
 {
+
     /**
      * @var array|初始化纸牌数据
      */
@@ -119,6 +125,20 @@ class douniu
             }
         }
         return $count;
+    }
+
+
+    public function getniuname($cards = array()){
+        $ret = $this->getniu($cards);
+        if($ret === 0){
+            return '牛牛';
+        }
+        if($ret > 0){
+            return '牛'.$ret;
+        }
+        if($ret === false){
+            return '没牛';
+        }
     }
 
     /**

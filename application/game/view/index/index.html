@@ -65,7 +65,7 @@
     <div class="setact" style="display: none;">
         <img src="__STATIC__/game/img/closes.png">
         <div class="cons">
-            <form action="" method="post">
+            <form id="createfrom" action="{:url('Douniuplaywjy/roomcreate')}" method="post">
               <h2>创建房间</h2>
               <ul class="tabs">
                    <li class="cur"><span>牛牛上庄</span></li>
@@ -77,37 +77,37 @@
               <ul class="tabs-con">
                   <p>创建房间,游戏未进行,不消耗房卡</p>
                   <li class="zero">底分:<div class="selections">
-                    <label><input name="score" type="radio" checked="checked" value="" />1分 </label> 
-                    <label><input name="score" type="radio" value="" />3分 </label> 
-                    <label><input name="score" type="radio" value="" />5分 </label> 
+                    <label><input name="score" id="inputfirst" type="radio" checked="checked" value="1" />1分 </label>
+                    <label><input name="score" type="radio" value="3" />3分 </label>
+                    <label><input name="score" type="radio" value="5" />5分 </label>
                   </div></li>
                   <li class="forth" style="display: none;">底分:<div class="selections">
-                    <label><input name="score1" type="radio" checked="checked" value="" />5分 </label> 
-                    <label><input name="score1" type="radio" value="" />10分 </label> 
-                    <label><input name="score1" type="radio" value="" />20分 </label> 
+                    <label><input id="forthinputfirst" name="score" type="radio" value="5" />5分 </label>
+                    <label><input name="score" type="radio" value="10" />10分 </label>
+                    <label><input name="score" type="radio" value="20" />20分 </label>
                   </div></li>
                   <li>规则:<div class="selections">
-                    <label style="display: block;"><input name="rule" type="radio" checked="checked" value="" />牛牛x3牛九x2牛八x2 </label> 
-                    <label style="display: block;"><input name="rule" type="radio" value="" />牛牛x4牛九x3牛八x2牛七x2</label> 
+                    <label style="display: block;"><input name="rule" type="radio" checked="checked" value="1" />牛牛x3 牛九x2 牛八x2 </label>
+                    <label style="display: block;"><input name="rule" type="radio" value="2" />牛牛x4 牛九x3 牛八x2 牛七x2</label>
                   </div></li>
                   <li>牌型:<div class="selections">
-                    <label><input name="types" type="radio" value="" />五花牛(5倍)</label> 
-                    <label><input name="types" type="radio" value="" />炸弹牛(6倍)</label> 
-                    <label style="display: block;"><input name="types" type="radio" value="" />五小牛(8倍)</label> 
+                    <label><input name="types" checked type="radio" value="1" />五花牛(5倍)</label>
+                    <label><input name="types" type="radio" value="2" />炸弹牛(6倍)</label>
+                    <label style="display: block;"><input name="types" type="radio" value="3" />五小牛(8倍)</label>
                   </div></li>
                   <li>局数:<div class="selections">
-                    <label><input name="gamenum" type="radio" checked="checked" value="" />10局x1房卡</label> 
-                    <label><input name="gamenum" type="radio" value="" />20局x2房卡</label> 
+                    <label><input name="gamenum" type="radio" checked="checked" value="10:1" />10局x1房卡</label>
+                    <label><input name="gamenum" type="radio" value="20:2" />20局x2房卡</label>
                   </div></li>
                   <li class="oneth" style="display: none;">上庄:<div class="selections">
-                    <label><input name="openroom" type="radio" value="" />无</label> 
-                    <label><input name="openroom" type="radio" value="" />100</label> 
-                    <label><input name="openroom" type="radio" value="" />300</label> 
-                    <label><input name="openroom" type="radio" checked="checked" value="" />500</label> 
+                    <label><input name="openroom" type="radio" value="0" />无</label>
+                    <label><input name="openroom" type="radio" value="100" />100</label>
+                    <label><input name="openroom" type="radio" value="300" />300</label>
+                    <label><input name="openroom" type="radio" value="500" />500</label>
                   </div></li>
               </ul>
               <div class="confirms">
-                  <img src="__STATIC__/game/img/qd.png">
+                  <img onclick="$('#createfrom').submit();" type="sub" src="__STATIC__/game/img/qd.png">
               </div>
             </form>
         </div>
@@ -121,14 +121,20 @@
             $(".setact .cons ul.tabs-con li").eq(3).css("height","2.5rem").end().eq(2).css("height","2.5rem");
             $(".tabs li").click(function(){
                $(this).addClass("cur").siblings().removeClass("cur");
+                $("input[name='score']").prop('checked', false);
+                $("input[name='openroom']").prop('checked', false);
+
+               $("#inputfirst").prop('checked', true);
                switch($(this).index()){
                 case 1:
                     $(".zero").show();
                     $(".oneth").show();
+                    $("input[name='openroom']").first().prop('checked', false);
                     $(".forth").hide();break;
                 case 4:
                     $(".zero").hide();
                     $(".forth").show();
+                    $("#forthinputfirst").prop('checked', true);
                     $(".oneth").hide();break;
                 default:
                     $(".zero").show();

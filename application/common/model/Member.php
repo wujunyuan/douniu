@@ -73,6 +73,26 @@ class Member extends Model
             return false;
         }
         $ret = $db -> where(array('id' => array('neq', $memberid), 'room_id' => $member['room_id']))->select();
+
+
+
         return $ret;
+    }
+
+    /**
+     * 已经准备好的会员
+     * @param $where
+     * @return $this
+     */
+    public function gameready($where){
+        return $this->where($where) -> update(array('gamestatus' => 1));
+    }
+    /**
+     * 已经摊牌的会员
+     * @param $where
+     * @return $this
+     */
+    public function gameshowall($where){
+        return $this->where($where) -> update(array('gamestatus' => 2));
     }
 }
