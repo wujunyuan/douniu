@@ -259,11 +259,12 @@
                     if(ret.gamestatus == 0){
                         //当前会员未准备状态，重置游戏界面，把准备按钮显示出来，合理的这里其实是一个再来一局的按钮，没关系
                         $('#gameready').show();
+                        continue;
                     }
                     //游戏没有开始不要更新界面，return false;
                     if(ret.start == false){
 
-                        return false;
+                        continue;
                     }
 
 
@@ -347,6 +348,8 @@ console.log(ret);
             $('.niuname').hide();
             $('.cards').hide();
             $('.tanpai').hide();
+            $('.cardsbox').hide();
+
 
         }, 'json'
     )
