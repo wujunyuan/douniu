@@ -343,7 +343,11 @@ console.log(ret);
 
     function gameready1(){
         $.post('{:url('gameready')}', {}, function (ret) {
-$('#gameready').hide();
+           $('#gameready').hide();
+            $('.niuname').hide();
+            $('.cards').hide();
+            $('.tanpai').hide();
+
         }, 'json'
     )
         ;
@@ -353,6 +357,7 @@ $('#gameready').hide();
     function tanpai(){
         $.post('{:url('showall')}', {}, function (ret) {
             $('.tanpai').hide();
+
         }, 'json'
     )
         ;
