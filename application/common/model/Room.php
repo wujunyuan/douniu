@@ -86,8 +86,8 @@ class Room extends Model
             $data['member_id'] = $memberid;
             $data['open_time'] = time();
             $data['rule'] = serialize($rule);
-            $data['room_cards_num'] = $roomtype[0];
-            $data['playcount'] = $roomtype[1];
+            $data['room_cards_num'] = $roomtype[1];
+            $data['playcount'] = $roomtype[0];
 
             //房间号重复没有关系，好看就行了，A开头
             $data['room_num'] = 'A' . rand(10, 99);
@@ -101,8 +101,8 @@ class Room extends Model
                 return false;
             }
         } else {
-            $update['room_cards_num'] = $roomtype[0];
-            $update['playcount'] = $roomtype[1];
+            $update['room_cards_num'] = $roomtype[1];
+            $update['playcount'] = $roomtype[0];
             $update['rule'] = serialize($rule);
             $update['open_time'] = time();
             $ret = $this->where(array('id' => $room['id']))->update($update);
@@ -115,4 +115,26 @@ class Room extends Model
         }
     }
 
+    /**
+     * 发现房间中有一个会员未准备就返回false
+     * @param array $where
+     * @return bool
+     */
+    public function getgamestatus($where = array()){
+        $room = $this->where($where)->find();
+        if (!$room) {
+            $this->error = '房间不存在！';
+            return false;
+        }
+        $room = $room->toArray();
+        $map['room_id'] = $room['id'];
+        $member = Db::name('member')->where(array('room_id' => $room['id']))->select();
+        $status = true;
+        foreach($member as $v){
+            if($v['gamestatus'] == 0){
+                $status = false;
+            }
+        }
+        return $status;
+    }
 }

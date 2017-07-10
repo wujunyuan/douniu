@@ -158,6 +158,7 @@ class Douniuplaywjy extends Common
         $db = model('member');
         //会员进入房间时通知所有人更新玩家
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
+        $start = model('room') -> getgamestatus(array('id' => $this->memberinfo['room_id']));
         //通知所有会员更新界面
         foreach ($allmember as $v) {
             $ret = $db->getothermember($v['id']);
@@ -171,6 +172,7 @@ class Douniuplaywjy extends Common
                     //unset($ret[$key]['pai']);
                 }
             }
+            $return['start'] = $start;
             $return['data'] = $ret;
             $return['type'] = 4;
             $return['gamestatus'] = $v['gamestatus'];
@@ -289,6 +291,7 @@ class Douniuplaywjy extends Common
         //计算出游戏结果后，初始化，牌的数据和牌型全改为原始状态
         //查询房间中所有会员， 这个动作是最后一个准备游戏的会员触发的
         model('room') -> gameinit(array('id' => $this->memberinfo['room_id']));
+        $this->allmember();
     }
 
 }
