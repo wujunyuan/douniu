@@ -158,7 +158,7 @@ class Douniuplaywjy extends Common
         $db = model('member');
         //会员进入房间时通知所有人更新玩家
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
-        $start = model('room') -> getgamestatus(array('id' => $this->memberinfo['room_id']));
+
         //通知所有会员更新界面
         foreach ($allmember as $v) {
             $ret = $db->getothermember($v['id']);
@@ -172,6 +172,7 @@ class Douniuplaywjy extends Common
                     //unset($ret[$key]['pai']);
                 }
             }
+            $start = model('room') -> getgamestatus(array('id' => $v['room_id']));
             $return['start'] = $start;
             $return['data'] = $ret;
             $return['type'] = 4;
@@ -187,7 +188,7 @@ class Douniuplaywjy extends Common
                 $return['pai'] = array();
 
             }
-            echo $this->workermansend($v['id'], json_encode($return));
+            $this->workermansend($v['id'], json_encode($return));
         }
     }
 

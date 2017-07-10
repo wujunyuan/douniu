@@ -36,6 +36,7 @@
         padding:5px;
         font-size: 12px;
     }
+
     .cardsbox{position: relative; display: none;}
     .cardsbox img{width: 40px;}
     .cardsbox .pic1{position: absolute; left: 0px; z-index: 1;}
@@ -44,7 +45,7 @@
     .cardsbox .pic4{position: absolute; left: 30px; z-index: 1;}
     .cardsbox .pic5{position: absolute; left: 40px; z-index: 1;}
     .niuname{position: absolute; display: none; z-index: 5; top:-20px; font-size: 14px; width:100%; text-align: center; color:#f00;}
-    .last-time{display: none;}
+.last-time{display: none;}
     .tanpai{display:none;}
     .cards{display: none;}
 </style>
@@ -190,10 +191,19 @@
 </div>
 <script src="__STATIC__/game/js/jquery-1.12.1.js"></script>
 <script src="//cdn.bootcss.com/socket.io/1.3.7/socket.io.js"></script>
-
 <script src="__STATIC__/game/js/lib/opentip.js"></script>
+<script src="__STATIC__/js/countdown.js"></script>
 <script src="__STATIC__/game/js/lib/adapter-jquery.js"></script>
 <script type="text/javascript">
+
+    function tanpaicountdown(){
+    $('.last-time span').countdown({initcount:15,end:function(){
+        $('.last-time').hide();
+        tanpai();
+    }});
+        $('.last-time').show();
+    }
+
     $(function () {
         $(".msg>img").click(function () {
             $(".msg ul").toggle();
@@ -272,7 +282,10 @@
                         //刚准备好，发牌完毕
                         $('.cards').show();
                         $('.tanpai').show();
+
                         $('#gameready').hide();
+                        //摊牌倒计时
+                        tanpaicountdown();
                     }else if(ret.gamestatus == 2){
                         //已经摊牌
                         $('.tanpai').hide();
@@ -286,6 +299,9 @@
                     if(ret.data[i]['gamestatus'] > 0){
                         for(var j=0;j<ret.data[i]['pai'].length; j++){
                             $('#player_'+i).find('.cardsbox img').eq(j).attr('src', '__STATIC__/game/img/pai/'+ret.data[i]['pai'][j]+'.png');
+                        }
+                        if(ret.data[i]['gamestatus'] == 1){
+
                         }
                         if(ret.data[i]['gamestatus'] == 2){
                             $('#player_'+i).find('.cardsbox .niuname').html(ret.data[i]['info']);
@@ -343,12 +359,14 @@ console.log(ret);
     }
 
     function gameready1(){
+
+        $('.niuname').hide();
+        $('.cards').hide();
+        $('.tanpai').hide();
+        $('.cardsbox').hide();
         $.post('{:url('gameready')}', {}, function (ret) {
            $('#gameready').hide();
-            $('.niuname').hide();
-            $('.cards').hide();
-            $('.tanpai').hide();
-            $('.cardsbox').hide();
+
 
 
         }, 'json'
@@ -358,9 +376,10 @@ console.log(ret);
 
     //摊牌
     function tanpai(){
+        $('.last-time span').countdown();
         $.post('{:url('showall')}', {}, function (ret) {
             $('.tanpai').hide();
-
+            $('.last-time').hide();
         }, 'json'
     )
         ;

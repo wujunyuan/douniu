@@ -1,9 +1,10 @@
 // JavaScript Document
 (function($){
 	//传入的$为jq对象
+	var T;
 	$.fn.countdown = function(options){
 		var defaults = {
-            initcount:10,
+            initcount:0,
 			end:function(){},
 			start:function(){},
 			down:function(){}
@@ -14,13 +15,16 @@
 		return this.each(function(index, element) {
 			var obj = $(this);
 			var count = opts.initcount;
+			clearTimeout(T);
 			var go = function (count){
-				if(count == 0){
-					opts.end();
-
-				}
 				obj.html(count);
-				setTimeout(function(){
+				if(count == 0){
+
+					opts.end();
+					return false;
+				}
+
+				T = setTimeout(function(){
 					opts.down();
 					count--;
 					go(count);
