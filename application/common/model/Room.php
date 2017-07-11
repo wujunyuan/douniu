@@ -44,7 +44,8 @@ class Room extends Model
         return $member;
     }
 
-    public function gameinit($where = array()){
+    public function gameinit($where = array())
+    {
         $room = $this->where($where)->find();
 
         if (!$room) {
@@ -56,21 +57,18 @@ class Room extends Model
         $room = $room->toArray();
         $map['room_id'] = $room['id'];
         Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
+        if ($room['room_cards_num'] <= 0 && $room['playcount'] <= 0) {
+            $this->error = '房卡耗完了';
+            $this->account();
+            return false;
+        }
+        model('room')->where(array('id' => $room['id']))->setDec('playcount', 1);
 
-        model('room') -> where(array('id' => $room['id'])) -> setDec('playcount', 1);
-
-        if($room['playcount'] == 1){
-            if($room['room_cards_num'] == 0){
-                $this->error = '房卡耗完了';
-                return false;
-            }else{
-                model('room') -> where(array('id' => $room['id'])) -> setDec('playcount', 1);
-                model('room') -> where(array('id' => $room['id'])) -> update(array('playcount'=> 10));
-                //这里10局完了
-            }
-
-
-
+        if ($room['room_cards_num'] > 0 && $room['playcount'] <= 1) {
+            model('room')->where(array('id' => $room['id']))->setDec('room_cards_num', 1);
+            model('room')->where(array('id' => $room['id']))->update(array('playcount' => 10));
+            //这里10局完了
+            $this->account();
         }
         return true;
     }
@@ -106,27 +104,27 @@ class Room extends Model
             $data['open_time'] = time();
             $data['rule'] = serialize($rule);
             $data['room_cards_num'] = $roomtype[1];
-            $data['playcount'] = $roomtype[0];
+            //$data['playcount'] = 0;
 
             //房间号重复没有关系，好看就行了，A开头
             $data['room_num'] = 'A' . rand(10, 99);
             $ret = $this->insert($data);
             if ($ret) {
                 //扣除会员房卡数量
-                model('member') -> where(array('id' => $memberid)) -> setDec('cards', $roomtype[1]);
+                model('member')->where(array('id' => $memberid))->setDec('cards', $roomtype[1]);
                 //成功后返回房间的ID，注意这不是房间号
                 return $ret;
             } else {
                 return false;
             }
         } else {
-            $update['room_cards_num'] = $roomtype[1];
-            $update['playcount'] = $roomtype[0];
+            $update['room_cards_num'] = $roomtype[1] +  $room['room_cards_num'];
+            //$update['playcount'] = 0;
             $update['rule'] = serialize($rule);
             $update['open_time'] = time();
             $ret = $this->where(array('id' => $room['id']))->update($update);
             if ($ret !== false) {
-                model('member') -> where(array('id' => $memberid)) -> setDec('cards', $roomtype[1]);
+                model('member')->where(array('id' => $memberid))->setDec('cards', $roomtype[1]);
                 return $room['id'];
             } else {
                 return false;
@@ -139,7 +137,8 @@ class Room extends Model
      * @param array $where
      * @return bool
      */
-    public function getgamestatus($where = array()){
+    public function getgamestatus($where = array())
+    {
         $room = $this->where($where)->find();
         if (!$room) {
             $this->error = '房间不存在！';
@@ -149,11 +148,20 @@ class Room extends Model
         $map['room_id'] = $room['id'];
         $member = Db::name('member')->where(array('room_id' => $room['id']))->select();
         $status = true;
-        foreach($member as $v){
-            if($v['gamestatus'] == 0){
+        foreach ($member as $v) {
+            if ($v['gamestatus'] == 0) {
                 $status = false;
             }
         }
         return $status;
+    }
+
+    /**
+     *
+     */
+    public function account()
+    {
+        //游戏的结算方法，十局之后从日志表中读取统计结果进行结算，这里需要一个日志表，用来记录每局游戏的结果，结算后清空
+
     }
 }

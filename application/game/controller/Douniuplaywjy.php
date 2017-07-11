@@ -305,6 +305,7 @@ class Douniuplaywjy extends Common
         }
         $taipaitime = model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> value('taipaitime');
         if($taipaitime - time() <= 0){
+            model('member')->gameshowall(array('room_id' => $this->memberinfo['room_id']));
             $gameshowall = true;
         }
         //
@@ -332,8 +333,9 @@ class Douniuplaywjy extends Common
         //计算出游戏结果后，初始化，牌的数据和牌型全改为原始状态
         //查询房间中所有会员， 这个动作是最后一个准备游戏的会员触发的
         $return = model('room') -> gameinit(array('id' => $this->memberinfo['room_id']));
+        $this->allmember();
         if($return){
-            $this->allmember();
+
         }else{
             //游戏次数用完了，要加房卡
         }

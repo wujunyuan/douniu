@@ -66,7 +66,15 @@ class douniu
     {
         return ceil($i / 4) < 10 ? ceil($i / 4) : 10;
     }
-
+    /**
+     * 传入纸牌编号返回当前纸牌的点数
+     * @param $i 纸牌序号
+     * @return float|int
+     */
+    public function getscoreorigin($i)
+    {
+        return ceil($i / 4);
+    }
     /**
      * 传入纸牌编号，返回当前纸牌的名称
      * @param $i 纸牌序号
@@ -147,6 +155,28 @@ class douniu
      */
     public function getniu($cards)
     {
+        //是否五小
+        $ismin = true;
+        //是否五花
+        $ismax = true;
+        //是否炸弹
+        $isbomb = false;
+        $isbombcount = array();
+        foreach($cards as $k => $v){
+            if($this->getscore($v) > 5){
+                //五小不成立
+                $ismin = false;
+            }
+            if($this->getscoreorigin() <= 10){
+                //五花牛不成立
+                $ismax = false;
+            }
+            $isbombcount[] = $v;
+        }
+        $isbombarr = array_count_values($isbombcount);
+        if(max($isbombarr) == 4){
+            $isbomb = true;
+        }
         $return = array();
         $count = $this->niucount($cards);
         foreach ($count as $k => $v) {

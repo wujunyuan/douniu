@@ -73,9 +73,9 @@
         <img src="__STATIC__/game/img/tb.png" width="100%" style="position: absolute;z-index: -1;height: 3.2rem;">
         <img src="__STATIC__/game/img/roomCard.png"
              style="width: 2em;margin:0.3rem 0 0 1rem;vertical-align: middle;"><span
-            style="display: inline-block;padding:0.3rem 0.6rem 0.3rem 0.4rem;background:#564C4A;color: #eee;font-size: 1rem;line-height:1rem;border-top-right-radius: 0.9rem;border-bottom-right-radius: 0.9rem;border: 1px solid #666;vertical-align: bottom;margin-bottom: 0.4rem;">{$memberinfo.cards}张</span>
+            style="display: inline-block;padding:0.3rem 0.6rem 0.3rem 0.4rem;background:#564C4A;color: #eee;font-size: 1rem;line-height:1rem;border-top-right-radius: 0.9rem;border-bottom-right-radius: 0.9rem;border: 1px solid #666;vertical-align: bottom;margin-bottom: 0.4rem;"><span id="roomcards">{$room.room_cards_num}</span>张</span>
 
-        <p class="round"><span>3</span>/<span>10</span>&nbsp;局</p>
+        <p class="round"><span id="playcount">{$room.playcount}</span>/<span>10</span>&nbsp;局</p>
 
         <p class="msg-action"><img src="__STATIC__/game/img/guize.png" class="rule"><img
                 src="__STATIC__/game/img/guanzhu.png"><img src="__STATIC__/game/img/invite.png"></p>
@@ -266,6 +266,9 @@
             if(ret.type == 4){
                 console.log(ret);
                 //alert(ret.data.length);
+                $('#playcount').html(ret.room['playcount']);
+                //更新房卡
+                $('#roomcards').html(ret.room['room_cards_num']);
                 for(var i =0; i < ret.data.length; i++){
                     $('#player_'+i).find('img').eq(0).attr('src', ret.data[i].photo);
                     $('#player_'+i).find('.nickname').html(ret.data[i].nickname);
