@@ -289,7 +289,7 @@
                     }else if(ret.gamestatus == 2){
                         //已经摊牌
                         $('.tanpai').hide();
-                        $('.cards .niuname').html(ret.info).show();
+                        $('.cards .niuname').html('<img src="__STATIC__/game/img/niu/niu'+ret.info+'.png" >').show();
 
 
                     }
@@ -304,7 +304,7 @@
 
                         }
                         if(ret.data[i]['gamestatus'] == 2){
-                            $('#player_'+i).find('.cardsbox .niuname').html(ret.data[i]['info']);
+                            $('#player_'+i).find('.cardsbox .niuname').html('<img src="__STATIC__/game/img/niu/niu'+ret.data[i]['info']+'.png" >');
                             $('#player_'+i).find('.cardsbox .niuname').show();
                         }
                         $('#player_'+i).find('.cardsbox').show();

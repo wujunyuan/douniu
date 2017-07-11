@@ -35,6 +35,9 @@ class Common extends Controller
         //用户的所有信息
         $map['id'] = Session::get('member_id');
         $member = Db::name('member') -> where($map)->find();
+        if(!$member){
+            $this->redirect(url('Login/logout'));
+        }
         $this->memberinfo = $member;
         $this->assign('memberinfo', $member);
     }
