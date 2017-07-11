@@ -24,7 +24,13 @@ class Common extends Controller
         //用户没有登录，让他去登录
         if (!Session::has('member_id')) {
             //跳转到登录页面
+            Session::set('jumpurl',$request -> url());
             $this->redirect(url('Login/index'));
+        }
+        if(Session::has('jumpurl')){
+            $jumpurl = Session::get('jumpurl');
+            Session::set('jumpurl',null);
+            $this->redirect($jumpurl);
         }
         //用户的所有信息
         $map['id'] = Session::get('member_id');

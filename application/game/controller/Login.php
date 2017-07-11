@@ -12,7 +12,7 @@ namespace app\game\controller;
 use think\Controller;
 use Hooklife\ThinkphpWechat\Wechat;
 use think\Session;
-
+use think\Request;
 class Login extends Controller
 {
     /**
@@ -21,6 +21,7 @@ class Login extends Controller
     public function index()
     {
         //使用微信登录，直接跳转到微信授权地址，这里要用微信的开发包了
+
         return Wechat::app()->oauth->scopes(['snsapi_userinfo'])->redirect();
         //dump($list);
     }
@@ -69,7 +70,6 @@ class Login extends Controller
             $memberid = $db -> insert($data);
             if($memberid){
                 Session::set('member_id', $memberid);
-                $this->redirect(url('Index/index'));
             }else{
                 $this->error($db -> getError());
             }
