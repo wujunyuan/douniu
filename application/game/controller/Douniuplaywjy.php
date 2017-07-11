@@ -141,13 +141,41 @@ class Douniuplaywjy extends Common
         return $this->fetch();
     }
 
+    /**
+     *进入房间
+     */
+    public function comein()
+    {
+
+        $db = model('member');
+        $room_id = input('room_id');
+        if($room_id){
+            $ret = $db->comein($room_id, array('id' => $this->memberinfo['id']));
+            $this->allmember();
+            if($ret){
+                $this->success('成功进入房间');
+            }else{
+                $this->error($db ->getError());
+            }
+        }else{
+            $this->error('迷路了，找不到房间！！！');
+        }
+
+    }
     public function comeout()
     {
         //进入房间的ID
         $memberid = input('memberid') ? input('memberid') : $this->memberinfo['id'];
 
         $db = model('member');
-        $db->comeout(array('id' => $memberid));
+        $ret = $db->comeout(array('id' => $memberid));
+        //$this->allmember();
+        if($ret){
+            $this->success('有人断线');
+        }else{
+            $this->error('错误');
+        }
+
     }
 
     /**
@@ -158,7 +186,14 @@ class Douniuplaywjy extends Common
         $db = model('member');
         //会员进入房间时通知所有人更新玩家
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
-
+        $room = model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> find();
+        $room['taipaitime'] = $room['taipaitime'] - time();
+        if($room['taipaitime'] < 0){
+            $room['taipaitime'] = 0;
+        }
+        if(!$allmember){
+            return;
+        }
         //通知所有会员更新界面
         foreach ($allmember as $v) {
             $ret = $db->getothermember($v['id']);
@@ -169,12 +204,12 @@ class Douniuplaywjy extends Common
                 }else{
                     $ret[$key]['pai'] = array(0,0,0,0,0);
                     $ret[$key]['info'] = '未知';
-                    //unset($ret[$key]['pai']);
                 }
             }
             $start = model('room') -> getgamestatus(array('id' => $v['room_id']));
             $return['start'] = $start;
             $return['data'] = $ret;
+            $return['room'] = $room;
             $return['type'] = 4;
             $return['gamestatus'] = $v['gamestatus'];
             //如果会员摊牌状态，通知前端更新
@@ -229,7 +264,7 @@ class Douniuplaywjy extends Common
      * 开始游戏，洗牌，发牌生成N副牌
      * 这里是把数据直接传回前端的
      */
-    public function init()
+    private function init()
     {
         //查询房间中所有会员， 这个动作是最后一个准备游戏的会员触发的
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
@@ -240,9 +275,9 @@ class Douniuplaywjy extends Common
             $data['pai'] = serialize($pai);
             $map['id'] = $v['id'];
             $memberdb->where($map)->update($data);
-
-
         }
+        //摊牌时间
+        model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> update(array('taipaitime' => time() + 15));
         $this -> allmember();
     }
 
@@ -266,6 +301,10 @@ class Douniuplaywjy extends Common
                 //发现有人未摊牌
                 $gameshowall = false;
             }
+        }
+        $taipaitime = model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> value('taipaitime');
+        if($taipaitime - time() <= 0){
+            $gameshowall = true;
         }
         //
         $this->allmember();

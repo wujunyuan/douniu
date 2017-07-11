@@ -197,8 +197,8 @@
 <script src="__STATIC__/game/js/lib/adapter-jquery.js"></script>
 <script type="text/javascript">
 
-    function tanpaicountdown(){
-    $('.last-time span').countdown({initcount:15,end:function(){
+    function tanpaicountdown(initcount){
+    $('.last-time span').countdown({initcount:initcount,end:function(){
         $('.last-time').hide();
         tanpai();
     }});
@@ -229,11 +229,16 @@
         var socket = io('http://' + document.domain + ':2120');
         // 连接后登录
         socket.on('connect', function () {
-            socket.emit('login', {$memberinfo.id});
+            $.post('{:url('comein', array('room_id' => input('room_id')))}', { }, function (ret) {
+                socket.emit('login', {$memberinfo.id});
+            }, 'json'
+            );
+
         });
 
         socket.on('update_online_count', function (userlist) {
             //有人加入时更新界面，服务器发来所有用户数据
+            //alert(userlist);
             $.post('{:url('allmember')}', {userlist:userlist}, function (ret) {
 
             }, 'json'
@@ -241,11 +246,10 @@
         });
         socket.on('update_offline', function (userid) {
             //有人退出\断线时
-            $('.member__'+userid).hide();
-            /*$.post('{:url('comeout')}', {memberid:userid}, function (ret) {
-
+            $.post('{:url('comeout')}', {memberid:userid}, function (ret) {
+                $('.member__'+userid).hide();
             }, 'json'
-            );*/
+            );
 
         });
 
@@ -260,6 +264,8 @@
 
             //传来房间中其它会员的信息，得到后加入到界面中显示出来，数据是一个json数组
             if(ret.type == 4){
+                console.log(ret);
+                //alert(ret.data.length);
                 for(var i =0; i < ret.data.length; i++){
                     $('#player_'+i).find('img').eq(0).attr('src', ret.data[i].photo);
                     $('#player_'+i).find('.nickname').html(ret.data[i].nickname);
@@ -286,7 +292,7 @@
 
                         $('#gameready').hide();
                         //摊牌倒计时
-                        tanpaicountdown();
+                        tanpaicountdown(ret.room.taipaitime);
                     }else if(ret.gamestatus == 2){
                         //已经摊牌
                         $('.tanpai').hide();
@@ -312,7 +318,6 @@
                     }
 
 
-console.log(ret);
 
 
                 }

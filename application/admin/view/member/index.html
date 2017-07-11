@@ -17,8 +17,8 @@
                  <thead>
                    <th>ID</th>
                   <th width="220">昵称</th>
-                  <th width="120">登录名</th>
-                  <th>等级</th>
+                  <th width="120">房卡数</th>
+                  <th>金币</th>
                   <th>状态</th>
                   <th style="text-align:center">操作</th>
                 </thead>
@@ -26,8 +26,8 @@
                 <tr>
                   <td>{$vo.id}</td>
                   <td>{$vo.nickname}</td>
-                  <td>{$vo.username}</td>
-                  <td>{$vo.level}</td>
+                  <td>{$vo.cards}</td>
+                  <td>{$vo.money}</td>
                   <td>{$vo.status}</td>
                   <td style="text-align:center; width:120px;"><a href="{:url('delete', array('id' => $vo['id']))}" class="btn btn-danger btn-sm">删除</a> <a href="{:url('modify', array('id' => $vo['id']))}" class="btn btn-success btn-sm">修改</a></td>
                 </tr>

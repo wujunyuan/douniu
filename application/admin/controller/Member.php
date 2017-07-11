@@ -28,14 +28,14 @@ class Member extends Common
 		parent::insert();
 	}	
 	
-	public function update()
-	{
-		if(isset($_POST['password']) && $_POST['password'] == ''){
-			unset($this->postdata['password']);
-		}else{
-			$this->postdata['password'] = md5($_POST['password']);
-		}
-		parent::update();
-	}	
+//	public function update()
+//	{
+//		if(isset($_POST['password']) && $_POST['password'] == ''){
+//			unset($this->postdata['password']);
+//		}else{
+//			$this->postdata['password'] = md5($_POST['password']);
+//		}
+//		parent::update();
+//	}
 	
 }
