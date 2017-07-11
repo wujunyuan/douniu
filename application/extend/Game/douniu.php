@@ -131,13 +131,13 @@ class douniu
     public function getniuname($cards = array()){
         $ret = $this->getniu($cards);
         if($ret === 0){
-            return '牛牛';
+            return 10;
         }
         if($ret > 0){
-            return '牛'.$ret;
+            return $ret;
         }
         if($ret === false){
-            return '没牛';
+            return 0;
         }
     }
 

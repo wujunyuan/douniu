@@ -165,7 +165,7 @@ class Douniuplaywjy extends Common
             foreach ($ret as $key => $val) {
                 if($val['gamestatus'] == 2){
                     $ret[$key]['pai'] = unserialize($val['pai']);
-                    $ret[$key]['info'] = $this->douniu->getniu($ret[$key]['pai']);
+                    $ret[$key]['info'] = $this->douniu->getniuname($ret[$key]['pai']);
                 }else{
                     $ret[$key]['pai'] = array(0,0,0,0,0);
                     $ret[$key]['info'] = '未知';
@@ -180,7 +180,7 @@ class Douniuplaywjy extends Common
             //如果会员摊牌状态，通知前端更新
             if ($return['gamestatus'] == 2) {
                 $return['pai'] = unserialize($v['pai']);
-                $return['info'] = $this->douniu->getniu($return['pai']);
+                $return['info'] = $this->douniu->getniuname($return['pai']);
             }elseif($return['gamestatus'] == 1){
                 $return['pai'] = unserialize($v['pai']);
                 $return['pai'] = array($return['pai'][0],$return['pai'][1],$return['pai'][2],0,0);
