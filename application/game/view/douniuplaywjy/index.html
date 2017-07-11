@@ -44,7 +44,8 @@
     .cardsbox .pic3{position: absolute; left: 20px; z-index: 1;}
     .cardsbox .pic4{position: absolute; left: 30px; z-index: 1;}
     .cardsbox .pic5{position: absolute; left: 40px; z-index: 1;}
-    .niuname{position: absolute; display: none; z-index: 5; top:-20px; font-size: 14px; width:100%; text-align: center; color:#f00;}
+    .niuname{position: absolute; display: none; z-index: 5; top:15px; font-size: 14px; width:100%; text-align: center; color:#f00;}
+    .niuname img{width: 80px;}
 .last-time{display: none;}
     .tanpai{display:none;}
     .cards{display: none;}
@@ -162,12 +163,12 @@
 
         <div class="cards">
 
-            <div class="niuname">未知</div>
+
 
 
             <img src="__STATIC__/game/img/pai/0.png"><img src="__STATIC__/game/img/pai/0.png"><img
                 src="__STATIC__/game/img/pai/0.png"><img src="__STATIC__/game/img/pai/0.png"><img
-                src="__STATIC__/game/img/pai/0.png">
+                src="__STATIC__/game/img/pai/0.png"><div class="niuname">未知</div>
         </div>
     </div>
     <div class="msg">
@@ -289,7 +290,7 @@
                     }else if(ret.gamestatus == 2){
                         //已经摊牌
                         $('.tanpai').hide();
-                        $('.cards .niuname').html('<img src="__STATIC__/game/img/niu/niu'+ret.info+'.png" >').show();
+                        $('.cards .niuname').html('<img width="120" src="__STATIC__/game/img/niu'+ret.info+'.png" >').show();
 
 
                     }
@@ -304,7 +305,7 @@
 
                         }
                         if(ret.data[i]['gamestatus'] == 2){
-                            $('#player_'+i).find('.cardsbox .niuname').html('<img src="__STATIC__/game/img/niu/niu'+ret.data[i]['info']+'.png" >');
+                            $('#player_'+i).find('.cardsbox .niuname').html('<img width="120" src="__STATIC__/game/img/niu'+ret.data[i]['info']+'.png" >');
                             $('#player_'+i).find('.cardsbox .niuname').show();
                         }
                         $('#player_'+i).find('.cardsbox').show();
