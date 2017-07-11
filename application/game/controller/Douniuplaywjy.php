@@ -210,6 +210,7 @@ class Douniuplaywjy extends Common
             $return['start'] = $start;
             $return['data'] = $ret;
             $return['room'] = $room;
+            $return['playcount'] = $room['playcount']%10;
             $return['type'] = 4;
             $return['gamestatus'] = $v['gamestatus'];
             //如果会员摊牌状态，通知前端更新
@@ -330,8 +331,13 @@ class Douniuplaywjy extends Common
         //通知前端显示再来一局的准备按钮,这里要计算游戏结果
         //计算出游戏结果后，初始化，牌的数据和牌型全改为原始状态
         //查询房间中所有会员， 这个动作是最后一个准备游戏的会员触发的
-        model('room') -> gameinit(array('id' => $this->memberinfo['room_id']));
-        $this->allmember();
+        $return = model('room') -> gameinit(array('id' => $this->memberinfo['room_id']));
+        if($return){
+            $this->allmember();
+        }else{
+            //游戏次数用完了，要加房卡
+        }
+
     }
 
 }

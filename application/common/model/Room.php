@@ -46,14 +46,33 @@ class Room extends Model
 
     public function gameinit($where = array()){
         $room = $this->where($where)->find();
+
         if (!$room) {
             $this->error = '房间不存在！';
             return false;
         }
+
+
         $room = $room->toArray();
         $map['room_id'] = $room['id'];
-        $ret  =Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
-        return $ret;
+        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
+
+        model('room') -> where(array('id' => $room['id'])) -> setDec('playcount', 1);
+
+        if($room['playcount'] == 1){
+            if($room['room_cards_num'] == 0){
+                $this->error = '房卡耗完了';
+                return false;
+            }else{
+                model('room') -> where(array('id' => $room['id'])) -> setDec('playcount', 1);
+                model('room') -> where(array('id' => $room['id'])) -> update(array('playcount'=> 10));
+                //这里10局完了
+            }
+
+
+
+        }
+        return true;
     }
 
 
