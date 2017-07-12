@@ -177,6 +177,16 @@ class douniu
         if(max($isbombarr) == 4){
             $isbomb = true;
         }
+        if($ismin){
+            return 12;
+        }
+        if($isbomb){
+            return 11;
+        }
+        if($ismax){
+            return 10;
+        }
+
         $return = array();
         $count = $this->niucount($cards);
         foreach ($count as $k => $v) {

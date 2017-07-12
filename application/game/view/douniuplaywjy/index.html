@@ -68,6 +68,16 @@
         </ul>
     </div>
 </div>
+
+<div class="invite" style="position: absolute;top: 1rem;width: 100%;z-index: 100000;display: none;">
+    <img src="__STATIC__/game/img/arrow.png" style="width: 5rem;float: right;">
+    <p style="color: white;margin:7rem auto;width: 16rem;">
+        <span style="display: inline-block;width: 1.5rem;height: 1.5rem;border-radius: 50%;background: red;color: white;text-align: center;line-height: 1.5rem;margin-right: 0.3rem;">1</span>请点击右上角<img src="__STATIC__/game/img/ico1.png" style="width: 1.5rem;vertical-align: middle;margin:0 0.3rem;">按钮<br/><br/>
+        <span style="display: inline-block;width: 1.5rem;height: 1.5rem;border-radius: 50%;background: red;color: white;text-align: center;line-height: 1.5rem;margin-right: 0.3rem;">2</span>选择<img src="__STATIC__/game/img/ico2.png" style="width: 1.5rem;vertical-align: middle;margin:0 0.3rem;">发送给朋友来要请好友<br/><br/>
+        <span style="color: #E6A43F;">本产品仅供娱乐，禁止用于赌博</span>
+    </p>
+</div>
+
 <div class="container">
     <div class="header">
         <img src="__STATIC__/game/img/tb.png" width="100%" style="position: absolute;z-index: -1;height: 3.2rem;">
@@ -78,7 +88,7 @@
         <p class="round"><span id="playcount">{$room.playcount}</span>/<span>10</span>&nbsp;局</p>
 
         <p class="msg-action"><img src="__STATIC__/game/img/guize.png" class="rule"><img
-                src="__STATIC__/game/img/guanzhu.png"><img src="__STATIC__/game/img/invite.png"></p>
+                src="__STATIC__/game/img/guanzhu.png"><img class="inviteico" src="__STATIC__/game/img/invite.png"></p>
     </div>
     <div class="desk">
         <div class="players1">
@@ -215,6 +225,20 @@
         $(".rules>img").click(function () {
             $(".rules").add(".overlay").hide();
         })
+
+
+        $(".inviteico").click(function(){
+            $(".overlay").addClass("overlay1");
+            $(".invite").add(".overlay1").show();
+
+            $(".overlay1,.invite").click(function(){
+                $(".invite,.overlay1").hide();
+                $(".overlay").removeClass("overlay1");
+            })
+        })
+
+
+
     })
 
 </script>
