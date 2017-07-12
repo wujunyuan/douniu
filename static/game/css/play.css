@@ -38,7 +38,8 @@ body{background: url("../img/444.png") repeat;}
 
 .last-time{position: absolute;top: 20%;left: 50%;margin-left: -1.9rem;width: 3.8rem;height:4.8rem;font-size: 0.9rem;color: #ddd;background: url(../img/jishi.png) bottom no-repeat;background-size:80%;}
 .last-time span{text-align: center;display: inline-block;width: 100%;margin-top: 1.4rem;}
-
+.last-time1{position: absolute;top: 20%;left: 50%;margin-left: -1.9rem;width: 3.8rem;height:4.8rem;font-size: 0.9rem;color: #ddd;background: url(../img/jishi.png) bottom no-repeat;background-size:80%;}
+.last-time1 span{text-align: center;display: inline-block;width: 100%;margin-top: 1.4rem;}
 .rules>img{width: 2.2rem;position: absolute;top: 12.5%;right: 3.2%;z-index: 107001;}
 .rules .cons{width: 85%;padding-bottom: 3rem;border:1px solid #ccc;z-index: 107000;position: absolute; top: 15%;left: 50%;margin-left: -42.5%;background: #7A8B9B;border-radius: 0.6rem;}
 .rules .cons h2{text-align: center;text-decoration: underline;font-weight: bold;color:#e4a512;line-height: 2.3rem;text-shadow: 2px 1px #472205;margin-top: 0.5rem;}
@@ -46,3 +47,7 @@ body{background: url("../img/444.png") repeat;}
 .rules .cons ul p{font-size: 0.8rem;text-align: center;color: #84C8DD;line-height: 2rem;margin:0.1rem 0;background: #143844;}
 .rules .cons ul li{background: #B3CEE9;margin-top: 0.25rem;padding:0.6rem;font-size: 0.9rem;list-style: none;}
 .rules .cons ul li span{font-size: 0.9rem;margin-left: 1.3rem;}
+
+.qiang{width:100%; text-align: center;}
+.qiang img{display: inline-block;
+    width:20%;}

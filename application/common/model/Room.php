@@ -57,11 +57,19 @@ class Room extends Model
         $room = $room->toArray();
         $map['room_id'] = $room['id'];
         Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
+
+
+        model('room') -> where(array('id' => $room['id'])) -> update(array('islock'=> 0));
+
+
         if ($room['room_cards_num'] <= 0 && $room['playcount'] <= 0) {
             $this->error = '房卡耗完了';
             $this->account();
             return false;
         }
+
+
+
         model('room')->where(array('id' => $room['id']))->setDec('playcount', 1);
 
         if ($room['room_cards_num'] > 0 && $room['playcount'] <= 1) {

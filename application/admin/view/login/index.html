@@ -57,7 +57,7 @@
 			dataType:"json",
 			success: function(ret){
 				if(ret.code == 1){
-					window.location.href = '{:url('Index/index')}';
+					window.location.href = '{:url('Member/index')}';
 				}else{
 					$('#errormsg').html(ret.msg);
 					$('#errormsgbox').removeClass('hidden');

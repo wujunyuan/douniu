@@ -51,7 +51,7 @@ class Login extends Controller
 
 			//设置$_SESSION['userid'] = $ret['id'];
 
-            $this->success('登录成功！',url('Index/index'));
+            $this->success('登录成功！',url('Member/index'));
         }else{
             $this->error($user ->getError());
         }

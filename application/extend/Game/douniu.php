@@ -82,7 +82,7 @@ class douniu
      */
     public function getcardname($i)
     {
-        $name = array('方块', '草花', '红桃', '黑桃');
+        $name = array('方块 <span style="color:#f00;">♦</span> ', '草花 ♣ ', '红桃 <span style="color:#f00;">♥</span> ', '黑桃 ♠ ');
         $num = array('A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K');
         $namekey = ($i % 4) > 0 ? ($i % 4 - 1) : 3;
         $numkey = ceil($i / 4) - 1;
@@ -149,12 +149,36 @@ class douniu
         }
     }
 
+    public function getmax($cards){
+        $ret = array();
+        foreach($cards as $k => $v) {
+            $namescore = (($v % 4) > 0 ? ($v % 4 - 1) : 3) + 1;
+            $keyscore = $this->getscoreorigin($v);
+            $ret[] = $namescore + $keyscore*$keyscore;
+        }
+        return max($ret);
+    }
+
+    public function ret($cards){
+        //获取牛的类型
+        $type = $this->getniuname($cards);
+        if($type !== false){
+            $type += 13;
+            $type = $type*$type;
+        }
+        $ret = $type + $this -> getmax($cards);
+
+        return $ret;
+    }
+
     /**
+     * bool false 是无牛   1-9牛几  0牛牛  10五花牛   11炸弹牛   12小牛牛
      * @param $cards 5张纸牌的数组
      * @return mixed
      */
     public function getniu($cards)
     {
+
         //是否五小
         $ismin = true;
         //是否五花
@@ -167,14 +191,16 @@ class douniu
                 //五小不成立
                 $ismin = false;
             }
-            if($this->getscoreorigin() <= 10){
+            if($this->getscoreorigin($v) <= 10){
                 //五花牛不成立
                 $ismax = false;
             }
-            $isbombcount[] = $v;
+            $isbombcount[] = (int)$this->getscoreorigin($v);
         }
+
+
         $isbombarr = array_count_values($isbombcount);
-        if(max($isbombarr) == 4){
+        if(max($isbombarr) >= 4){
             $isbomb = true;
         }
         if($ismin){
@@ -190,7 +216,7 @@ class douniu
         $return = array();
         $count = $this->niucount($cards);
         foreach ($count as $k => $v) {
-           $ret = array_diff($cards, $v);
+            $ret = array_diff($cards, $v);
             $socre = 0;
             foreach($ret as $val){
                 $socre += $this->getscore($val);

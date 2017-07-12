@@ -40,6 +40,14 @@ class Member extends Model
      */
     public function comein($room_id, $where = array())
     {
+        $islock = model('room') -> where(array('id' => $room_id))->value('islock');
+        $count = $this -> where(array('room_id' => $room_id)) -> count();
+        if($count >= 6){
+            $this->error = '房间人数已经满了';
+        }
+        if($islock == 1){
+            $this->error = '房间锁住了，等一会再来吧';
+        }
         return $this->where($where)->update(array('room_id' => $room_id));
     }
 
@@ -49,6 +57,17 @@ class Member extends Model
      */
     public function comeout($where = array())
     {
+        //如果房间里没有人，就把锁打开
+
+        $member = $this->where($where) -> find();
+        if($member){
+            $member = $member -> toArray();
+            $m = $this -> where(array('room_id' => $member['room_id'])) -> find();
+            if(!$m){
+                model('room') -> where(array('id' => $member['room_id'])) -> update(array('islock' => 0));
+            }
+
+        }
         return $this->where($where)->update(array('room_id' => 0));
     }
 

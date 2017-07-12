@@ -49,6 +49,8 @@
 .last-time{display: none;}
     .tanpai{display:none;}
     .cards{display: none;}
+    .photo{position: relative;}
+    .readyimg{width:50px !important; height: auto !important; position: absolute; display: none;}
 </style>
     <!-- 游戏准备按钮 -->
     <img id="gameready" onclick="gameready1();" src="__STATIC__/game/img/init.png" style="position:absolute;top: 50%; left: 50%; z-index: 3; margin-left:-50px; width: 100px; {eq name="memberinfo['gamestatus']" value="1"}display:none;{/eq}">
@@ -94,7 +96,7 @@
         <div class="players1">
             <div class="photo" id="player_1">
                 <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
-
+                <img style="right:66px;bottom:34px;" class="readyimg" src="__STATIC__/game/img/ready1.png" style="width: 2.5rem;height: 2.5rem;">
                 <p><span style="max-width: 2.2rem;font-size: 0.6rem;" class="nickname">不一样的烟火不一样的烟火</span><br/><span class="money">34</span></p>
                 <div class="cardsbox" style="bottom:45px; right:85px;">
                     <img class="pic1" src="__STATIC__/game/img/pai/0.png">
@@ -107,7 +109,7 @@
             </div>
             <div class="photo" id="player_2">
                 <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
-
+                <img style="right:66px;bottom:34px;" class="readyimg" src="__STATIC__/game/img/ready1.png" style="width: 2.5rem;height: 2.5rem;">
                 <p><span style="max-width: 2.2rem;font-size: 0.6rem;" class="nickname">不一样的烟火不一样的烟火</span><br/><span class="money">34</span></p>
                 <div class="cardsbox" style="bottom:45px; right:85px;">
                     <img class="pic1" src="__STATIC__/game/img/pai/0.png">
@@ -122,7 +124,7 @@
         <div class="players2">
             <div class="photo"  id="player_3">
                 <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
-
+                <img style="left:73px;bottom:30px;" class="readyimg" src="__STATIC__/game/img/ready1.png" style="width: 2.5rem;height: 2.5rem;">
                 <p><span style="max-width: 2.2rem;font-size: 0.6rem;" class="nickname">不一样的烟火不一样的烟火</span><br/><span class="money">34</span></p>
 
 
@@ -139,7 +141,7 @@
             </div>
             <div class="photo"  id="player_4">
                 <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
-
+                <img style="left:73px;bottom:30px;" class="readyimg" src="__STATIC__/game/img/ready1.png" style="width: 2.5rem;height: 2.5rem;">
                 <p><span style="max-width: 2.2rem;font-size: 0.6rem;" class="nickname">不一样的烟火不一样的烟火</span><br/><span class="money">34</span></p>
 
                 <div class="cardsbox" style="bottom:45px; left:50px;">
@@ -156,7 +158,7 @@
         <div class="players3">
             <div class="photo" id="player_0">
                 <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
-
+                <img style="left:0px; bottom: -39px;" class="readyimg" src="__STATIC__/game/img/ready1.png" style="width: 2.5rem;height: 2.5rem;">
                 <p><span style="max-width: 2.2rem;font-size: 0.6rem;" class="nickname">不一样的烟火不一样的烟火</span><br/><span class="money">34</span></p>
                 <div class="cardsbox" style="bottom:45px; left:50px;">
                     <img class="pic1" src="__STATIC__/game/img/pai/0.png">
@@ -171,14 +173,22 @@
         <p class="last-time">等待摊牌<span>15</span></p>
         <img src="__STATIC__/game/img/tanpai.png" onclick="tanpai();" class="tanpai">
 
+        
+
+
         <div class="cards">
 
 
-
-
+            <div class="qiang" style="display: none;">
+                <img src="__STATIC__/game/img/one.png">
+                <img src="__STATIC__/game/img/two.png">
+                <img src="__STATIC__/game/img/three.png">
+                <img src="__STATIC__/game/img/buqiang.png">
+            </div>
+<div class="pai">
             <img src="__STATIC__/game/img/pai/0.png"><img src="__STATIC__/game/img/pai/0.png"><img
                 src="__STATIC__/game/img/pai/0.png"><img src="__STATIC__/game/img/pai/0.png"><img
-                src="__STATIC__/game/img/pai/0.png"><div class="niuname">未知</div>
+                src="__STATIC__/game/img/pai/0.png"></div><div class="niuname">未知</div>
         </div>
     </div>
     <div class="msg">
@@ -205,6 +215,9 @@
 <script src="__STATIC__/game/js/lib/opentip.js"></script>
 <script src="__STATIC__/js/countdown.js"></script>
 <script src="__STATIC__/game/js/lib/adapter-jquery.js"></script>
+
+<script src="__STATIC__/game/js/WeixinApi.js"></script>
+
 <script type="text/javascript">
 
     function tanpaicountdown(initcount){
@@ -243,6 +256,10 @@
 
 </script>
 <script>
+
+
+
+
     function strToJson(str) {
         console.log(str);
         var json = eval('(' + str + ')');
@@ -328,9 +345,10 @@
 
                     }
                     for(var k=0;k<ret.pai.length; k++){
-                        $('.cards img').eq(k).attr('src', '__STATIC__/game/img/pai/'+ret.pai[k]+'.png');
+                        $('.cards .pai img').eq(k).attr('src', '__STATIC__/game/img/pai/'+ret.pai[k]+'.png');
                     }
                     if(ret.data[i]['gamestatus'] > 0){
+                        $('.member__'+ret.data[i].id+' .readyimg').show();
                         for(var j=0;j<ret.data[i]['pai'].length; j++){
                             $('#player_'+i).find('.cardsbox img').eq(j).attr('src', '__STATIC__/game/img/pai/'+ret.data[i]['pai'][j]+'.png');
                         }
