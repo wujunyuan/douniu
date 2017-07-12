@@ -47,31 +47,20 @@ class Room extends Model
     public function gameinit($where = array())
     {
         $room = $this->where($where)->find();
-
         if (!$room) {
             $this->error = '房间不存在！';
             return false;
         }
-
-
         $room = $room->toArray();
         $map['room_id'] = $room['id'];
-        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
-
-
+        Db::name('member')  -> where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
         model('room') -> where(array('id' => $room['id'])) -> update(array('islock'=> 0));
-
-
         if ($room['room_cards_num'] <= 0 && $room['playcount'] <= 0) {
             $this->error = '房卡耗完了';
             $this->account();
             return false;
         }
-
-
-
         model('room')->where(array('id' => $room['id']))->setDec('playcount', 1);
-
         if ($room['room_cards_num'] > 0 && $room['playcount'] <= 1) {
             model('room')->where(array('id' => $room['id']))->setDec('room_cards_num', 1);
             model('room')->where(array('id' => $room['id']))->update(array('playcount' => 10));
@@ -155,13 +144,16 @@ class Room extends Model
         $room = $room->toArray();
         $map['room_id'] = $room['id'];
         $member = Db::name('member')->where(array('room_id' => $room['id']))->select();
-        $status = true;
+        $status = 0;
         foreach ($member as $v) {
-            if ($v['gamestatus'] == 0) {
-                $status = false;
+            if ($v['gamestatus'] >= 1) {
+                $status++;
             }
         }
-        return $status;
+        if(($status > 1 && $room['starttime'] <= time()) || $status == count($member)){
+            return true;
+        }
+        return false;
     }
 
     /**

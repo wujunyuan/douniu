@@ -149,19 +149,20 @@ class Douniuplaywjy extends Common
 
         $db = model('member');
         $room_id = input('room_id');
-        if($room_id){
+        if ($room_id) {
             $ret = $db->comein($room_id, array('id' => $this->memberinfo['id']));
             $this->allmember();
-            if($ret){
+            if ($ret) {
                 $this->success('成功进入房间');
-            }else{
-                $this->error($db ->getError());
+            } else {
+                $this->error($db->getError());
             }
-        }else{
+        } else {
             $this->error('迷路了，找不到房间！！！');
         }
 
     }
+
     public function comeout()
     {
         //进入房间的ID
@@ -170,9 +171,9 @@ class Douniuplaywjy extends Common
         $db = model('member');
         $ret = $db->comeout(array('id' => $memberid));
         //$this->allmember();
-        if($ret){
+        if ($ret) {
             $this->success('有人断线');
-        }else{
+        } else {
             $this->error('错误');
         }
 
@@ -183,50 +184,72 @@ class Douniuplaywjy extends Common
      */
     public function allmember()
     {
+
         $db = model('member');
+
         //会员进入房间时通知所有人更新玩家
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
-        $room = model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> find();
-        $room['taipaitime'] = $room['taipaitime'] - time();
-        if($room['taipaitime'] < 0){
-            $room['taipaitime'] = 0;
+        $room = model('room')->where(array('id' => $this->memberinfo['room_id']))->find();
+        if ($room) {
+            $room = $room->toArray();
+
+            $room['taipaitime'] = $room['taipaitime'] - time();
+            $room['starttime'] = $room['starttime'] - time();
+            $room['qiangtime'] = $room['qiangtime'] - time();
+            $room['xiazhutime'] = $room['xiazhutime'] - time();
+            if ($room['taipaitime'] < 0) {
+                $room['taipaitime'] = 0;
+            }
+            if ($room['starttime'] < 0) {
+                $room['starttime'] = 0;
+            }
+            if ($room['qiangtime'] < 0) {
+                $room['qiangtime'] = 0;
+            }
+            if ($room['xiazhutime'] < 0) {
+                $room['xiazhutime'] = 0;
+            }
+
         }
-        if(!$allmember){
+
+
+        if (!$allmember) {
             return;
         }
+
         //通知所有会员更新界面
         foreach ($allmember as $v) {
             $ret = $db->getothermember($v['id']);
             foreach ($ret as $key => $val) {
-                if($val['gamestatus'] == 2){
+                if ($val['gamestatus'] == 2) {
                     $ret[$key]['pai'] = unserialize($val['pai']);
                     //if($ret[$key]['pai']){
-                        $ret[$key]['info'] = $this->douniu->getniuname($ret[$key]['pai']);
+                    $ret[$key]['info'] = $this->douniu->getniuname($ret[$key]['pai']);
                     //}
 
-                }else{
-                    $ret[$key]['pai'] = array(0,0,0,0,0);
+                } else {
+                    $ret[$key]['pai'] = array(0, 0, 0, 0, 0);
                     $ret[$key]['info'] = '未知';
                 }
             }
-            $start = model('room') -> getgamestatus(array('id' => $v['room_id']));
+            $start = model('room')->getgamestatus(array('id' => $v['room_id']));
             $return['start'] = $start;
             $return['data'] = $ret;
             $return['room'] = $room;
-            $return['playcount'] = $room['playcount']%10;
+            $return['playcount'] = $room['playcount'] % 10;
             $return['type'] = 4;
             $return['gamestatus'] = $v['gamestatus'];
             //如果会员摊牌状态，通知前端更新
             if ($return['gamestatus'] == 2) {
                 $return['pai'] = unserialize($v['pai']);
                 //if($return['pai']){
-                    $return['info'] = $this->douniu->getniuname($return['pai']);
+                $return['info'] = $this->douniu->getniuname($return['pai']);
                 //}
 
-            }elseif($return['gamestatus'] == 1){
+            } elseif ($return['gamestatus'] == 1) {
                 $return['pai'] = unserialize($v['pai']);
-                $return['pai'] = array($return['pai'][0],$return['pai'][1],$return['pai'][2],0,0);
-            }else{
+                $return['pai'] = array($return['pai'][0], $return['pai'][1], $return['pai'][2], 0, 0);
+            } else {
                 $return['pai'] = array();
 
             }
@@ -237,8 +260,8 @@ class Douniuplaywjy extends Common
 
     public function gameready()
     {
-        $islock = model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> value('islock');
-        if($islock == 1){
+        $islock = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('islock');
+        if ($islock == 1) {
             $this->error('房间锁上了，一会再来吧');
         }
         if ($this->memberinfo['room_id'] == 0) {
@@ -258,18 +281,18 @@ class Douniuplaywjy extends Common
             }
         }
         //游戏可以开始了，通知房间中所有会员
-        $starttime = model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> value('starttime');
-        if ($gameinit > 1) {
-
+        $starttime = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('starttime');
+        //人齐了，或者人不齐时间到了，两者其一满足就发牌，开始游戏
+        if (($gameinit > 1 && $starttime <= time()) || $gameinit == count($allmember)) {
             //这里发牌
             $this->init();
         }
         if ($ret) {
             //两个准备就开始倒计时
-            if($gameinit == 2){
-                model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> update(array('starttime' => time() + 5));
+            if ($gameinit == 2) {
+                model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('starttime' => time() + 5));
             }
-            $this -> allmember();
+            $this->allmember();
             $this->success('准备好了');
         } else {
             $this->error(model('member')->getError());
@@ -289,17 +312,22 @@ class Douniuplaywjy extends Common
         //遍历所有会员，每人发一副牌，算好牌型，然后把数据存到数据库中的member表的pai字段
         $memberdb = model('member');
         foreach ($allmember as $v) {
-            if($v['gamestatus'] == 1){
+            if ($v['gamestatus'] == 1) {
                 $pai = $this->douniu->create();
                 $data['pai'] = serialize($pai);
                 $map['id'] = $v['id'];
+                //写入牌的大小
+                $data['pairet'] = $this->douniu ->ret($pai);
                 $memberdb->where($map)->update($data);
+            } else {
+                $memberdb->where($map)->update(array('gamestatus' => -1));
             }
 
         }
         //摊牌时间
-        model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> update(array('islock' => 1,'taipaitime' => time() + 15));
-        $this -> allmember();
+        model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('islock' => 1, 'taipaitime' => time() + 15));
+
+        $this->allmember();
     }
 
     /**
@@ -311,7 +339,7 @@ class Douniuplaywjy extends Common
             //都没有进房间，开始什么呀，有毛病
             $this->error('都还没有进房间呢');
         }
-        $ret = model('member')->gameshowall(array('id' => $this->memberinfo['id']));
+        $ret = model('member')->gameshowall(array('gamestatus' => 1, 'id' => $this->memberinfo['id']));
         $gameshowall = true;
         //所有准备好的人数
         $roomdb = model('room');
@@ -323,9 +351,9 @@ class Douniuplaywjy extends Common
                 $gameshowall = false;
             }
         }
-        $taipaitime = model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> value('taipaitime');
-        if($taipaitime - time() <= 0){
-            model('member')->gameshowall(array('room_id' => $this->memberinfo['room_id']));
+        $taipaitime = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('taipaitime');
+        if ($taipaitime - time() <= 0) {
+            model('member')->gameshowall(array('gamestatus' => 1, 'room_id' => $this->memberinfo['room_id']));
             $gameshowall = true;
         }
         //
@@ -352,11 +380,12 @@ class Douniuplaywjy extends Common
         //通知前端显示再来一局的准备按钮,这里要计算游戏结果
         //计算出游戏结果后，初始化，牌的数据和牌型全改为原始状态
         //查询房间中所有会员， 这个动作是最后一个准备游戏的会员触发的
-        $return = model('room') -> gameinit(array('id' => $this->memberinfo['room_id']));
+        $return = model('room')->gameinit(array('id' => $this->memberinfo['room_id']));
         $this->allmember();
-        if($return){
 
-        }else{
+        if ($return) {
+
+        } else {
             //游戏次数用完了，要加房卡
         }
 

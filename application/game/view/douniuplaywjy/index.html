@@ -170,7 +170,7 @@
                 </div>
             </div>
         </div>
-        <p class="last-time">等待摊牌<span>15</span></p>
+        <p class="last-time"><span class="text" style="margin-top:0; width:100%; font-size: 10px;">等待摊牌</span><span class="int">15</span></p>
         <img src="__STATIC__/game/img/tanpai.png" onclick="tanpai();" class="tanpai">
 
         
@@ -216,17 +216,29 @@
 <script src="__STATIC__/js/countdown.js"></script>
 <script src="__STATIC__/game/js/lib/adapter-jquery.js"></script>
 
-<script src="__STATIC__/game/js/WeixinApi.js"></script>
-
 <script type="text/javascript">
 
     function tanpaicountdown(initcount){
-    $('.last-time span').countdown({initcount:initcount,end:function(){
+        $('.last-time span.text').html('等待摊牌');
+    $('.last-time span.int').countdown({initcount:initcount,end:function(){
         $('.last-time').hide();
         tanpai();
     }});
         $('.last-time').show();
     }
+
+
+
+    function fapaicountdown(initcount){
+        $('.last-time span.text').html('准备开始');
+        $('.last-time span.int').countdown({initcount:initcount,end:function(){
+            $('.last-time').hide();
+            gameready1();
+        }});
+        $('.last-time').show();
+    }
+
+
 
     $(function () {
         $(".msg>img").click(function () {
@@ -316,7 +328,9 @@
                     $('#player_'+i).find('.money').html(ret.data[i].money);
                     $('#player_'+i).addClass('member__'+ret.data[i].id);
                     $('#player_'+i).show();
-
+                    if(ret.data[i]['gamestatus'] == 1){
+                        $('.member__'+ret.data[i].id+' .readyimg').show();
+                    }
                     if(ret.gamestatus == 0){
                         //当前会员未准备状态，重置游戏界面，把准备按钮显示出来，合理的这里其实是一个再来一局的按钮，没关系
                         $('#gameready').show();
@@ -333,7 +347,7 @@
                         //刚准备好，发牌完毕
                         $('.cards').show();
                         $('.tanpai').show();
-
+                        $('.member__'+ret.data[i].id+' .readyimg').hide();
                         $('#gameready').hide();
                         //摊牌倒计时
                         tanpaicountdown(ret.room.taipaitime);
@@ -352,9 +366,7 @@
                         for(var j=0;j<ret.data[i]['pai'].length; j++){
                             $('#player_'+i).find('.cardsbox img').eq(j).attr('src', '__STATIC__/game/img/pai/'+ret.data[i]['pai'][j]+'.png');
                         }
-                        if(ret.data[i]['gamestatus'] == 1){
 
-                        }
                         if(ret.data[i]['gamestatus'] == 2){
                             $('#player_'+i).find('.cardsbox .niuname').html('<img width="120" src="__STATIC__/game/img/niu'+ret.data[i]['info']+'.png" >');
                             $('#player_'+i).find('.cardsbox .niuname').show();

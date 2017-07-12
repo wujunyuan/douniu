@@ -112,6 +112,7 @@ class Member extends Model
      * @return $this
      */
     public function gameshowall($where){
+
         return $this->where($where) -> update(array('gamestatus' => 2));
     }
 }
