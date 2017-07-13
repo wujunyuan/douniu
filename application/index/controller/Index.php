@@ -9,10 +9,8 @@ class Index extends Common
 {
 	public function index()
 	{
-		Loader::import('extend.Modules.Nav.Lib.Setting');
-		$setting = new \app\Nav\Setting(1);
-		//dump(Session::get('member_id'));
-		return $this->fetch();
+		echo (int)'1499932725';
+		model('room')->account(1);
 	}
 
 }

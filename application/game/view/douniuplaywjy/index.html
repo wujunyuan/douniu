@@ -170,7 +170,7 @@
                 </div>
             </div>
         </div>
-        <p class="last-time"><span class="text" style="margin-top:0; width:100%; font-size: 10px;">等待摊牌</span><span class="int">15</span></p>
+        <p class="last-time"><span class="text" style="margin-top:0; width:100%; font-size: 14px;">等待摊牌</span><span class="int">15</span></p>
         <img src="__STATIC__/game/img/tanpai.png" onclick="tanpai();" class="tanpai">
 
         
@@ -238,7 +238,14 @@
         $('.last-time').show();
     }
 
-
+    function setbankercountdown(initcount){
+        $('.last-time span.text').html('抢庄');
+        $('.last-time span.int').countdown({initcount:initcount,end:function(){
+            $('.last-time').hide();
+            setbanker();
+        }});
+        $('.last-time').show();
+    }
 
     $(function () {
         $(".msg>img").click(function () {
@@ -291,7 +298,7 @@
 
         socket.on('update_online_count', function (userlist) {
             //有人加入时更新界面，服务器发来所有用户数据
-            //alert(userlist);
+
             $.post('{:url('allmember')}', {userlist:userlist}, function (ret) {
 
             }, 'json'
@@ -316,68 +323,76 @@
 
 
             //传来房间中其它会员的信息，得到后加入到界面中显示出来，数据是一个json数组
-            if(ret.type == 4){
+            if(ret.type == 4) {
                 console.log(ret);
                 //alert(ret.data.length);
                 $('#playcount').html(ret.room['playcount']);
                 //更新房卡
                 $('#roomcards').html(ret.room['room_cards_num']);
-                for(var i =0; i < ret.data.length; i++){
-                    $('#player_'+i).find('img').eq(0).attr('src', ret.data[i].photo);
-                    $('#player_'+i).find('.nickname').html(ret.data[i].nickname);
-                    $('#player_'+i).find('.money').html(ret.data[i].money);
-                    $('#player_'+i).addClass('member__'+ret.data[i].id);
-                    $('#player_'+i).show();
-                    if(ret.data[i]['gamestatus'] == 1){
-                        $('.member__'+ret.data[i].id+' .readyimg').show();
+
+                //准备发牌
+                if (ret.room.gamestatus == 1) {
+                    fapaicountdown(ret.room.starttime);
+                }
+
+                //开始抢庄
+                if (ret.room.gamestatus == 2) {
+                    //刚准备好，发牌完毕
+                    $('.cards').show();
+                    $('.tanpai').show();
+                    $('#gameready').hide();
+                    setbankercountdown(ret.room.qiangtime);
+                }
+
+                //闲家下注，摊牌倒计时
+                if (ret.room.gamestatus == 3) {
+                    $('.tanpai').hide();
+                    $('.cards .niuname').html('<img width="120" src="__STATIC__/game/img/niu' + ret.info + '.png" >').show();
+
+                    for (var k = 0; k < ret.pai.length; k++) {
+                        $('.cards .pai img').eq(k).attr('src', '__STATIC__/game/img/pai/' + ret.pai[k] + '.png');
                     }
-                    if(ret.gamestatus == 0){
+                    tanpaicountdown(ret.room.taipaitime);
+                }
+
+
+
+
+                for(var i =0; i < ret.data.length; i++) {
+                    $('#player_' + i).find('img').eq(0).attr('src', ret.data[i].photo);
+                    $('#player_' + i).find('.nickname').html(ret.data[i].nickname);
+                    $('#player_' + i).find('.money').html(ret.data[i].money);
+                    $('#player_' + i).addClass('member__' + ret.data[i].id);
+                    $('#player_' + i).show();
+                    if (ret.data[i]['gamestatus'] == 1) {
+                        $('.member__' + ret.data[i].id + ' .readyimg').show();
+                    }
+                    if (ret.room.gamestatus == 0) {
                         //当前会员未准备状态，重置游戏界面，把准备按钮显示出来，合理的这里其实是一个再来一局的按钮，没关系
                         $('#gameready').show();
                         continue;
                     }
-                    //游戏没有开始不要更新界面，return false;
-                    if(ret.start == false){
 
+                    if (ret.room.gamestatus != 2) {
                         continue;
                     }
-
-
-                    if(ret.gamestatus == 1){
-                        //刚准备好，发牌完毕
-                        $('.cards').show();
-                        $('.tanpai').show();
-                        $('.member__'+ret.data[i].id+' .readyimg').hide();
-                        $('#gameready').hide();
-                        //摊牌倒计时
-                        tanpaicountdown(ret.room.taipaitime);
-                    }else if(ret.gamestatus == 2){
-                        //已经摊牌
-                        $('.tanpai').hide();
-                        $('.cards .niuname').html('<img width="120" src="__STATIC__/game/img/niu'+ret.info+'.png" >').show();
-
-
-                    }
-                    for(var k=0;k<ret.pai.length; k++){
-                        $('.cards .pai img').eq(k).attr('src', '__STATIC__/game/img/pai/'+ret.pai[k]+'.png');
-                    }
-                    if(ret.data[i]['gamestatus'] > 0){
-                        $('.member__'+ret.data[i].id+' .readyimg').show();
-                        for(var j=0;j<ret.data[i]['pai'].length; j++){
-                            $('#player_'+i).find('.cardsbox img').eq(j).attr('src', '__STATIC__/game/img/pai/'+ret.data[i]['pai'][j]+'.png');
+                    if (ret.data[i]['gamestatus'] > 0) {
+                        $('.member__' + ret.data[i].id + ' .readyimg').show();
+                        for (var j = 0; j < ret.data[i]['pai'].length; j++) {
+                            $('#player_' + i).find('.cardsbox img').eq(j).attr('src', '__STATIC__/game/img/pai/' + ret.data[i]['pai'][j] + '.png');
                         }
-
-                        if(ret.data[i]['gamestatus'] == 2){
-                            $('#player_'+i).find('.cardsbox .niuname').html('<img width="120" src="__STATIC__/game/img/niu'+ret.data[i]['info']+'.png" >');
-                            $('#player_'+i).find('.cardsbox .niuname').show();
+                        $('.member__' + ret.data[i].id + ' .readyimg').hide();
+                        if (ret.data[i]['gamestatus'] == 2) {
+                            $('#player_' + i).find('.cardsbox .niuname').html('<img width="120" src="__STATIC__/game/img/niu' + ret.data[i]['info'] + '.png" >');
+                            $('#player_' + i).find('.cardsbox .niuname').show();
                         }
-                        $('#player_'+i).find('.cardsbox').show();
+                        $('#player_' + i).find('.cardsbox').show();
                     }
-
-
 
 
                 }
+
+
             }
 
         });
@@ -428,15 +443,24 @@
         $('.tanpai').hide();
         $('.cardsbox').hide();
         $.post('{:url('gameready')}', {}, function (ret) {
-           $('#gameready').hide();
 
+            $('#gameready').hide();
 
 
         }, 'json'
     )
         ;
     }
+    //抢庄
+    function setbanker(){
+        $('.last-time span').countdown();
+        $.post('{:url('setbanker')}', {}, function (ret) {
 
+            $('.last-time').hide();
+        }, 'json'
+    )
+        ;
+    }
     //摊牌
     function tanpai(){
         $('.last-time span').countdown();

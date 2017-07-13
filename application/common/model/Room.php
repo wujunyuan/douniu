@@ -57,7 +57,7 @@ class Room extends Model
         model('room') -> where(array('id' => $room['id'])) -> update(array('islock'=> 0));
         if ($room['room_cards_num'] <= 0 && $room['playcount'] <= 0) {
             $this->error = '房卡耗完了';
-            $this->account();
+            $this->account($room['id']);
             return false;
         }
         model('room')->where(array('id' => $room['id']))->setDec('playcount', 1);
@@ -65,10 +65,11 @@ class Room extends Model
             model('room')->where(array('id' => $room['id']))->setDec('room_cards_num', 1);
             model('room')->where(array('id' => $room['id']))->update(array('playcount' => 10));
             //这里10局完了
-            $this->account();
+            $this->account($room['id']);
         }
         return true;
     }
+
 
 
     /**
@@ -156,12 +157,28 @@ class Room extends Model
         return false;
     }
 
+
+    public function bankerexist($roomid){
+        return model('member')->where(array('room_id' => $roomid, 'banker' => 1))->find();
+    }
+
     /**
      *
      */
-    public function account()
+    public function account($roomid)
     {
         //游戏的结算方法，十局之后从日志表中读取统计结果进行结算，这里需要一个日志表，用来记录每局游戏的结果，结算后清空
-
+        $memberdb = model('member');
+        $result = Db::name('moneydetailtemp')->where(array('room_id' => $roomid)) -> select();
+       // dump($result);
+        foreach($result as $k => $v){
+            //每一局都要改变玩家的金币数量
+            $memberdb ->where(array('id' => $v['member_id'])) ->setInc('money', $v['num']);
+            unset($v['id']);
+            //转存到moneydetail表
+            Db::name('moneydetail') ->insert($v);
+        }
+        //删除临时记录，再开始玩十局要重新累计
+        Db::name('moneydetailtemp') ->where(array('room_id' => $roomid)) ->delete();
     }
 }

@@ -193,10 +193,10 @@ class Douniuplaywjy extends Common
         if ($room) {
             $room = $room->toArray();
 
-            $room['taipaitime'] = $room['taipaitime'] - time();
-            $room['starttime'] = $room['starttime'] - time();
-            $room['qiangtime'] = $room['qiangtime'] - time();
-            $room['xiazhutime'] = $room['xiazhutime'] - time();
+            $room['taipaitime'] = (int)$room['taipaitime'] - time();
+            $room['starttime'] = (int)$room['starttime'] - time();
+            $room['qiangtime'] = (int)$room['qiangtime'] - time();
+            $room['xiazhutime'] = (int)$room['xiazhutime'] - time();
             if ($room['taipaitime'] < 0) {
                 $room['taipaitime'] = 0;
             }
@@ -261,14 +261,15 @@ class Douniuplaywjy extends Common
     public function gameready()
     {
         $islock = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('islock');
-        if ($islock == 1) {
-            $this->error('房间锁上了，一会再来吧');
+
+        if ($islock == 1 && $this->memberinfo['gamestatus'] < 1) {
+            $this->error('游戏进行中，不允许加入');
         }
         if ($this->memberinfo['room_id'] == 0) {
             //都没有进房间，开始什么呀，有毛病
             $this->error('都还没有进房间呢');
         }
-        $ret = model('member')->gameready(array('id' => $this->memberinfo['id']));
+        $ret = model('member')->gameready(array('gamestatus' => 0,'id' => $this->memberinfo['id']));
         $gameinit = 0;
         //所有准备好的人数
         $roomdb = model('room');
@@ -290,7 +291,7 @@ class Douniuplaywjy extends Common
         if ($ret) {
             //两个准备就开始倒计时
             if ($gameinit == 2) {
-                model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('starttime' => time() + 5));
+                model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('starttime' => time() + 5, 'gamestatus' => 1));
             }
             $this->allmember();
             $this->success('准备好了');
@@ -298,6 +299,13 @@ class Douniuplaywjy extends Common
             $this->error(model('member')->getError());
         }
     }
+
+
+
+    public function setbanker(){
+
+    }
+
 
 
     /**
@@ -319,16 +327,17 @@ class Douniuplaywjy extends Common
                 //写入牌的大小
                 $data['pairet'] = $this->douniu ->ret($pai);
                 $memberdb->where($map)->update($data);
-            } else {
-                $memberdb->where($map)->update(array('gamestatus' => -1));
             }
 
         }
         //摊牌时间
-        model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('islock' => 1, 'taipaitime' => time() + 15));
+        model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('islock' => 1, 'qiangtime' => time() + 15, 'gamestatus' => 2));
 
         $this->allmember();
     }
+
+
+
 
     /**
      * 摊牌
