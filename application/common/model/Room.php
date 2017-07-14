@@ -58,7 +58,7 @@ class Room extends Model
             return false;
         }
         $map['room_id'] = $room['id'];
-        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0, 'banker' => 0, 'issetbanker' => 0));
+        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0, 'banker' => 0, 'issetbanker' => 0, 'issetmultiple' => 0));
         model('room')->where(array('id' => $room['id']))->update(array('islock' => 0, 'gamestatus' => 0));
         if ($room['room_cards_num'] <= 0 && $room['playcount'] <= 0) {
             $this->error = '房卡耗完了';
@@ -181,6 +181,7 @@ class Room extends Model
             return false;
         }
         $allmember = model('member') -> where(array('room_id' => $roomid, 'gamestatus' => 1)) -> select();
+        $issetbanker = 0;
         if($allmember){
             foreach($allmember as $k => $v){
                 $member = $v->toArray();
@@ -191,6 +192,9 @@ class Room extends Model
                     //不抢庄的会员
                     $id[] = $member['id'];
                 }
+                if($v['issetbanker'] == 1){
+                    $issetbanker ++;
+                }
             }
         }else{
             $this->error = '房间没有人';
@@ -199,7 +203,7 @@ class Room extends Model
         //不只有两个人
         //dump(count($bankerid));
         //截止时间未到，有人没有抢并且已经有人抢了，这时不生成庄家
-        if(count($allmember) > count($bankerid) && (int)$room['qiangtime'] - time() > 0){
+        if(count($allmember) > ($issetbanker) && (int)$room['qiangtime'] - time() > 0){
             //有人抢
             $this->error = '抢庄中';
             return false;

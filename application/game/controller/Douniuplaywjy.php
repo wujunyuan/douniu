@@ -238,8 +238,8 @@ class Douniuplaywjy extends Common
             $return['room'] = $room;
             $return['issetbanker'] = $v['issetbanker'];
             $return['banker'] = unserialize($room['setbanker']);
-
-
+            $return['isbanker'] = $v['banker'];
+            $return['issetmultiple'] = $v['issetmultiple'];
             $return['playcount'] = $room['playcount'] % 10;
             $return['type'] = 4;
             $return['gamestatus'] = $v['gamestatus'];
@@ -268,6 +268,7 @@ class Douniuplaywjy extends Common
     {
         $multiple = intval(input('multiple'));
         model('member')->settimes($this->memberinfo['id'], $multiple);
+        model('member')->where(array('id' => $this->memberinfo['id']))->update(array('issetmultiple' => 1));
         $this->allmember();
     }
 
@@ -277,12 +278,13 @@ class Douniuplaywjy extends Common
     public function setbanker()
     {
         $multiple = intval(input('multiple'));
-        //if($multiple > 0){
-        model('member')->settimes($this->memberinfo['id'], $multiple);
-        model('member')->where(array('id' => $this->memberinfo['id'], 'gamestatus' => 1))->update(array('banker' => 1));
-        //}
-        model('room') -> setbanker($this->memberinfo['room_id']);
+        if($multiple > 0){
+            model('member')->settimes($this->memberinfo['id'], $multiple);
+            model('member')->where(array('id' => $this->memberinfo['id'], 'gamestatus' => 1))->update(array('banker' => 1));
+        }
         model('member')->where(array('id' => $this->memberinfo['id']))->update(array('issetbanker' => 1));
+        model('room') -> setbanker($this->memberinfo['room_id']);
+
         $this->allmember();
     }
 
@@ -384,9 +386,10 @@ class Douniuplaywjy extends Common
         $gameshowall = true;
         //所有准备好的人数
         $roomdb = model('room');
-        $map = array('id' => $this->memberinfo['room_id']);
-        $allmember = $roomdb->getmember($map);
+        $map = array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('neq', 0));
+        $allmember = model('member')->where($map) -> select();
         foreach ($allmember as $v) {
+            $v = $v->toArray();
             if ($v['gamestatus'] != 2) {
                 //发现有人未摊牌
                 $gameshowall = false;

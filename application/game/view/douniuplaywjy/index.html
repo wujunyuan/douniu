@@ -178,11 +178,16 @@
 
         <div class="cards">
 
-
+            <div class="xiazhu" style="display: none;">
+                <img onclick="setmultiple(1);" src="__STATIC__/game/img/one.png">
+                <img onclick="setmultiple(2);" src="__STATIC__/game/img/two.png">
+                <img onclick="setmultiple(3);" src="__STATIC__/game/img/three.png">
+            </div>
             <div class="qiang" style="display: none;">
                 <img onclick="setbanker(1);" src="__STATIC__/game/img/one.png">
                 <img onclick="setbanker(2);" src="__STATIC__/game/img/two.png">
-                <img onclick="setbanker(3);" src="__STATIC__/game/img/three.png">
+                <img onclick="setbanker(4);" src="__STATIC__/game/img/4.png">
+
                 <img onclick="setbanker(0);" src="__STATIC__/game/img/buqiang.png">
             </div>
 <div class="pai">
@@ -275,8 +280,7 @@
 
     })
 
-</script>
-<script>
+
 
 
 
@@ -336,7 +340,12 @@
                 if (ret.room.gamestatus == 1) {
                     fapaicountdown(ret.room.starttime);
                 }
+                if (ret.room.gamestatus == 0) {
+                    $('#gameready').show();
+                    $('.tanpai').hide();
+                    $('.xiazhu').hide();
 
+                }
                 //开始抢庄
                 if (ret.room.gamestatus == 2) {
                     //刚准备好，发牌完毕
@@ -359,17 +368,34 @@
                 if (ret.room.gamestatus == 3) {
                     $('.tanpai').show();
                     for (var b = 0; b < ret.banker.length; b++) {
-                        $('member__' + ret.banker[i]).find('img:eq(0)').css({"-webkit-animation":"twinkling 1s infinite ease-in-out"});
+                        $('.member__' + ret.banker[b]).find('img:eq(0)').addClass('banker');
                     }
                     if(ret.gamestatus == 2) {
                         $('.tanpai').hide();
                         $('.cards .niuname').html('<img width="120" src="__STATIC__/game/img/niu' + ret.info + '.png" >').show();
+
+
+
+                    }else{
+                        if(ret.issetmultiple == 0){
+
+                            if(ret.isbanker == 0){
+                                $('.tanpai').hide();
+                                $('.xiazhu').show();
+                            }
+                        }else{
+                            $('.xiazhu').hide();
+                        }
+
+
+                        tanpaicountdown(ret.room.taipaitime);
                     }
 
                     for (var k = 0; k < ret.pai.length; k++) {
                         $('.cards .pai img').eq(k).attr('src', '__STATIC__/game/img/pai/' + ret.pai[k] + '.png');
                     }
-                    tanpaicountdown(ret.room.taipaitime);
+
+
                 }
 
 
@@ -480,6 +506,22 @@
     )
         ;
     }
+
+    //闲家下注
+    function setmultiple(multiple){
+        $('.last-time span.int').countdown(0);
+        $('.xiazhu').hide();
+        $('.tanpai').show();
+        $.post('{:url('setmultiple')}', {multiple:multiple}, function (ret) {
+
+            $('.last-time').hide();
+        }, 'json'
+    )
+        ;
+    }
+
+
+
     //摊牌
     function tanpai(){
         $('.last-time span.int').countdown(0);
