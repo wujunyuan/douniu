@@ -341,6 +341,9 @@
                     $('.cards').show();
                     $('.tanpai').show();
                     $('#gameready').hide();
+                    for (var k = 0; k < ret.pai.length; k++) {
+                        $('.cards .pai img').eq(k).attr('src', '__STATIC__/game/img/pai/' + ret.pai[k] + '.png');
+                    }
                     setbankercountdown(ret.room.qiangtime);
                 }
 

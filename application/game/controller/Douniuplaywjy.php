@@ -360,7 +360,7 @@ class Douniuplaywjy extends Common
                 $gameshowall = false;
             }
         }
-        $taipaitime = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('taipaitime');
+        $taipaitime = (int)model('room')->where(array('id' => $this->memberinfo['room_id']))->value('taipaitime');
         if ($taipaitime - time() <= 0) {
             model('member')->gameshowall(array('gamestatus' => 1, 'room_id' => $this->memberinfo['room_id']));
             $gameshowall = true;
