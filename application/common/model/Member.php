@@ -115,4 +115,11 @@ class Member extends Model
 
         return $this->where($where) -> update(array('gamestatus' => 2));
     }
+    /**
+     * 玩家下注
+     */
+    public function settimes($memeberid , $multiple)
+    {
+        return $this->where(array('$id' =>$memeberid )) ->update(array('multiple' => $multiple));
+    }
 }

@@ -53,8 +53,8 @@ class Room extends Model
         }
         $room = $room->toArray();
         $map['room_id'] = $room['id'];
-        Db::name('member')  -> where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
-        model('room') -> where(array('id' => $room['id'])) -> update(array('islock'=> 0));
+        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
+        model('room')->where(array('id' => $room['id']))->update(array('islock' => 0, 'gamestatus' => 0));
         if ($room['room_cards_num'] <= 0 && $room['playcount'] <= 0) {
             $this->error = '房卡耗完了';
             $this->account($room['id']);
@@ -63,13 +63,12 @@ class Room extends Model
         model('room')->where(array('id' => $room['id']))->setDec('playcount', 1);
         if ($room['room_cards_num'] > 0 && $room['playcount'] <= 1) {
             model('room')->where(array('id' => $room['id']))->setDec('room_cards_num', 1);
-            model('room')->where(array('id' => $room['id']))->update(array('playcount' => 10));
+            model('room')->where(array('id' => $room['id']))->update(array('playcount' => 10, 'gamestatus' => 0));
             //这里10局完了
             $this->account($room['id']);
         }
         return true;
     }
-
 
 
     /**
@@ -116,7 +115,7 @@ class Room extends Model
                 return false;
             }
         } else {
-            $update['room_cards_num'] = $roomtype[1] +  $room['room_cards_num'];
+            $update['room_cards_num'] = $roomtype[1] + $room['room_cards_num'];
             //$update['playcount'] = 0;
             $update['rule'] = serialize($rule);
             $update['open_time'] = time();
@@ -151,15 +150,74 @@ class Room extends Model
                 $status++;
             }
         }
-        if(($status > 1 && $room['starttime'] <= time()) || $status == count($member)){
+        if (($status > 1 && $room['starttime'] <= time()) || $status == count($member)) {
             return true;
         }
         return false;
     }
 
+    /**
+     * 设置庄家返回一个庄家的设定结果，前端可能要写动画，到时返回前端一个数组，其中包含抢庄会员的ID，最后一个ID是庄家，前端遍历时可以每次高亮一个会员头像，做成抽奖的样式，这要求数据在返回时打乱，其实就是生成一个打乱的ID集合，确定最后一个是庄家，返回结果时把其它ID的会员的banker改成0，这样庄家就确定下来了
+     * @param $roomid
+     * @return array
+     */
+    public function setbanker($roomid)
+    {
+        $bankerid = array();
+        $id = array();
+        $room = $this->where(array('id' => $roomid)) -> find();
+        if(!$room){
+            $this->error = '房间不存在';
+        }
 
-    public function bankerexist($roomid){
-        return model('member')->where(array('room_id' => $roomid, 'banker' => 1))->find();
+        $room = $room -> toArray();
+
+        $allmember = model('member') -> where(array('room_id' => $roomid, 'gamestatus' => 1)) -> select();
+        if($allmember){
+            foreach($allmember as $k => $v){
+                $member = $v->toArray();
+                if($member['banker'] == 1){
+                    //抢庄的会员
+                    $bankerid[] = $member['id'];
+                }else{
+                    //不抢庄的会员
+                    $id[] = $member['id'];
+                }
+            }
+        }else{
+            $this->error = '房间没有人';
+            return false;
+        }
+        //不只有两个人
+        //dump(count($bankerid));
+        //截止时间未到，有人没有抢并且已经有人抢了，这时不生成庄家
+        if(count($bankerid) > 0 && count($allmember) > count($bankerid) && $room['qiangtime'] - time() > 0){
+            //有人抢
+            $this->error = '抢庄中';
+            return false;
+        }
+
+        if(count($bankerid) > 0){
+            //有人抢庄，把抢庄的人ID打乱，最后一个是庄家
+            shuffle($bankerid);
+            $ret = $bankerid;
+        }else{
+            //没有人抢庄，把所有人ID打乱，最后一个是庄家
+            shuffle($id);
+            $ret = $id;
+        }
+        //取最后一个ID
+        $lastid = $ret[(count($ret)-1)];
+        //把其它不是庄家的banker改成0
+        model('member') -> where(array('id' => array('neq', $lastid), 'room_id' => $roomid)) -> update(array('banker' => 0));
+        $this->where(array('id' => $room['id'])) -> update(array('gamestatus' => 3));
+        //返回结果
+        return $ret;
+    }
+
+    public function bankerexist($roomid)
+    {
+        return model('member')->where(array('room_id' => $roomid, 'banker' => 1))->select();
     }
 
     /**
@@ -169,16 +227,16 @@ class Room extends Model
     {
         //游戏的结算方法，十局之后从日志表中读取统计结果进行结算，这里需要一个日志表，用来记录每局游戏的结果，结算后清空
         $memberdb = model('member');
-        $result = Db::name('moneydetailtemp')->where(array('room_id' => $roomid)) -> select();
-       // dump($result);
-        foreach($result as $k => $v){
+        $result = Db::name('moneydetailtemp')->where(array('room_id' => $roomid))->select();
+        // dump($result);
+        foreach ($result as $k => $v) {
             //每一局都要改变玩家的金币数量
-            $memberdb ->where(array('id' => $v['member_id'])) ->setInc('money', $v['num']);
+            $memberdb->where(array('id' => $v['member_id']))->setInc('money', $v['num']);
             unset($v['id']);
             //转存到moneydetail表
-            Db::name('moneydetail') ->insert($v);
+            Db::name('moneydetail')->insert($v);
         }
         //删除临时记录，再开始玩十局要重新累计
-        Db::name('moneydetailtemp') ->where(array('room_id' => $roomid)) ->delete();
+        Db::name('moneydetailtemp')->where(array('room_id' => $roomid))->delete();
     }
 }
