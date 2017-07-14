@@ -46,14 +46,19 @@ class Room extends Model
 
     public function gameinit($where = array())
     {
+
         $room = $this->where($where)->find();
         if (!$room) {
             $this->error = '房间不存在！';
             return false;
         }
         $room = $room->toArray();
+        if($room['gamestatus'] != 3){
+            //游戏进行中，不能重置
+            return false;
+        }
         $map['room_id'] = $room['id'];
-        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
+        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0, 'banker' => 0, 'issetbanker' => 0));
         model('room')->where(array('id' => $room['id']))->update(array('islock' => 0, 'gamestatus' => 0));
         if ($room['room_cards_num'] <= 0 && $room['playcount'] <= 0) {
             $this->error = '房卡耗完了';
@@ -171,7 +176,10 @@ class Room extends Model
         }
 
         $room = $room -> toArray();
-
+        if($room['gamestatus'] != 2){
+            //$ret[] = model('member') -> where(array('room_id' => $roomid, 'gamestatus' => 1, 'banker' => 1)) -> value('id');
+            return false;
+        }
         $allmember = model('member') -> where(array('room_id' => $roomid, 'gamestatus' => 1)) -> select();
         if($allmember){
             foreach($allmember as $k => $v){
@@ -191,7 +199,7 @@ class Room extends Model
         //不只有两个人
         //dump(count($bankerid));
         //截止时间未到，有人没有抢并且已经有人抢了，这时不生成庄家
-        if(count($bankerid) > 0 && count($allmember) > count($bankerid) && $room['qiangtime'] - time() > 0){
+        if(count($allmember) > count($bankerid) && (int)$room['qiangtime'] - time() > 0){
             //有人抢
             $this->error = '抢庄中';
             return false;
@@ -210,7 +218,8 @@ class Room extends Model
         $lastid = $ret[(count($ret)-1)];
         //把其它不是庄家的banker改成0
         model('member') -> where(array('id' => array('neq', $lastid), 'room_id' => $roomid)) -> update(array('banker' => 0));
-        $this->where(array('id' => $room['id'])) -> update(array('gamestatus' => 3));
+        $time = time();
+        $this->where(array('id' => $room['id'])) -> update(array('gamestatus' => 3,'qiangtime' => $time - 1,'taipaitime' => $time + 15, 'setbanker' => serialize($ret)));
         //返回结果
         return $ret;
     }

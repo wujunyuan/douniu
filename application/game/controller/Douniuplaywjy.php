@@ -236,7 +236,10 @@ class Douniuplaywjy extends Common
             $return['start'] = $start;
             $return['data'] = $ret;
             $return['room'] = $room;
-            $return['banker'] = model('room') -> setbanker($this->memberinfo['room_id']);;
+            $return['issetbanker'] = $v['issetbanker'];
+            $return['banker'] = unserialize($room['setbanker']);
+
+
             $return['playcount'] = $room['playcount'] % 10;
             $return['type'] = 4;
             $return['gamestatus'] = $v['gamestatus'];
@@ -259,11 +262,27 @@ class Douniuplaywjy extends Common
     }
 
     /**
+     * 闲家下注
+     */
+    public function setmultiple()
+    {
+        $multiple = intval(input('multiple'));
+        model('member')->settimes($this->memberinfo['id'], $multiple);
+        $this->allmember();
+    }
+
+    /**
      * 设置庄家
      */
     public function setbanker()
     {
-        model('member') -> where(array('id' => $this->memberinfo['id'], 'gamestatus' => 1)) -> update(array('banker' => 1));
+        $multiple = intval(input('multiple'));
+        //if($multiple > 0){
+        model('member')->settimes($this->memberinfo['id'], $multiple);
+        model('member')->where(array('id' => $this->memberinfo['id'], 'gamestatus' => 1))->update(array('banker' => 1));
+        //}
+        model('room') -> setbanker($this->memberinfo['room_id']);
+        model('member')->where(array('id' => $this->memberinfo['id']))->update(array('issetbanker' => 1));
         $this->allmember();
     }
 
@@ -322,9 +341,6 @@ class Douniuplaywjy extends Common
     }
 
 
-
-
-
     /**
      * 这里要引入斗牛类了
      * 开始游戏，洗牌，发牌生成N副牌
@@ -349,7 +365,7 @@ class Douniuplaywjy extends Common
         }
         //摊牌时间
         $time = time();
-        model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('islock' => 1, 'qiangtime' => $time + 15,'taipaitime' => $time + 30, 'gamestatus' => 2));
+        model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('islock' => 1, 'qiangtime' => $time + 15, 'taipaitime' => $time + 30, 'gamestatus' => 2));
 
         $this->allmember();
     }
