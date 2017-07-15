@@ -69,7 +69,9 @@ class Login extends Controller
             //写入数据库信息，返回一个ID，注意$member是一个id
             $memberid = $db -> insert($data);
             if($memberid){
-                Session::set('member_id', $memberid);
+                $lastid = $db ->getLastInsID();
+                Session::set('member_id', $lastid);
+                $this->redirect(url('Index/index'));
             }else{
                 $this->error($db -> getError());
             }
@@ -82,5 +84,13 @@ class Login extends Controller
     public function logout(){
         Session::set('member_id', NULL);
         $this->redirect(url('Index/index'));
+    }
+    public function comeout()
+    {
+        //进入房间的ID
+        $memberid = input('id');
+
+        $db = model('member');
+        $db->comeout(array('id' => $memberid));
     }
 }
