@@ -51,9 +51,23 @@
     .cards{display: none;}
     .photo{position: relative;}
     .readyimg{width:50px !important; height: auto !important; position: absolute; display: none;}
+    .xiazhubox{position: absolute;
+        top: -20px;
+        width: 80px;}
+    .xiazhubox img{width:20px; display:none;}
+    .xiazhubox img.bankerimg{width:35px;}
 </style>
     <!-- 游戏准备按钮 -->
     <img id="gameready" onclick="gameready1();" src="__STATIC__/game/img/init.png" style="position:absolute;top: 50%; left: 50%; z-index: 3; margin-left:-50px; width: 100px; {eq name="memberinfo['gamestatus']" value="1"}display:none;{/eq}">
+
+
+
+
+
+
+
+
+
 <div class="overlay"></div>
 <div class="rules" style="display: none;">
     <img src="__STATIC__/game/img/closes.png">
@@ -105,6 +119,7 @@
                     <img class="pic4" src="__STATIC__/game/img/pai/0.png">
                     <img class="pic5" src="__STATIC__/game/img/pai/0.png">
                     <div class="niuname">未知</div>
+                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> </div>
                 </div>
             </div>
             <div class="photo" id="player_2">
@@ -118,6 +133,7 @@
                     <img class="pic4" src="__STATIC__/game/img/pai/0.png">
                     <img class="pic5" src="__STATIC__/game/img/pai/0.png">
                     <div class="niuname">未知</div>
+                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> </div>
                 </div>
             </div>
         </div>
@@ -135,6 +151,7 @@
                     <img class="pic4" src="__STATIC__/game/img/pai/0.png">
                     <img class="pic5" src="__STATIC__/game/img/pai/0.png">
                     <div class="niuname">未知</div>
+                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> </div>
                 </div>
 
 
@@ -151,32 +168,40 @@
                     <img class="pic4" src="__STATIC__/game/img/pai/0.png">
                     <img class="pic5" src="__STATIC__/game/img/pai/0.png">
                     <div class="niuname">未知</div>
+                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> </div>
                 </div>
 
             </div>
         </div>
-        <div class="players3">
+        <div class="players3" style="top:-70px;">
             <div class="photo" id="player_0">
                 <img src="__STATIC__/game/img/33.png" style="width: 2.5rem;height: 2.5rem;">
                 <img style="left:0px; bottom: -39px;" class="readyimg" src="__STATIC__/game/img/ready1.png" style="width: 2.5rem;height: 2.5rem;">
                 <p><span style="max-width: 2.2rem;font-size: 0.6rem;" class="nickname">不一样的烟火不一样的烟火</span><br/><span class="money">34</span></p>
-                <div class="cardsbox" style="bottom:45px; left:50px;">
+                <div class="cardsbox" style="bottom: -20px;
+    left: -17px;">
                     <img class="pic1" src="__STATIC__/game/img/pai/0.png">
                     <img class="pic2" src="__STATIC__/game/img/pai/0.png">
                     <img class="pic3" src="__STATIC__/game/img/pai/0.png">
                     <img class="pic4" src="__STATIC__/game/img/pai/0.png">
                     <img class="pic5" src="__STATIC__/game/img/pai/0.png">
                     <div class="niuname">未知</div>
+                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> </div>
                 </div>
             </div>
         </div>
         <p class="last-time"><span class="text" style="margin-top:0; width:100%; font-size: 14px;">等待摊牌</span><span class="int">15</span></p>
         <img src="__STATIC__/game/img/tanpai.png" onclick="tanpai();" class="tanpai">
 
-        
+        <img style="margin: -25px;
+    left: 50%;
+    bottom: 100px;" class="readyimg" id="myreadyimg" src="__STATIC__/game/img/ready1.png" style="width: 2.5rem;height: 2.5rem;">
 
 
         <div class="cards">
+
+
+
 
             <div class="xiazhu" style="display: none;">
                 <img onclick="setmultiple(1);" src="__STATIC__/game/img/one.png">
@@ -223,17 +248,25 @@
 
 <script type="text/javascript">
 
-    function tanpaicountdown(initcount){
+    function tanpaicountdown1(initcount){
         $('.qiang').hide();
         $('.last-time span.text').html('闲家下注');
     $('.last-time span.int').countdown({initcount:initcount,end:function(){
         $('.last-time').hide();
-        tanpai();
+        setmultiple(1);
     }});
         $('.last-time').show();
     }
 
-
+    function tanpaicountdown(initcount){
+        $('.qiang').hide();
+        $('.last-time span.text').html('等待摊牌');
+        $('.last-time span.int').countdown({initcount:initcount,end:function(){
+            $('.last-time').hide();
+            tanpai();
+        }});
+        $('.last-time').show();
+    }
 
     function fapaicountdown(initcount){
         $('.last-time span.text').html('准备开始');
@@ -330,7 +363,7 @@
 
             //传来房间中其它会员的信息，得到后加入到界面中显示出来，数据是一个json数组
             if(ret.type == 4) {
-                console.log(ret);
+               //console.log(ret);
                 //alert(ret.data.length);
                 $('#playcount').html(ret.room['playcount']);
                 //更新房卡
@@ -339,6 +372,9 @@
                 //准备发牌
                 if (ret.room.gamestatus == 1) {
                     fapaicountdown(ret.room.starttime);
+                }
+                if(ret.gamestatus == 1) {
+                    $('#myreadyimg').show();
                 }
                 if (ret.room.gamestatus == 0) {
                     $('#gameready').show();
@@ -350,7 +386,7 @@
                 if (ret.room.gamestatus == 2) {
                     //刚准备好，发牌完毕
                     $('.cards').show();
-
+                    $('.readyimg').hide();
                     $('#gameready').hide();
                     for (var k = 0; k < ret.pai.length; k++) {
                         $('.cards .pai img').eq(k).attr('src', '__STATIC__/game/img/pai/' + ret.pai[k] + '.png');
@@ -364,14 +400,15 @@
 
                 }
 
-                //闲家下注，摊牌倒计时
+
                 if (ret.room.gamestatus == 3) {
-                    $('.tanpai').show();
+                    $('.tanpai').hide();
+
+                    //抢庄动画
                     for (var b = 0; b < ret.banker.length; b++) {
-
-
-                        setflash($('.member__' + ret.banker[b]).find('img:eq(0)'));
-
+                        setTimeout(function(){
+                            setflash($('.member__' + ret.banker[b]).find('img:eq(0)'));
+                        },b*200);
 
                     }
                     if(ret.gamestatus == 2) {
@@ -389,8 +426,36 @@
                         }
 
 
-                        tanpaicountdown(ret.room.taipaitime);
                     }
+                    tanpaicountdown1(ret.room.xiazhutime);
+
+
+                }
+                //闲家下注，摊牌倒计时
+                if (ret.room.gamestatus == 4) {
+console.log(ret.room);
+                    tanpaicountdown(ret.room.taipaitime);
+                    if(ret.gamestatus == 2) {
+                        $('.tanpai').hide();
+                        $('.cards .niuname').html('<img width="120" src="__STATIC__/game/img/niu' + ret.info + '.png" >').show();
+                    }else{
+                        $('.tanpai').show();
+                        if(ret.issetmultiple == 0){
+
+                            if(ret.isbanker == 0){
+                                $('.tanpai').hide();
+                                $('.xiazhu').show();
+                            }
+                        }else{
+                            $('.xiazhu').hide();
+                        }
+
+
+
+                    }
+
+
+
 
                     for (var k = 0; k < ret.pai.length; k++) {
                         $('.cards .pai img').eq(k).attr('src', '__STATIC__/game/img/pai/' + ret.pai[k] + '.png');
@@ -409,20 +474,36 @@
                     $('#player_' + i).removeClass('member__' + ret.data[i].id);
                     $('#player_' + i).addClass('member__' + ret.data[i].id);
                     $('#player_' + i).show();
-                    if (ret.data[i]['gamestatus'] == 1) {
+                    if(ret.data[i].gamestatus == 1){
                         $('.member__' + ret.data[i].id + ' .readyimg').show();
                     }
+//显示抢庄倍数
+                    if(ret.data[i].banker == 1){
+                        $('.member__' + ret.data[i].id).find('.bankerimg').show();
+                    }else{
+                        $('.member__' + ret.data[i].id).find('.bankerimg').hide();
+                    }
+                    if (ret.room.gamestatus >= 2) {
+                        $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
+                    }
+
+
+
                     if (ret.room.gamestatus == 0) {
                         //当前会员未准备状态，重置游戏界面，把准备按钮显示出来，合理的这里其实是一个再来一局的按钮，没关系
-                        $('#gameready').show();
+                        if(ret.gamestatus == 0){
+
+                            $('#gameready').show();
+                        }
+
                         continue;
                     }
 
-                    if (ret.room.gamestatus != 3) {
+                    /*if (ret.room.gamestatus != 4) {
                         continue;
-                    }
+                    }*/
                     if (ret.data[i]['gamestatus'] > 0) {
-                        $('.member__' + ret.data[i].id + ' .readyimg').show();
+
                         for (var j = 0; j < ret.data[i]['pai'].length; j++) {
                             $('#player_' + i).find('.cardsbox img').eq(j).attr('src', '__STATIC__/game/img/pai/' + ret.data[i]['pai'][j] + '.png');
                         }

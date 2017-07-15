@@ -266,10 +266,17 @@ class Douniuplaywjy extends Common
      */
     public function setmultiple()
     {
+        model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('setbanker' => ''));
         $multiple = intval(input('multiple'));
         model('member')->settimes($this->memberinfo['id'], $multiple);
         model('member')->where(array('id' => $this->memberinfo['id']))->update(array('issetmultiple' => 1));
-        $this->allmember();
+        //所有闲家都下注了，就直接开牌
+        $unmultiple = (int)model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('neq', 0), 'banker' => 0, 'issetmultiple' => 0))->count();
+        if ($unmultiple == 0) {
+            model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('taipaitime' => time() + 15, 'gamestatus' => 4));
+            $this->allmember();
+        }
+
     }
 
     /**
@@ -278,12 +285,12 @@ class Douniuplaywjy extends Common
     public function setbanker()
     {
         $multiple = intval(input('multiple'));
-        if($multiple > 0){
+        if ($multiple > 0) {
             model('member')->settimes($this->memberinfo['id'], $multiple);
             model('member')->where(array('id' => $this->memberinfo['id'], 'gamestatus' => 1))->update(array('banker' => 1));
         }
         model('member')->where(array('id' => $this->memberinfo['id']))->update(array('issetbanker' => 1));
-        model('room') -> setbanker($this->memberinfo['room_id']);
+        model('room')->setbanker($this->memberinfo['room_id']);
 
         $this->allmember();
     }
@@ -329,7 +336,7 @@ class Douniuplaywjy extends Common
         //游戏可以开始了，通知房间中所有会员
         $starttime = (int)model('room')->where(array('id' => $this->memberinfo['room_id']))->value('starttime');
         //人齐了，或者人不齐时间到了，两者其一满足就发牌，开始游戏
-        if (($gameinit > 1 && $starttime <= time()) || $gameinit == count($allmember)) {
+        if (($gameinit > 1 && $starttime <= time()) || ($gameinit == count($allmember) && $gameinit > 1)) {
             //这里发牌
             $this->init();
         }
@@ -387,7 +394,7 @@ class Douniuplaywjy extends Common
         //所有准备好的人数
         $roomdb = model('room');
         $map = array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('neq', 0));
-        $allmember = model('member')->where($map) -> select();
+        $allmember = model('member')->where($map)->select();
         foreach ($allmember as $v) {
             $v = $v->toArray();
             if ($v['gamestatus'] != 2) {
@@ -395,18 +402,23 @@ class Douniuplaywjy extends Common
                 $gameshowall = false;
             }
         }
+        if ($gameshowall) {
+            model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('taipaitime' => time()));
+        }
         $taipaitime = (int)model('room')->where(array('id' => $this->memberinfo['room_id']))->value('taipaitime');
         if ($taipaitime - time() <= 0) {
             model('member')->gameshowall(array('gamestatus' => 1, 'room_id' => $this->memberinfo['room_id']));
             $gameshowall = true;
         }
-        //
+
         $this->allmember();
         //游戏可以开始了，通知房间中所有会员
         if ($gameshowall) {
+
             //游戏结束
             $this->theend();
         }
+
         if ($ret) {
             $this->success('处理正确');
         } else {

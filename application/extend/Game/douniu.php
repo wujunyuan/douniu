@@ -204,13 +204,13 @@ class douniu
             $isbomb = true;
         }
         if($ismin){
-            return 12;
+            return 13;
         }
         if($isbomb){
-            return 11;
+            return 12;
         }
         if($ismax){
-            return 10;
+            return 11;
         }
 
         $return = array();

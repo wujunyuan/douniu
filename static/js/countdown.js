@@ -7,7 +7,7 @@
             initcount:0,
 			end:function(){},
 			start:function(){},
-			down:function(){}
+			down:function(count){}
         }
 		//合并配置
 		var opts = jQuery.extend({}, defaults, options);
@@ -25,7 +25,7 @@
 				}
 
 				T = setTimeout(function(){
-					opts.down();
+					opts.down(count);
 					count--;
 					go(count);
 				},1000);

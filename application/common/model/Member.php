@@ -120,6 +120,6 @@ class Member extends Model
      */
     public function settimes($memeberid , $multiple)
     {
-        return $this->where(array('id' =>$memeberid )) ->update(array('multiple' => $multiple));
+        return $this->where(array('id' =>$memeberid ,'issetmultiple' => 0, 'banker' => array('neq', 1))) ->update(array('multiple' => $multiple));
     }
 }

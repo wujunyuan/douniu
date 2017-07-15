@@ -53,13 +53,13 @@ class Room extends Model
             return false;
         }
         $room = $room->toArray();
-        if($room['gamestatus'] != 3){
+        if($room['gamestatus'] != 4){
             //游戏进行中，不能重置
             return false;
         }
         $map['room_id'] = $room['id'];
-        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0, 'banker' => 0, 'issetbanker' => 0, 'issetmultiple' => 0));
-        model('room')->where(array('id' => $room['id']))->update(array('islock' => 0, 'gamestatus' => 0));
+        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0, 'issetbanker' => 0, 'issetmultiple' => 0));
+        model('room')->where(array('id' => $room['id']))->update(array('taipaitime' => time(),'islock' => 0, 'gamestatus' => 0));
         if ($room['room_cards_num'] <= 0 && $room['playcount'] <= 0) {
             $this->error = '房卡耗完了';
             $this->account($room['id']);
@@ -223,7 +223,7 @@ class Room extends Model
         //把其它不是庄家的banker改成0
         model('member') -> where(array('id' => array('neq', $lastid), 'room_id' => $roomid)) -> update(array('banker' => 0));
         $time = time();
-        $this->where(array('id' => $room['id'])) -> update(array('gamestatus' => 3,'qiangtime' => $time - 1,'taipaitime' => $time + 15, 'setbanker' => serialize($ret)));
+        $this->where(array('id' => $room['id'])) -> update(array('gamestatus' => 3,'qiangtime' => $time - 1,'taipaitime' => $time + 25,'xiazhutime' => $time + 10, 'setbanker' => serialize($ret)));
         //返回结果
         return $ret;
     }
