@@ -66,13 +66,17 @@
         <img src="__STATIC__/game/img/closes.png">
         <div class="cons">
             <form id="createfrom" action="{:url('Douniuplaywjy/roomcreate')}" method="post">
+
+                <input type="hidden" name="gametype" id="gametype" value="1">
+
+
               <h2>创建房间</h2>
               <ul class="tabs">
-                   <li class="cur"><span>牛牛上庄</span></li>
-                   <li><span>固定庄家</span></li>
-                   <li><span>自由抢庄</span></li>
-                   <li><span>明牌抢庄</span></li>
-                   <li><span>通比牛牛</span></li>
+                   <li onclick="$('#gametype').val(1);" class="cur"><span>牛牛上庄</span></li>
+                   <li onclick="$('#gametype').val(2);"><span>固定庄家</span></li>
+                   <li onclick="$('#gametype').val(3);"><span>自由抢庄</span></li>
+                   <li onclick="$('#gametype').val(4);"><span>明牌抢庄</span></li>
+                   <li onclick="$('#gametype').val(5);"><span>通比牛牛</span></li>
               </ul>
               <ul class="tabs-con">
                   <p>创建房间,游戏未进行,不消耗房卡</p>

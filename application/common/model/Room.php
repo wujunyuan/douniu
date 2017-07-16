@@ -57,21 +57,24 @@ class Room extends Model
             //游戏进行中，不能重置
             return false;
         }
+
+        $this-> accounttemp($room['id']);
         $map['room_id'] = $room['id'];
-        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0, 'issetbanker' => 0, 'issetmultiple' => 0));
+        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
         model('room')->where(array('id' => $room['id']))->update(array('taipaitime' => time(),'islock' => 0, 'gamestatus' => 0));
-        if ($room['room_cards_num'] <= 0 && $room['playcount'] <= 0) {
+        if ($room['room_cards_num'] <= 0 && $room['playcount'] >= 10) {
             $this->error = '房卡耗完了';
             $this->account($room['id']);
             return false;
         }
-        model('room')->where(array('id' => $room['id']))->setDec('playcount', 1);
-        if ($room['room_cards_num'] > 0 && $room['playcount'] <= 1) {
+        model('room')->where(array('id' => $room['id']))->setInc('playcount', 1);
+        if ($room['room_cards_num'] > 0 && $room['playcount'] >= 10) {
             model('room')->where(array('id' => $room['id']))->setDec('room_cards_num', 1);
-            model('room')->where(array('id' => $room['id']))->update(array('playcount' => 10, 'gamestatus' => 0));
+            model('room')->where(array('id' => $room['id']))->update(array('playcount' => 0, 'gamestatus' => 0));
             //这里10局完了
             $this->account($room['id']);
         }
+
         return true;
     }
 
@@ -109,19 +112,19 @@ class Room extends Model
             //$data['playcount'] = 0;
 
             //房间号重复没有关系，好看就行了，A开头
-            $data['room_num'] = 'A' . rand(10, 99);
+            $data['room_num'] = 'A' . rand(10000, 99999);
             $ret = $this->insert($data);
             if ($ret) {
                 //扣除会员房卡数量
                 model('member')->where(array('id' => $memberid))->setDec('cards', $roomtype[1]);
                 //成功后返回房间的ID，注意这不是房间号
-                return $ret;
+                return $this ->getLastInsID();
             } else {
                 return false;
             }
         } else {
             $update['room_cards_num'] = $roomtype[1] + $room['room_cards_num'];
-            //$update['playcount'] = 0;
+            $update['playcount'] = 0;
             $update['rule'] = serialize($rule);
             $update['open_time'] = time();
             $ret = $this->where(array('id' => $room['id']))->update($update);
@@ -222,9 +225,11 @@ class Room extends Model
         $lastid = $ret[(count($ret)-1)];
         //把其它不是庄家的banker改成0
         model('member') -> where(array('id' => array('neq', $lastid), 'room_id' => $roomid)) -> update(array('banker' => 0));
+        model('member') -> where(array('id' => array('eq', $lastid), 'room_id' => $roomid)) -> update(array('banker' => 1));
         $time = time();
         $this->where(array('id' => $room['id'])) -> update(array('gamestatus' => 3,'qiangtime' => $time - 1,'taipaitime' => $time + 25,'xiazhutime' => $time + 10, 'setbanker' => serialize($ret)));
         //返回结果
+
         return $ret;
     }
 
@@ -241,6 +246,7 @@ class Room extends Model
         //游戏的结算方法，十局之后从日志表中读取统计结果进行结算，这里需要一个日志表，用来记录每局游戏的结果，结算后清空
         $memberdb = model('member');
         $result = Db::name('moneydetailtemp')->where(array('room_id' => $roomid))->select();
+        Db::name('moneydetailrank') -> where(array('room_id' => $roomid)) -> delete();
         // dump($result);
         foreach ($result as $k => $v) {
             //每一局都要改变玩家的金币数量
@@ -248,8 +254,112 @@ class Room extends Model
             unset($v['id']);
             //转存到moneydetail表
             Db::name('moneydetail')->insert($v);
+            Db::name('moneydetailrank')->insert($v);
         }
         //删除临时记录，再开始玩十局要重新累计
         Db::name('moneydetailtemp')->where(array('room_id' => $roomid))->delete();
+    }
+
+    public function accounttemp($roomid){
+        $roomdb = model('room');
+        $memberdb = model('member');
+        $moneydetailtempdb = model('moneydetailtemp');
+        //从房间中查询得到当前游戏的规则内容，是一个序列化的数组，要反序列
+        $rule = $roomdb -> where(array('id' => $roomid)) -> value('rule');
+        $rule = unserialize($rule);
+        //底分
+        $score = $rule['score'];
+        //获到庄家的信息
+        $banker = $memberdb -> where(array('room_id' => $roomid, 'banker' => 1, 'gamestatus' => 2)) -> find();
+        if($banker){
+            $banker = $banker -> toArray();
+        }
+        //牌型倍数
+        //a:4:{s:5:"score";s:1:"1";s:5:"types";s:1:"1";s:4:"rule";s:1:"1";s:7:"gamenum";s:4:"20:2";}
+        $rulemultiple[1] = array(
+            0 => 1,
+            1 => 1,
+            2 => 1,
+            3 => 1,
+            4 => 1,
+            5 => 1,
+            6 => 1,
+            7 => 1,
+            8 => 2,
+            9 => 3,
+            10 => 4,
+            11 => 5,
+            12 => 6,
+            13 => 8,
+        );
+        $rulemultiple[2] = array(
+            0 => 1,
+            1 => 1,
+            2 => 1,
+            3 => 1,
+            4 => 1,
+            5 => 1,
+            6 => 1,
+            7 => 2,
+            8 => 2,
+            9 => 3,
+            10 => 4,
+            11 => 5,
+            12 => 6,
+            13 => 8,
+        );
+        $typemultiple = $rulemultiple[$rule['rule']];
+        $member = $memberdb->where(array('room_id' => $roomid, 'banker' => 0, 'gamestatus' => 2))->select();
+        foreach ($member as $k => $v) {
+
+            $v = $v -> toArray();
+            $data = array();
+            $data['room_id'] = $v['room_id'];
+            $data['time'] = time();
+
+            if($v['pairet'] < $banker['pairet']){
+                //庄赢
+                $data['reason'] = '做庄赢了【'.$v['nickname'].'】';
+                $data['member_id'] = $banker['id'];
+                //赢了多少呢，闲家倍数*㽵家倍数*底分
+                $data['num'] = $v['multiple'] * $banker['multiple'] * $score * $typemultiple[$banker['typemultiple']];
+                $moneydetailtempdb -> insert($data);
+
+                $data['member_id'] = $v['id'];
+                $data['reason'] = '输给庄家【'.$banker['nickname'].'】';
+                $data['num'] = $data['num']*-1;
+                $moneydetailtempdb -> insert($data);
+            }else{
+                //闲赢
+                $data['reason'] = '赢了庄家【'.$banker['nickname'].'】';
+                $data['member_id'] = $v['id'];
+                //赢了多少呢，闲家倍数*㽵家倍数*底分
+                $data['num'] = $v['multiple'] * $banker['multiple'] * $score * $typemultiple[$v['typemultiple']];
+                $moneydetailtempdb -> insert($data);
+
+                $data['member_id'] = $banker['id'];
+                $data['reason'] = '做庄输了【'.$v['nickname'].'】';
+                $data['num'] = $data['num']*-1;
+                $moneydetailtempdb -> insert($data);
+
+            }
+            //这里接着写入库操作
+
+        }
+    }
+//获取排名数据
+    public function getrankinglist($room){
+        $moneydetailtempdb = model('moneydetailrank');
+        $list = $moneydetailtempdb -> alias('d') -> where(array('room_id' => $room)) -> group('member_id') ->field('member_id,sum(num) as money,m.nickname') -> join('left join __MEMBER__ as m.id = d.member_id') ->select();
+        return $list;
+    }
+    //获取分数数据
+    public function getranking($room){
+        $moneydetailtempdb = model('moneydetailtemp');
+        $list = $moneydetailtempdb -> where(array('room_id' => $room)) -> group('member_id') ->field('member_id,sum(num) as money') ->select();
+        foreach($list as $k => $v){
+            $ret[$v['member_id']] = $v['money'];
+        }
+        return $ret;
     }
 }

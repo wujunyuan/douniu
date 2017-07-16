@@ -11,7 +11,10 @@ class Index extends Common
 {
 	public function index()
 	{
-		$this->paihang(1);
+		$ret = model('room') -> setbanker(3);
+		dump($ret);
+		dump(model('room') -> getError());
+
 	}
 
 	public function paihang($roomid)

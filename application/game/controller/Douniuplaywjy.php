@@ -39,6 +39,7 @@ class Douniuplaywjy extends Common
         $rule['types'] = input('post.types');
         $rule['rule'] = input('post.rule');
         $rule['gamenum'] = input('post.gamenum');
+        $rule['gametype'] = input('post.gametype');
         if (input('post.openroom')) {
             $rule['openroom'] = input('post.openroom');
         }
@@ -112,6 +113,22 @@ class Douniuplaywjy extends Common
         $this->workermandata['content'] = $data;
         return $this->curlRequest($this->workermanurl, $this->workermandata);
     }
+
+
+
+    public function ranking(){
+        $room = model('room')->where(array('id' => $this->memberinfo['room_id']))->find();
+        if (!$room) {
+            $this->error('房间不存在啊！！！');
+        }
+        $room = $room->toArray();
+        $this->assign('room', $room);
+        $list = model('room') -> getrankinglist($room['id']);
+        $this->assign('list', $list);
+        return $this->fetch();
+    }
+
+
 
     /**
      * 显示游戏界面
@@ -189,6 +206,7 @@ class Douniuplaywjy extends Common
 
         //会员进入房间时通知所有人更新玩家
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
+
         $room = model('room')->where(array('id' => $this->memberinfo['room_id']))->find();
         if ($room) {
             $room = $room->toArray();
@@ -217,10 +235,20 @@ class Douniuplaywjy extends Common
             return;
         }
 
+        $ranking = model('room') -> getranking($room['id']);
+
+
+
         //通知所有会员更新界面
         foreach ($allmember as $v) {
+
             $ret = $db->getothermember($v['id']);
             foreach ($ret as $key => $val) {
+                if(isset($ranking[$val['id']])){
+                    $ret[$key]['money'] = $ranking[$val['id']];
+                }else{
+                    $ret[$key]['money'] = 0;
+                }
                 if ($val['gamestatus'] == 2) {
                     $ret[$key]['pai'] = unserialize($val['pai']);
                     //if($ret[$key]['pai']){
@@ -236,7 +264,14 @@ class Douniuplaywjy extends Common
             $return['start'] = $start;
             $return['data'] = $ret;
             $return['room'] = $room;
+            if(isset($ranking[$v['id']])){
+                $return['money'] = $ranking[$v['id']];
+            }else{
+                $return['money'] = 0;
+            }
+
             $return['issetbanker'] = $v['issetbanker'];
+            $return['multiple'] = $v['multiple'];
             $return['banker'] = unserialize($room['setbanker']);
             $return['isbanker'] = $v['banker'];
             $return['issetmultiple'] = $v['issetmultiple'];
@@ -286,12 +321,12 @@ class Douniuplaywjy extends Common
     {
         $multiple = intval(input('multiple'));
         if ($multiple > 0) {
-            model('member')->settimes($this->memberinfo['id'], $multiple);
+            //model('member')->settimes($this->memberinfo['id'], $multiple);
+            model('member') -> where(array('id' =>$this->memberinfo['id'] ,'issetbanker' => 0)) ->update(array('multiple' => $multiple));
             model('member')->where(array('id' => $this->memberinfo['id'], 'gamestatus' => 1))->update(array('banker' => 1));
         }
         model('member')->where(array('id' => $this->memberinfo['id']))->update(array('issetbanker' => 1));
         model('room')->setbanker($this->memberinfo['room_id']);
-
         $this->allmember();
     }
 
@@ -357,6 +392,7 @@ class Douniuplaywjy extends Common
      */
     private function init()
     {
+        model('member')->where(array('room_id' => $this->memberinfo['room_id'])) -> update(array('issetbanker' => 0, 'issetmultiple' => 0, 'banker' => 0, 'multiple' => 1));
         //查询房间中所有会员， 这个动作是最后一个准备游戏的会员触发的
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
         //遍历所有会员，每人发一副牌，算好牌型，然后把数据存到数据库中的member表的pai字段
@@ -365,7 +401,9 @@ class Douniuplaywjy extends Common
             if ($v['gamestatus'] == 1) {
                 $pai = $this->douniu->create();
                 $data['pai'] = serialize($pai);
+                $data['typemultiple'] = $this->douniu->getniuname($pai);
                 $map['id'] = $v['id'];
+
                 //写入牌的大小
                 $data['pairet'] = $this->douniu->ret($pai);
                 $memberdb->where($map)->update($data);
@@ -404,9 +442,11 @@ class Douniuplaywjy extends Common
         }
         if ($gameshowall) {
             model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('taipaitime' => time()));
+            model('member')->gameshowall(array('gamestatus' => 1, 'room_id' => $this->memberinfo['room_id']));
         }
         $taipaitime = (int)model('room')->where(array('id' => $this->memberinfo['room_id']))->value('taipaitime');
         if ($taipaitime - time() <= 0) {
+
             model('member')->gameshowall(array('gamestatus' => 1, 'room_id' => $this->memberinfo['room_id']));
             $gameshowall = true;
         }
