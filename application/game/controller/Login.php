@@ -89,7 +89,6 @@ class Login extends Controller
     {
         //进入房间的ID
         $memberid = input('id');
-
         $db = model('member');
         $db->comeout(array('id' => $memberid));
     }

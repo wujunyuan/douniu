@@ -67,12 +67,14 @@ class Room extends Model
             $this->account($room['id']);
             return false;
         }
-        model('room')->where(array('id' => $room['id']))->setInc('playcount', 1);
-        if ($room['room_cards_num'] > 0 && $room['playcount'] >= 10) {
+
+        if ($room['room_cards_num'] > 0 && $room['playcount'] >= 10) { dump($room);
             model('room')->where(array('id' => $room['id']))->setDec('room_cards_num', 1);
-            model('room')->where(array('id' => $room['id']))->update(array('playcount' => 0, 'gamestatus' => 0));
+            model('room')->where(array('id' => $room['id']))->update(array('playcount' => 1, 'gamestatus' => 0));
             //这里10局完了
             $this->account($room['id']);
+        }else{
+            model('room')->where(array('id' => $room['id']))->setInc('playcount', 1);
         }
 
         return true;
@@ -109,7 +111,7 @@ class Room extends Model
             $data['open_time'] = time();
             $data['rule'] = serialize($rule);
             $data['room_cards_num'] = $roomtype[1];
-            //$data['playcount'] = 0;
+            $data['playcount'] = 1;
 
             //房间号重复没有关系，好看就行了，A开头
             $data['room_num'] = 'A' . rand(10000, 99999);
@@ -124,7 +126,7 @@ class Room extends Model
             }
         } else {
             $update['room_cards_num'] = $roomtype[1] + $room['room_cards_num'];
-            $update['playcount'] = 0;
+            $update['playcount'] = 1;
             $update['rule'] = serialize($rule);
             $update['open_time'] = time();
             $ret = $this->where(array('id' => $room['id']))->update($update);
@@ -349,12 +351,13 @@ class Room extends Model
     }
 //获取排名数据
     public function getrankinglist($room){
-        $moneydetailtempdb = model('moneydetailrank');
-        $list = $moneydetailtempdb -> alias('d') -> where(array('room_id' => $room)) -> group('member_id') ->field('member_id,sum(num) as money,m.nickname') -> join('left join __MEMBER__ as m.id = d.member_id') ->select();
+        //$moneydetailtempdb = model('moneydetailrank');
+        $list = Db::name('moneydetailrank') -> alias('d') -> where(array('d.room_id' => $room)) -> group('member_id') ->field('member_id,sum(num) as money,m.nickname') -> join('__MEMBER__ m', 'm.id = d.member_id', 'left') ->select();
         return $list;
     }
     //获取分数数据
     public function getranking($room){
+        $ret = array();
         $moneydetailtempdb = model('moneydetailtemp');
         $list = $moneydetailtempdb -> where(array('room_id' => $room)) -> group('member_id') ->field('member_id,sum(num) as money') ->select();
         foreach($list as $k => $v){

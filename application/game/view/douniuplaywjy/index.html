@@ -69,7 +69,7 @@
     /* 弹窗显示排名的样式 */
     .window{position: absolute; z-index: 10;
         top:0; bottom: 0;
-        left:0; right:0; background: #fff; display: none;}
+        left:0; right:0; background: #fff; display: none;background: #140C09;}
 
 
     .window .content{width: 74%;margin-left: 13%;margin-top: 30%;text-align: center;}
@@ -79,7 +79,7 @@
     .window ul li span:first-child{float: left;margin-left: 2rem;max-width: 5rem;overflow: hidden; text-overflow:ellipsis;white-space:nowrap;}
     .window ul li span:last-child{float: right;margin-right: 2rem;}
     .window .add{color:#F5D203!important;}
-
+.window>img{position: absolute;top:0;left: 0;width: 100%;z-index: -1;}
 </style>
 
 <div class="window">
@@ -451,9 +451,16 @@
                 msgshow(ret.info, ret.from);
             }
 
-
+            if (ret.type == 99) {
+                $('.window').html(ret.html).show();
+                console.log(ret);
+            }
             //传来房间中其它会员的信息，得到后加入到界面中显示出来，数据是一个json数组
             if(ret.type == 4) {
+
+
+
+
                //console.log(ret);
                 //alert(ret.data.length);
                 $('#playcount').html(ret.room['playcount']);

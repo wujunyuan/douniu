@@ -125,7 +125,7 @@ class Douniuplaywjy extends Common
         $this->assign('room', $room);
         $list = model('room') -> getrankinglist($room['id']);
         $this->assign('list', $list);
-        return $this->fetch();
+        return $this->fetch('ranking');
     }
 
 
@@ -423,6 +423,11 @@ class Douniuplaywjy extends Common
      **/
     public function showall()
     {
+        $roomdb = model('room');
+        $roomgamestatus = $roomdb -> where(array('id' => $this->memberinfo['room_id'])) -> value('gamestatus');
+        if($roomgamestatus == 0){
+            $this->error('游戏还没有开始');
+        }
         if ($this->memberinfo['room_id'] == 0) {
             //都没有进房间，开始什么呀，有毛病
             $this->error('都还没有进房间呢');
@@ -430,7 +435,7 @@ class Douniuplaywjy extends Common
         $ret = model('member')->gameshowall(array('gamestatus' => 1, 'id' => $this->memberinfo['id']));
         $gameshowall = true;
         //所有准备好的人数
-        $roomdb = model('room');
+
         $map = array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('neq', 0));
         $allmember = model('member')->where($map)->select();
         foreach ($allmember as $v) {
@@ -450,7 +455,7 @@ class Douniuplaywjy extends Common
             model('member')->gameshowall(array('gamestatus' => 1, 'room_id' => $this->memberinfo['room_id']));
             $gameshowall = true;
         }
-
+dump($gameshowall);
         $this->allmember();
         //游戏可以开始了，通知房间中所有会员
         if ($gameshowall) {
@@ -476,14 +481,23 @@ class Douniuplaywjy extends Common
         //通知前端显示再来一局的准备按钮,这里要计算游戏结果
         //计算出游戏结果后，初始化，牌的数据和牌型全改为原始状态
         //查询房间中所有会员， 这个动作是最后一个准备游戏的会员触发的
+        //通知前端显示排名
+
+        $playcount = model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> value('playcount');
+        if($playcount == 10){
+            $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
+            $html = $this->ranking();
+            foreach($allmember as $k => $v){
+                $rank['html'] = $html;
+                $rank['type'] = 99;
+                $this->workermansend($v['id'], json_encode($rank));
+            }
+        }
+
+
         $return = model('room')->gameinit(array('id' => $this->memberinfo['room_id']));
         $this->allmember();
 
-        if ($return) {
-
-        } else {
-            //游戏次数用完了，要加房卡
-        }
 
     }
 

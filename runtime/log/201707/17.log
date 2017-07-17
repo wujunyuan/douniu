@@ -1,0 +1,1838 @@
+[ 2017-07-17T16:10:52+08:00 ] 121.42.29.115 121.42.29.115 GET /game.php/login/comeout/id/5
+[ log ] douniu.sppcms.com/game.php/login/comeout/id/5 [运行时间：0.044693s][吞吐率：22.37req/s] [内存消耗：2,756.65kb] [文件加载：65]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'login',
+    2 => 'comeout',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'douniu.sppcms.com',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '5',
+)
+[ info ] [ RUN ] app\game\controller\Login->comeout[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000479s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001107s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 5 LIMIT 1 [ RunTime:0.000443s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 4 LIMIT 1 [ RunTime:0.000347s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=0  WHERE  `id` = 5 [ RunTime:0.000352s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:10:52+08:00 ] 121.42.29.115 115.52.160.85 POST /game.php/douniuplaywjy/comeout.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/comeout.html [运行时间：0.043590s][吞吐率：22.94req/s] [内存消耗：2,933.00kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'comeout',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=tglnqlr9qcgfaa1c0ddspc2t3n',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/2.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1 wechatdevtools/0.7.0 MicroMessenger/6.3.9 Language/zh_CN webview/0',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://douniu.sppcms.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '10',
+  'connection' => 'keep-alive',
+  'host' => 'douniu.sppcms.com',
+)
+[ info ] [ PARAM ] array (
+  'memberid' => '5',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->comeout[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000431s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001112s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000447s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 5 LIMIT 1 [ RunTime:0.000355s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 0 LIMIT 1 [ RunTime:0.000358s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=0  WHERE  `id` = 5 [ RunTime:0.000316s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:10:53+08:00 ] 121.42.29.115 101.226.125.115 GET /game.php/douniuplaywjy/index/room_id/3
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3 [运行时间：0.052243s][吞吐率：19.14req/s] [内存消耗：3,334.41kb] [文件加载：73]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-forwarded-for' => '113.102.224.94',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; Redmi 3 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'upgrade-insecure-requests' => '1',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=f5c1f4d9g7c9hqhq026016veta',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/wxpic,image/sharpp,*/*;q=0.8',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'room_id' => '3',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->index[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ VIEW ] /home/wwwroot/douniu.sppcms.com/douniu/application/game/view/douniuplaywjy/index.html [ array (
+  0 => 'memberinfo',
+  1 => 'gamerule',
+  2 => 'room',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000409s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001089s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000467s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000713s ]
+[ sql ] [ SQL ] SELECT `islock` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000253s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `t_member` WHERE  `room_id` = 3 LIMIT 1 [ RunTime:0.000274s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=3  WHERE  `id` = 2 [ RunTime:0.000354s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000290s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:10:54+08:00 ] 121.42.29.115 101.226.125.115 POST /game.php/douniuplaywjy/comein/room_id/3.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/comein/room_id/3.html [运行时间：0.054052s][吞吐率：18.50req/s] [内存消耗：3,073.95kb] [文件加载：71]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'comein',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '113.102.224.94',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; Redmi 3 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=f5c1f4d9g7c9hqhq026016veta',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'content-length' => '0',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+  'room_id' => '3',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->comein[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000423s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001065s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000446s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000706s ]
+[ sql ] [ SQL ] SELECT `islock` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000203s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `t_member` WHERE  `room_id` = 3 LIMIT 1 [ RunTime:0.000269s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=3  WHERE  `id` = 2 [ RunTime:0.000309s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000281s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000367s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000205s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000602s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000195s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000355s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000374s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000203s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000233s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:10:55+08:00 ] 121.42.29.115 101.226.125.115 POST /game.php/douniuplaywjy/allmember.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/allmember.html [运行时间：0.051068s][吞吐率：19.58req/s] [内存消耗：2,944.79kb] [文件加载：66]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'allmember',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '113.102.224.94',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; Redmi 3 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=f5c1f4d9g7c9hqhq026016veta',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'content-length' => '40',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+  'userlist' => '{"3":1,"2":1}',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->allmember[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000418s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001064s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000320s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000701s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000209s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000267s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000590s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000215s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000267s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000204s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000234s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:10:57+08:00 ] 121.42.29.115 113.102.224.94 GET /game.php/douniuplaywjy/index/room_id/3
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3 [运行时间：0.048507s][吞吐率：20.62req/s] [内存消耗：3,124.08kb] [文件加载：70]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.9 NetType/WIFI Language/zh_CN',
+  'cookie' => 'PHPSESSID=6f065des8epijcic04ac4v45gb',
+  'upgrade-insecure-requests' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'host' => 'douniu.sppcms.com',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'room_id' => '3',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->index[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ VIEW ] /home/wwwroot/douniu.sppcms.com/douniu/application/game/view/douniuplaywjy/index.html [ array (
+  0 => 'memberinfo',
+  1 => 'gamerule',
+  2 => 'room',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000435s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001127s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000470s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000701s ]
+[ sql ] [ SQL ] SELECT `islock` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `t_member` WHERE  `room_id` = 3 LIMIT 1 [ RunTime:0.000196s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=3  WHERE  `id` = 8 [ RunTime:0.000339s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000218s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:10:57+08:00 ] 121.42.29.115 113.102.224.94 POST /game.php/douniuplaywjy/comein/room_id/3.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/comein/room_id/3.html [运行时间：0.055436s][吞吐率：18.04req/s] [内存消耗：3,074.97kb] [文件加载：71]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'comein',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept-language' => 'zh-cn',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.9 NetType/WIFI Language/zh_CN',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'keep-alive',
+  'content-length' => '0',
+  'cookie' => 'PHPSESSID=6f065des8epijcic04ac4v45gb',
+  'accept-encoding' => 'gzip, deflate',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'room_id' => '3',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->comein[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000426s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001082s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000471s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000704s ]
+[ sql ] [ SQL ] SELECT `islock` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000207s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `t_member` WHERE  `room_id` = 3 LIMIT 1 [ RunTime:0.000277s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=3  WHERE  `id` = 8 [ RunTime:0.000293s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000354s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000210s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000611s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000195s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000355s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000376s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000209s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000498s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000382s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000253s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:10:58+08:00 ] 121.42.29.115 113.102.224.94 POST /game.php/douniuplaywjy/allmember.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/allmember.html [运行时间：0.053160s][吞吐率：18.81req/s] [内存消耗：2,946.17kb] [文件加载：66]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'allmember',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=6f065des8epijcic04ac4v45gb',
+  'content-length' => '54',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.9 NetType/WIFI Language/zh_CN',
+  'origin' => 'http://douniu.sppcms.com',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'host' => 'douniu.sppcms.com',
+)
+[ info ] [ PARAM ] array (
+  'userlist' => '{"3":1,"2":1,"8":1}',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->allmember[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000433s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001087s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000343s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000771s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000209s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000931s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000194s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000266s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000368s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000252s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:10:59+08:00 ] 121.42.29.115 113.102.224.94 POST /game.php/douniuplaywjy/gameready.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/gameready.html [运行时间：0.055706s][吞吐率：17.95req/s] [内存消耗：3,074.50kb] [文件加载：71]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'gameready',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept-language' => 'zh-cn',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.9 NetType/WIFI Language/zh_CN',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'keep-alive',
+  'content-length' => '0',
+  'cookie' => 'PHPSESSID=6f065des8epijcic04ac4v45gb',
+  'accept-encoding' => 'gzip, deflate',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->gameready[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000415s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001071s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000341s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000675s ]
+[ sql ] [ SQL ] SELECT `islock` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000264s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=1  WHERE  `gamestatus` = 0  AND `id` = 8 [ RunTime:0.000360s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000350s ]
+[ sql ] [ SQL ] SELECT `starttime` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000268s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000203s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000261s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000203s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000630s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000190s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000346s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000393s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000205s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000371s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000488s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000274s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:00+08:00 ] 121.42.29.115 101.226.125.115 POST /game.php/douniuplaywjy/gameready.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/gameready.html [运行时间：0.067268s][吞吐率：14.87req/s] [内存消耗：3,079.31kb] [文件加载：71]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'gameready',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '113.102.224.94',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; Redmi 3 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=f5c1f4d9g7c9hqhq026016veta',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'content-length' => '0',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->gameready[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000459s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001087s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000448s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000711s ]
+[ sql ] [ SQL ] SELECT `islock` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000178s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=1  WHERE  `gamestatus` = 0  AND `id` = 2 [ RunTime:0.000351s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000211s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000352s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `starttime`='1500279060',`gamestatus`=1  WHERE  `id` = 3 [ RunTime:0.000321s ]
+[ sql ] [ SQL ] SELECT `starttime` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `issetbanker`=0,`issetmultiple`=0,`banker`=0,`multiple`=1  WHERE  `room_id` = 3 [ RunTime:0.000309s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000286s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000378s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `pai`='a:5:{i:0;i:48;i:1;i:32;i:2;i:20;i:3;i:50;i:4;i:35;}',`typemultiple`=0,`pairet`=340  WHERE  `id` = 8 [ RunTime:0.000293s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `pai`='a:5:{i:0;i:12;i:1;i:46;i:2;i:19;i:3;i:37;i:4;i:8;}',`typemultiple`=10,`pairet`=675  WHERE  `id` = 2 [ RunTime:0.000174s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `islock`=1,`qiangtime`='1500279075',`taipaitime`='1500279090',`gamestatus`=2  WHERE  `id` = 3 [ RunTime:0.000303s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000297s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000382s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000615s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000194s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000374s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000369s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000359s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000357s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000218s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000205s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000200s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000269s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000260s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000266s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000271s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000209s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000238s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:01+08:00 ] 121.42.29.115 101.226.125.115 POST /game.php/douniuplaywjy/setbanker.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/setbanker.html [运行时间：0.056922s][吞吐率：17.57req/s] [内存消耗：3,069.96kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'setbanker',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '113.102.224.94',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; Redmi 3 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=f5c1f4d9g7c9hqhq026016veta',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'content-length' => '10',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+  'multiple' => '4',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->setbanker[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000467s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001077s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000480s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `multiple`=4  WHERE  `id` = 2  AND `issetbanker` = 0 [ RunTime:0.000483s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `banker`=1  WHERE  `id` = 2  AND `gamestatus` = 1 [ RunTime:0.000385s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `issetbanker`=1  WHERE  `id` = 2 [ RunTime:0.000337s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000733s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3  AND `gamestatus` = 1 [ RunTime:0.000367s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000210s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000335s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000207s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000633s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000192s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000357s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000366s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000207s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000374s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000355s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000207s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000238s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:02+08:00 ] 121.42.29.115 113.102.224.94 POST /game.php/douniuplaywjy/setbanker.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/setbanker.html [运行时间：0.059505s][吞吐率：16.81req/s] [内存消耗：3,069.77kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'setbanker',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=6f065des8epijcic04ac4v45gb',
+  'content-length' => '10',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.9 NetType/WIFI Language/zh_CN',
+  'origin' => 'http://douniu.sppcms.com',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'host' => 'douniu.sppcms.com',
+)
+[ info ] [ PARAM ] array (
+  'multiple' => '4',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->setbanker[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000429s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001131s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000566s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `multiple`=4  WHERE  `id` = 8  AND `issetbanker` = 0 [ RunTime:0.000359s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `banker`=1  WHERE  `id` = 8  AND `gamestatus` = 1 [ RunTime:0.000297s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `issetbanker`=1  WHERE  `id` = 8 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000705s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3  AND `gamestatus` = 1 [ RunTime:0.000365s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `banker`=0  WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000289s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `banker`=1  WHERE  `id` = 2  AND `room_id` = 3 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `gamestatus`=3,`qiangtime`='1500279061',`taipaitime`='1500279087',`xiazhutime`='1500279072',`setbanker`='a:2:{i:0;i:8;i:1;i:2;}'  WHERE  `id` = 3 [ RunTime:0.000395s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000295s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000395s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000270s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000785s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000199s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000381s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000365s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000462s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000352s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000375s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000206s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000234s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:03+08:00 ] 121.42.29.115 113.102.224.94 POST /game.php/douniuplaywjy/setmultiple.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/setmultiple.html [运行时间：0.057240s][吞吐率：17.47req/s] [内存消耗：3,069.51kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'setmultiple',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=6f065des8epijcic04ac4v45gb',
+  'content-length' => '10',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.9 NetType/WIFI Language/zh_CN',
+  'origin' => 'http://douniu.sppcms.com',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'host' => 'douniu.sppcms.com',
+)
+[ info ] [ PARAM ] array (
+  'multiple' => '2',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->setmultiple[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000442s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001097s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000465s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000724s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `setbanker`=''  WHERE  `id` = 3 [ RunTime:0.000332s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `multiple`=2  WHERE  `id` = 8  AND `issetmultiple` = 0  AND `banker` <> 1 [ RunTime:0.000338s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `issetmultiple`=1  WHERE  `id` = 8 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `t_member` WHERE  `room_id` = 3  AND `gamestatus` <> 0  AND `banker` = 0  AND `issetmultiple` = 0 LIMIT 1 [ RunTime:0.000316s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `taipaitime`='1500279078',`gamestatus`=4  WHERE  `id` = 3 [ RunTime:0.000252s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000301s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000341s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000655s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000189s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000363s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000384s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000203s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000360s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000375s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000205s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000233s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:04+08:00 ] 121.42.29.115 101.226.125.115 POST /game.php/douniuplaywjy/showall.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/showall.html [运行时间：0.055243s][吞吐率：18.10req/s] [内存消耗：3,075.52kb] [文件加载：71]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'showall',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '113.102.224.94',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; Redmi 3 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=f5c1f4d9g7c9hqhq026016veta',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'content-length' => '0',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->showall[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000430s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001106s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000455s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000688s ]
+[ sql ] [ SQL ] SELECT `gamestatus` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000277s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=2  WHERE  `gamestatus` = 1  AND `id` = 2 [ RunTime:0.000384s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3  AND `gamestatus` <> 0 [ RunTime:0.000403s ]
+[ sql ] [ SQL ] SELECT `taipaitime` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000213s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000345s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000641s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000199s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000357s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000372s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000213s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000368s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000366s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000242s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:05+08:00 ] 121.42.29.115 113.102.224.94 POST /game.php/douniuplaywjy/showall.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/showall.html [运行时间：0.070064s][吞吐率：14.27req/s] [内存消耗：3,079.00kb] [文件加载：71]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'showall',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept-language' => 'zh-cn',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.9 NetType/WIFI Language/zh_CN',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'keep-alive',
+  'content-length' => '0',
+  'cookie' => 'PHPSESSID=6f065des8epijcic04ac4v45gb',
+  'accept-encoding' => 'gzip, deflate',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->showall[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000467s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001132s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000469s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000712s ]
+[ sql ] [ SQL ] SELECT `gamestatus` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000211s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=2  WHERE  `gamestatus` = 1  AND `id` = 8 [ RunTime:0.000361s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3  AND `gamestatus` <> 0 [ RunTime:0.000452s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `taipaitime`='1500279065'  WHERE  `id` = 3 [ RunTime:0.000290s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=2  WHERE  `gamestatus` = 1  AND `room_id` = 3 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT `taipaitime` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000287s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=2  WHERE  `gamestatus` = 1  AND `room_id` = 3 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000303s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000345s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000644s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000195s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000376s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000366s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000362s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000367s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000210s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT `playcount` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SELECT `rule` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3  AND `banker` = 1  AND `gamestatus` = 2 LIMIT 1 [ RunTime:0.000363s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3  AND `banker` = 0  AND `gamestatus` = 2 [ RunTime:0.000378s ]
+[ sql ] [ SQL ] INSERT INTO `t_moneydetailtemp` (`room_id` , `time` , `reason` , `member_id` , `num`) VALUES (3 , '1500279065' , '做庄赢了【A吴俊源】' , 2 , 32) [ RunTime:0.000284s ]
+[ sql ] [ SQL ] INSERT INTO `t_moneydetailtemp` (`room_id` , `time` , `reason` , `member_id` , `num`) VALUES (3 , '1500279065' , '输给庄家【吴俊源】' , 8 , -32) [ RunTime:0.000149s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `pai`='',`gamestatus`=0  WHERE  `room_id` = 3 [ RunTime:0.000306s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `taipaitime`='1500279065',`islock`=0,`gamestatus`=0  WHERE  `id` = 3 [ RunTime:0.000274s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `playcount`=playcount+1  WHERE  `id` = 3 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000283s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000346s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000207s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000369s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000375s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000357s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000347s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000387s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000209s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000262s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:06+08:00 ] 121.42.29.115 101.226.125.115 POST /game.php/douniuplaywjy/gameready.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/gameready.html [运行时间：0.057510s][吞吐率：17.39req/s] [内存消耗：3,075.45kb] [文件加载：71]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'gameready',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '113.102.224.94',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; Redmi 3 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=f5c1f4d9g7c9hqhq026016veta',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'content-length' => '0',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->gameready[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000455s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001088s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000452s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000735s ]
+[ sql ] [ SQL ] SELECT `islock` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000281s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=1  WHERE  `gamestatus` = 0  AND `id` = 2 [ RunTime:0.000361s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000363s ]
+[ sql ] [ SQL ] SELECT `starttime` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000215s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000688s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000199s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000367s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000399s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000383s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000388s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000211s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000266s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:07+08:00 ] 121.42.29.115 113.102.224.94 POST /game.php/douniuplaywjy/gameready.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/gameready.html [运行时间：0.070517s][吞吐率：14.18req/s] [内存消耗：3,078.36kb] [文件加载：71]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'gameready',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept-language' => 'zh-cn',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.9 NetType/WIFI Language/zh_CN',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'keep-alive',
+  'content-length' => '0',
+  'cookie' => 'PHPSESSID=6f065des8epijcic04ac4v45gb',
+  'accept-encoding' => 'gzip, deflate',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->gameready[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000458s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001095s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000484s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000715s ]
+[ sql ] [ SQL ] SELECT `islock` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000180s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=1  WHERE  `gamestatus` = 0  AND `id` = 8 [ RunTime:0.000371s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000269s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000376s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `starttime`='1500279067',`gamestatus`=1  WHERE  `id` = 3 [ RunTime:0.000275s ]
+[ sql ] [ SQL ] SELECT `starttime` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000272s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `issetbanker`=0,`issetmultiple`=0,`banker`=0,`multiple`=1  WHERE  `room_id` = 3 [ RunTime:0.000278s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000303s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000347s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `pai`='a:5:{i:0;i:34;i:1;i:46;i:2;i:12;i:3;i:20;i:4;i:5;}',`typemultiple`=9,`pairet`=630  WHERE  `id` = 8 [ RunTime:0.000282s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `pai`='a:5:{i:0;i:49;i:1;i:50;i:2;i:7;i:3;i:42;i:4;i:41;}',`typemultiple`=2,`pairet`=396  WHERE  `id` = 2 [ RunTime:0.000185s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `islock`=1,`qiangtime`='1500279082',`taipaitime`='1500279097',`gamestatus`=2  WHERE  `id` = 3 [ RunTime:0.000269s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000307s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000354s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000687s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000216s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000380s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000428s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000356s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000384s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000209s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000207s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000190s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000252s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000332s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000275s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000355s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000406s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000371s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000336s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000387s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:08+08:00 ] 121.42.29.115 101.226.125.115 POST /game.php/douniuplaywjy/setbanker.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/setbanker.html [运行时间：0.057569s][吞吐率：17.37req/s] [内存消耗：3,069.96kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'setbanker',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '113.102.224.94',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; Redmi 3 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=f5c1f4d9g7c9hqhq026016veta',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'content-length' => '10',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+  'multiple' => '4',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->setbanker[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000397s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001084s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000477s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `multiple`=4  WHERE  `id` = 2  AND `issetbanker` = 0 [ RunTime:0.000362s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `banker`=1  WHERE  `id` = 2  AND `gamestatus` = 1 [ RunTime:0.000270s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `issetbanker`=1  WHERE  `id` = 2 [ RunTime:0.000253s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000718s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3  AND `gamestatus` = 1 [ RunTime:0.000372s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000214s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000342s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000210s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000642s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000197s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000354s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000394s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000214s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000359s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000364s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000214s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000241s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:08+08:00 ] 121.42.29.115 123.151.138.58 POST /game.php/douniuplaywjy/comein/room_id/4.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/comein/room_id/4.html [运行时间：0.047185s][吞吐率：21.19req/s] [内存消耗：3,042.05kb] [文件加载：70]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'comein',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '115.52.160.85',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; OPPO A53m Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/4.html',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=5sk3s2v4019t00bv0gaqjuodet',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'content-length' => '0',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+  'room_id' => '4',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->comein[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000454s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001106s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 5 LIMIT 1 [ RunTime:0.000469s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000729s ]
+[ sql ] [ SQL ] SELECT `islock` FROM `t_room` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000269s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `t_member` WHERE  `room_id` = 4 LIMIT 1 [ RunTime:0.000305s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=4  WHERE  `id` = 5 [ RunTime:0.000378s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 0 LIMIT 1 [ RunTime:0.000282s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 0 LIMIT 1 [ RunTime:0.000212s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:09+08:00 ] 121.42.29.115 113.102.224.94 POST /game.php/douniuplaywjy/setbanker.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/setbanker.html [运行时间：0.057667s][吞吐率：17.34req/s] [内存消耗：3,069.77kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'setbanker',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=6f065des8epijcic04ac4v45gb',
+  'content-length' => '10',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.9 NetType/WIFI Language/zh_CN',
+  'origin' => 'http://douniu.sppcms.com',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'host' => 'douniu.sppcms.com',
+)
+[ info ] [ PARAM ] array (
+  'multiple' => '2',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->setbanker[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000442s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001088s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000480s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `multiple`=2  WHERE  `id` = 8  AND `issetbanker` = 0 [ RunTime:0.000337s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `banker`=1  WHERE  `id` = 8  AND `gamestatus` = 1 [ RunTime:0.000272s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `issetbanker`=1  WHERE  `id` = 8 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000723s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3  AND `gamestatus` = 1 [ RunTime:0.000375s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `banker`=0  WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000302s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `banker`=1  WHERE  `id` = 8  AND `room_id` = 3 [ RunTime:0.000279s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `gamestatus`=3,`qiangtime`='1500279068',`taipaitime`='1500279094',`xiazhutime`='1500279079',`setbanker`='a:2:{i:0;i:2;i:1;i:8;}'  WHERE  `id` = 3 [ RunTime:0.000294s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000304s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000348s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000699s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000200s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000394s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000391s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000266s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000359s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000393s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000266s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:10+08:00 ] 121.42.29.115 101.226.125.115 POST /game.php/douniuplaywjy/setmultiple.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/setmultiple.html [运行时间：0.057267s][吞吐率：17.46req/s] [内存消耗：3,070.17kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'setmultiple',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '113.102.224.94',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; Redmi 3 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=f5c1f4d9g7c9hqhq026016veta',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'content-length' => '10',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+  'multiple' => '2',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->setmultiple[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000481s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001112s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000448s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000707s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `setbanker`=''  WHERE  `id` = 3 [ RunTime:0.000306s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `multiple`=2  WHERE  `id` = 2  AND `issetmultiple` = 0  AND `banker` <> 1 [ RunTime:0.000350s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `issetmultiple`=1  WHERE  `id` = 2 [ RunTime:0.000280s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `t_member` WHERE  `room_id` = 3  AND `gamestatus` <> 0  AND `banker` = 0  AND `issetmultiple` = 0 LIMIT 1 [ RunTime:0.000299s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `taipaitime`='1500279085',`gamestatus`=4  WHERE  `id` = 3 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000283s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000351s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000658s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000191s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000347s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000366s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000205s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000362s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000435s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000380s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000238s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:11+08:00 ] 121.42.29.115 101.226.125.115 POST /game.php/douniuplaywjy/showall.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/showall.html [运行时间：0.055910s][吞吐率：17.89req/s] [内存消耗：3,075.52kb] [文件加载：71]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'showall',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '113.102.224.94',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; Redmi 3 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=f5c1f4d9g7c9hqhq026016veta',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'content-length' => '0',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->showall[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000429s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001075s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000463s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000681s ]
+[ sql ] [ SQL ] SELECT `gamestatus` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000257s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=2  WHERE  `gamestatus` = 1  AND `id` = 2 [ RunTime:0.000354s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3  AND `gamestatus` <> 0 [ RunTime:0.000375s ]
+[ sql ] [ SQL ] SELECT `taipaitime` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000289s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000206s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000358s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000205s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000622s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000191s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000351s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000386s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000205s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000305s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000351s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000384s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000261s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:13+08:00 ] 121.42.29.115 113.102.224.94 POST /game.php/douniuplaywjy/showall.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/showall.html [运行时间：0.061344s][吞吐率：16.30req/s] [内存消耗：3,131.41kb] [文件加载：74]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'showall',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept-language' => 'zh-cn',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.9 NetType/WIFI Language/zh_CN',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'keep-alive',
+  'content-length' => '0',
+  'cookie' => 'PHPSESSID=6f065des8epijcic04ac4v45gb',
+  'accept-encoding' => 'gzip, deflate',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->showall[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000471s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001079s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000509s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000727s ]
+[ sql ] [ SQL ] SELECT `gamestatus` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000205s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=2  WHERE  `gamestatus` = 1  AND `id` = 8 [ RunTime:0.000380s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3  AND `gamestatus` <> 0 [ RunTime:0.000369s ]
+[ sql ] [ SQL ] UPDATE `t_room`  SET `taipaitime`='1500279073'  WHERE  `id` = 3 [ RunTime:0.000272s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=2  WHERE  `gamestatus` = 1  AND `room_id` = 3 [ RunTime:0.000279s ]
+[ sql ] [ SQL ] SELECT `taipaitime` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `gamestatus`=2  WHERE  `gamestatus` = 1  AND `room_id` = 3 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000283s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000387s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000209s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000655s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 3 GROUP BY member_id [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000350s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 8  AND `room_id` = 3 [ RunTime:0.000394s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000400s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 2  AND `room_id` = 3 [ RunTime:0.000385s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000206s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000284s ]
+[ sql ] [ SQL ] SELECT `playcount` FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000207s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000207s ]
+[ error ] [2]Invalid argument supplied for foreach()[/home/wwwroot/douniu.sppcms.com/douniu/thinkphp/library/think/db/Query.php:678]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:16+08:00 ] 121.42.29.115 121.42.29.115 GET /game.php/login/comeout/id/8
+[ log ] douniu.sppcms.com/game.php/login/comeout/id/8 [运行时间：0.042363s][吞吐率：23.61req/s] [内存消耗：2,756.57kb] [文件加载：65]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'login',
+    2 => 'comeout',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'douniu.sppcms.com',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '8',
+)
+[ info ] [ RUN ] app\game\controller\Login->comeout[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000428s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001130s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000495s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 LIMIT 1 [ RunTime:0.000396s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=0  WHERE  `id` = 8 [ RunTime:0.000347s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:16+08:00 ] 121.42.29.115 115.52.160.85 POST /game.php/douniuplaywjy/comeout.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/comeout.html [运行时间：0.043883s][吞吐率：22.79req/s] [内存消耗：2,933.00kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'comeout',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=tglnqlr9qcgfaa1c0ddspc2t3n',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/2.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1 wechatdevtools/0.7.0 MicroMessenger/6.3.9 Language/zh_CN webview/0',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://douniu.sppcms.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '10',
+  'connection' => 'keep-alive',
+  'host' => 'douniu.sppcms.com',
+)
+[ info ] [ PARAM ] array (
+  'memberid' => '8',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->comeout[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000439s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001067s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000447s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000379s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 0 LIMIT 1 [ RunTime:0.000338s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=0  WHERE  `id` = 8 [ RunTime:0.000287s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:16+08:00 ] 121.42.29.115 101.226.125.115 POST /game.php/douniuplaywjy/comeout.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/comeout.html [运行时间：0.060675s][吞吐率：16.48req/s] [内存消耗：2,933.32kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'comeout',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '113.102.224.94',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; Redmi 3 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/3',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=f5c1f4d9g7c9hqhq026016veta',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'content-length' => '10',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+  'memberid' => '8',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->comeout[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000424s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001068s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000468s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000286s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 0 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=0  WHERE  `id` = 8 [ RunTime:0.000294s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:16+08:00 ] 121.42.29.115 123.151.138.58 POST /game.php/douniuplaywjy/comeout.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/comeout.html [运行时间：0.059345s][吞吐率：16.85req/s] [内存消耗：2,933.32kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'comeout',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '115.52.160.85',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; OPPO A53m Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/4.html',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=5sk3s2v4019t00bv0gaqjuodet',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'content-length' => '10',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+  'memberid' => '8',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->comeout[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000349s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001146s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 5 LIMIT 1 [ RunTime:0.000499s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000259s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 0 LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=0  WHERE  `id` = 8 [ RunTime:0.000286s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:16+08:00 ] 121.42.29.115 123.151.138.58 POST /game.php/douniuplaywjy/allmember.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/allmember.html [运行时间：0.051838s][吞吐率：19.29req/s] [内存消耗：2,946.99kb] [文件加载：66]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'allmember',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '115.52.160.85',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; OPPO A53m Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/4.html',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=5sk3s2v4019t00bv0gaqjuodet',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'content-length' => '54',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+  'userlist' => '{"3":1,"2":1,"5":1}',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->allmember[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000413s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001080s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 5 LIMIT 1 [ RunTime:0.000320s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_room` [ RunTime:0.000757s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000312s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 4 [ RunTime:0.000381s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000211s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_moneydetailtemp` [ RunTime:0.000671s ]
+[ sql ] [ SQL ] SELECT `member_id`,sum(num) as money FROM `t_moneydetailtemp` WHERE  `room_id` = 4 GROUP BY member_id [ RunTime:0.000364s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 3  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000419s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 3  AND `room_id` = 4 [ RunTime:0.000426s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 4 [ RunTime:0.000273s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 5  AND `room_id` > 0 LIMIT 1 [ RunTime:0.000383s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` <> 5  AND `room_id` = 4 [ RunTime:0.000386s ]
+[ sql ] [ SQL ] SELECT * FROM `t_room` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000215s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 4 [ RunTime:0.000242s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:17+08:00 ] 121.42.29.115 121.42.29.115 GET /game.php/login/comeout/id/2
+[ log ] douniu.sppcms.com/game.php/login/comeout/id/2 [运行时间：0.044696s][吞吐率：22.37req/s] [内存消耗：2,756.63kb] [文件加载：65]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'login',
+    2 => 'comeout',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'douniu.sppcms.com',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '2',
+)
+[ info ] [ RUN ] app\game\controller\Login->comeout[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000484s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001155s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000475s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 3 LIMIT 1 [ RunTime:0.000376s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=0  WHERE  `id` = 2 [ RunTime:0.000409s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:17+08:00 ] 121.42.29.115 115.52.160.85 POST /game.php/douniuplaywjy/comeout.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/comeout.html [运行时间：0.045397s][吞吐率：22.03req/s] [内存消耗：2,933.00kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'comeout',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=tglnqlr9qcgfaa1c0ddspc2t3n',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/2.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1 wechatdevtools/0.7.0 MicroMessenger/6.3.9 Language/zh_CN webview/0',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://douniu.sppcms.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '10',
+  'connection' => 'keep-alive',
+  'host' => 'douniu.sppcms.com',
+)
+[ info ] [ PARAM ] array (
+  'memberid' => '2',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->comeout[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000430s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001070s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000452s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000406s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 0 LIMIT 1 [ RunTime:0.000335s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=0  WHERE  `id` = 2 [ RunTime:0.000289s ]
+
+---------------------------------------------------------------
+[ 2017-07-17T16:11:18+08:00 ] 121.42.29.115 123.151.138.58 POST /game.php/douniuplaywjy/comeout.html
+[ log ] douniu.sppcms.com/game.php/douniuplaywjy/comeout.html [运行时间：0.045254s][吞吐率：22.10req/s] [内存消耗：2,933.32kb] [文件加载：69]
+[ info ] [ LANG ] /home/wwwroot/douniu.sppcms.com/douniu/thinkphp/lang/zh-cn.php
+[ info ] [ BIND ] 'game'
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'game',
+    1 => 'douniuplaywjy',
+    2 => 'comeout',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'x-requested-with' => 'XMLHttpRequest',
+  'x-forwarded-for' => '115.52.160.85',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.1.1; OPPO A53m Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043305 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://douniu.sppcms.com/game.php/douniuplaywjy/index/room_id/4.html',
+  'origin' => 'http://douniu.sppcms.com',
+  'host' => 'douniu.sppcms.com',
+  'cookie' => 'PHPSESSID=5sk3s2v4019t00bv0gaqjuodet',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'content-length' => '10',
+  'connection' => 'close',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+)
+[ info ] [ PARAM ] array (
+  'memberid' => '2',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\game\controller\Douniuplaywjy->comeout[ /home/wwwroot/douniu.sppcms.com/douniu/application/game/controller/Douniuplaywjy.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000441s ] mysql:dbname=sq_douniu;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_member` [ RunTime:0.001096s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 5 LIMIT 1 [ RunTime:0.000449s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `t_member` WHERE  `room_id` = 0 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] UPDATE `t_member`  SET `room_id`=0  WHERE  `id` = 2 [ RunTime:0.000323s ]
+
+---------------------------------------------------------------
