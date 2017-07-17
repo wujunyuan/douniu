@@ -116,17 +116,7 @@ class Douniuplaywjy extends Common
 
 
 
-    public function ranking(){
-        $room = model('room')->where(array('id' => $this->memberinfo['room_id']))->find();
-        if (!$room) {
-            $this->error('房间不存在啊！！！');
-        }
-        $room = $room->toArray();
-        $this->assign('room', $room);
-        $list = model('room') -> getrankinglist($room['id']);
-        $this->assign('list', $list);
-        return $this->fetch('ranking');
-    }
+
 
 
 
@@ -483,10 +473,18 @@ dump($gameshowall);
         //查询房间中所有会员， 这个动作是最后一个准备游戏的会员触发的
         //通知前端显示排名
 
-        $playcount = model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> value('playcount');
-        if($playcount == 10){
+
+
+        $room = model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> find();
+        if($room){
+            $room = $room -> toArray();
+        }
+        if($room['playcount'] == 10){
+            $list = model('room') -> getrankinglist($this->memberinfo['room_id']);
+            $this->assign('list', $list);
+            $this->assign('room', $room);
             $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
-            $html = $this->ranking();
+            $html = $this->fetch('ranking');
             foreach($allmember as $k => $v){
                 $rank['html'] = $html;
                 $rank['type'] = 99;

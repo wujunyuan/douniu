@@ -1,8 +1,11 @@
 <img src="__STATIC__/game/img/list.png"><div class="content">
     <p class="times">房间号：<span style="margin-right:0.6rem;">{$room.room_num}</span><span>{:date('Y-m-d H:i')}</span></p>
     <ul>
+
+
+
 {volist name="list" id="vo"}
-        <li class="{gt name="vo['money']" value="0"}add{/gt} {eq name="key" value="1"}win{/eq}"><span>{$vo.nickname}</span><span>{gt name="vo['money']" value="0"}+{else /}-{/gt}{$vo.money}</span></li>
+        <li class="{gt name="vo['money']" value="0"}add{/gt} {eq name="key" value="1"}win{/eq}"><span>{$vo.nickname}</span><span>{gt name="vo['money']" value="0"}+{else /}-{/gt}{:abs($vo['money'])}</span></li>
 
 {/volist}
 
