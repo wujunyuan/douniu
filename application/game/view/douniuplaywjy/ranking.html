@@ -5,7 +5,7 @@
 
 
 {volist name="list" id="vo"}
-        <li class="{gt name="vo['money']" value="0"}add{/gt} {eq name="key" value="1"}win{/eq}"><span>{$vo.nickname}</span><span>{gt name="vo['money']" value="0"}+{else /}-{/gt}{:abs($vo['money'])}</span></li>
+        <li class="{gt name="vo['money']" value="0"}add{/gt} {eq name="key" value="0"} win{/eq}"><span>{$vo.nickname}</span><span>{gt name="vo['money']" value="0"}+{else /}-{/gt}{:abs($vo['money'])}</span></li>
 
 {/volist}
 

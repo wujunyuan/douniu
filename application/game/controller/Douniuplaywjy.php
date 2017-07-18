@@ -49,6 +49,7 @@ class Douniuplaywjy extends Common
 
         if ($ret) {
             model('member')->comein($ret, array('id' => $this->memberinfo['id']));
+            //exit(url('index', array('room_id' => $ret)));
             $this->success('创建成功', url('index', array('room_id' => $ret)));
         } else {
             $this->error($roomdb->getError());
@@ -115,11 +116,6 @@ class Douniuplaywjy extends Common
     }
 
 
-
-
-
-
-
     /**
      * 显示游戏界面
      * @return mixed
@@ -144,6 +140,10 @@ class Douniuplaywjy extends Common
             $this->assign('room', $room);
         } else {
             $this->error('迷路了，找不到房间！！！');
+        }
+        if ($room['playcount'] == 0) {
+            $this->theend();
+            return $this->fetch('result:index');
         }
         return $this->fetch();
     }
@@ -225,8 +225,7 @@ class Douniuplaywjy extends Common
             return;
         }
 
-        $ranking = model('room') -> getranking($room['id']);
-
+        $ranking = model('room')->getranking($room['id']);
 
 
         //通知所有会员更新界面
@@ -234,9 +233,9 @@ class Douniuplaywjy extends Common
 
             $ret = $db->getothermember($v['id']);
             foreach ($ret as $key => $val) {
-                if(isset($ranking[$val['id']])){
+                if (isset($ranking[$val['id']])) {
                     $ret[$key]['money'] = $ranking[$val['id']];
-                }else{
+                } else {
                     $ret[$key]['money'] = 0;
                 }
                 if ($val['gamestatus'] == 2) {
@@ -254,9 +253,9 @@ class Douniuplaywjy extends Common
             $return['start'] = $start;
             $return['data'] = $ret;
             $return['room'] = $room;
-            if(isset($ranking[$v['id']])){
+            if (isset($ranking[$v['id']])) {
                 $return['money'] = $ranking[$v['id']];
-            }else{
+            } else {
                 $return['money'] = 0;
             }
 
@@ -312,7 +311,7 @@ class Douniuplaywjy extends Common
         $multiple = intval(input('multiple'));
         if ($multiple > 0) {
             //model('member')->settimes($this->memberinfo['id'], $multiple);
-            model('member') -> where(array('id' =>$this->memberinfo['id'] ,'issetbanker' => 0)) ->update(array('multiple' => $multiple));
+            model('member')->where(array('id' => $this->memberinfo['id'], 'issetbanker' => 0))->update(array('multiple' => $multiple));
             model('member')->where(array('id' => $this->memberinfo['id'], 'gamestatus' => 1))->update(array('banker' => 1));
         }
         model('member')->where(array('id' => $this->memberinfo['id']))->update(array('issetbanker' => 1));
@@ -382,7 +381,7 @@ class Douniuplaywjy extends Common
      */
     private function init()
     {
-        model('member')->where(array('room_id' => $this->memberinfo['room_id'])) -> update(array('issetbanker' => 0, 'issetmultiple' => 0, 'banker' => 0, 'multiple' => 1));
+        model('member')->where(array('room_id' => $this->memberinfo['room_id']))->update(array('issetbanker' => 0, 'issetmultiple' => 0, 'banker' => 0, 'multiple' => 1));
         //查询房间中所有会员， 这个动作是最后一个准备游戏的会员触发的
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
         //遍历所有会员，每人发一副牌，算好牌型，然后把数据存到数据库中的member表的pai字段
@@ -414,8 +413,8 @@ class Douniuplaywjy extends Common
     public function showall()
     {
         $roomdb = model('room');
-        $roomgamestatus = $roomdb -> where(array('id' => $this->memberinfo['room_id'])) -> value('gamestatus');
-        if($roomgamestatus == 0){
+        $roomgamestatus = $roomdb->where(array('id' => $this->memberinfo['room_id']))->value('gamestatus');
+        if ($roomgamestatus == 0) {
             $this->error('游戏还没有开始');
         }
         if ($this->memberinfo['room_id'] == 0) {
@@ -445,7 +444,7 @@ class Douniuplaywjy extends Common
             model('member')->gameshowall(array('gamestatus' => 1, 'room_id' => $this->memberinfo['room_id']));
             $gameshowall = true;
         }
-dump($gameshowall);
+        dump($gameshowall);
         $this->allmember();
         //游戏可以开始了，通知房间中所有会员
         if ($gameshowall) {
@@ -474,26 +473,31 @@ dump($gameshowall);
         //通知前端显示排名
 
 
-
-        $room = model('room') -> where(array('id' => $this->memberinfo['room_id'])) -> find();
-        if($room){
-            $room = $room -> toArray();
+        $room = model('room')->where(array('id' => $this->memberinfo['room_id']))->find();
+        if ($room) {
+            $room = $room->toArray();
         }
-        if($room['playcount'] == 10){
-            $list = model('room') -> getrankinglist($this->memberinfo['room_id']);
+
+        model('room')->gameinit(array('id' => $this->memberinfo['room_id']));
+
+        if ($room['playcount'] == 10 || $room['playcount'] == 0) {
+
+            if (input('room_id')) {
+                $roomid = input('room_id');
+            } else {
+                $roomid = $this->memberinfo['room_id'];
+            }
+            $list = model('room')->getrankinglist($roomid);
             $this->assign('list', $list);
             $this->assign('room', $room);
-            $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
+            $allmember = model('room')->getmember(array('id' => $roomid));
             $html = $this->fetch('ranking');
-            foreach($allmember as $k => $v){
+            foreach ($allmember as $k => $v) {
                 $rank['html'] = $html;
                 $rank['type'] = 99;
                 $this->workermansend($v['id'], json_encode($rank));
             }
         }
-
-
-        $return = model('room')->gameinit(array('id' => $this->memberinfo['room_id']));
         $this->allmember();
 
 

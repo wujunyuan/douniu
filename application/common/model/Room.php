@@ -41,6 +41,9 @@ class Room extends Model
         $room = $room->toArray();
         $map['room_id'] = $room['id'];
         $member = Db::name('member')->where(array('room_id' => $room['id']))->select();
+        if(!$member){
+            $member = array();
+        }
         return $member;
     }
 
@@ -63,6 +66,7 @@ class Room extends Model
         Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
         model('room')->where(array('id' => $room['id']))->update(array('taipaitime' => time(),'islock' => 0, 'gamestatus' => 0));
         if ($room['room_cards_num'] <= 0 && $room['playcount'] >= 10) {
+            model('room')->where(array('id' => $room['id']))->update(array('playcount' => 0, 'gamestatus' => 0));
             $this->error = '房卡耗完了';
             $this->account($room['id']);
             return false;
@@ -105,22 +109,25 @@ class Room extends Model
         }
 
         $room = $this->where(array('member_id' => $memberid))->find();
+        if($room){
+            $room = $room ->toArray();
+        }
         //会员的房间存在了，不要再创建了
-        if (!$room) {
+        if (!$room || ($room && $room['playcount'] == 0)) {
             $data['member_id'] = $memberid;
             $data['open_time'] = time();
             $data['rule'] = serialize($rule);
-            $data['room_cards_num'] = $roomtype[1];
+            $data['room_cards_num'] = $roomtype[1] - 1;
             $data['playcount'] = 1;
 
             //房间号重复没有关系，好看就行了，A开头
             $data['room_num'] = 'A' . rand(10000, 99999);
-            $ret = $this->insert($data);
+            $ret = $this->save($data);
             if ($ret) {
                 //扣除会员房卡数量
                 model('member')->where(array('id' => $memberid))->setDec('cards', $roomtype[1]);
                 //成功后返回房间的ID，注意这不是房间号
-                return $this ->getLastInsID();
+                return $this ->id;
             } else {
                 return false;
             }
@@ -352,7 +359,7 @@ class Room extends Model
 //获取排名数据
     public function getrankinglist($room){
         //$moneydetailtempdb = model('moneydetailrank');
-        $list = Db::name('moneydetailrank') -> alias('d') -> where(array('d.room_id' => $room)) -> group('member_id') ->field('member_id,sum(num) as money,m.nickname') -> join('__MEMBER__ m', 'm.id = d.member_id', 'left') ->select();
+        $list = Db::name('moneydetailrank') -> alias('d') -> where(array('d.room_id' => $room)) -> group('member_id') ->field('member_id,sum(num) as money,m.nickname') -> join('__MEMBER__ m', 'm.id = d.member_id', 'left') -> order('money desc') ->select();
         return $list;
     }
     //获取分数数据
