@@ -13,7 +13,7 @@
           <thead>
             <th>ID</th>
             <th>创建id</th>
-           
+            <th>创建人昵称</th>
             <th>创建时间</th>
             <th>领取id</th>
             <th>领取时间</th>
@@ -24,6 +24,7 @@
           <tr>
             <td>{$vo.id}</td>
             <td>{$vo.create_id}</td>
+            <td>{:getnickname($vo['create_id'])}</td>
             <td>{:date('Y-m-d H:i:s',$vo['create_time'])}</td>
             <td>{$vo.receive_id}</td>
             <td>{:date('Y-m-d H:i:s',$vo['receive_time'])}</td>
