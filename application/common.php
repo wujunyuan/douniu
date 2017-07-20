@@ -67,3 +67,6 @@ function getconfig($name){
 	$ret = model('config') -> where(array('name' => $name)) -> find() -> toArray();
 	return $ret['value'];
 }
+function getnickname($id){
+    return model('member') -> where(array('id' => $id)) -> value('nickname');
+}

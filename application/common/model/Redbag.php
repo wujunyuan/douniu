@@ -89,5 +89,14 @@ class Redbag extends Model
         }
 
     }
+    public function baginfo($id)
+    {
+        $result = $this->alias('r') -> join('__MEMBER__ m','r.create_id=m.id','left') -> Field('r.*,m.nickname,m.photo') -> where(array('r.id' => $id)) -> find();
+        if($result){
+            return $result -> toArray();
+        }else{
+            return false;
+        }
+    }
 
 }
