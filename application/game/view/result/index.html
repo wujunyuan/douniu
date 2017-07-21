@@ -34,7 +34,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body onclick="mp3play('bau');">
 {include file="douniuplaywjy:ranking"}
 
 
@@ -42,7 +42,17 @@
 
 
 <script src="__STATIC__/game/js/jquery-1.12.1.js"></script>
+<audio id="bau" autoplay="autoplay" loop="loop" src="__STATIC__/game/video/background.mp3"></audio>
+
+<script>
+    function mp3play(id){
+        alert();
+        document.getElementById(id).play();
+    }
 
 
+
+
+</script>
 </body>
 </html>

@@ -12,10 +12,14 @@
 <audio id="mp3niu11" src="__STATIC__/game/video/nv_wuhua.mp3"></audio>
 <audio id="mp3niu12" src="__STATIC__/game/video/nv_zha.mp3"></audio>
 <audio id="mp3niu13" src="__STATIC__/game/video/nv_wuxiao.mp3"></audio>
-<audio autoplay="autoplay" loop="loop" src="__STATIC__/game/video/background.ogg"></audio>
+<audio id="background" autoplay="autoplay" loop="loop" src="__STATIC__/game/video/background.mp3"></audio>
 
 <script>
     function mp3play(id){
         document.getElementById(id).play();
     }
+
+        mp3play('background');
+
+
 </script>

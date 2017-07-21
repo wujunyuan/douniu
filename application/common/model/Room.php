@@ -65,7 +65,7 @@ class Room extends Model
         if ($room['room_cards_num'] <= 0 && $room['playcount'] >= 10) {
             $this->error = '房卡耗完了';
             $this->account($room['id']);
-            model('room')->where(array('id' => $room['id']))->update(array('playcount' => 0));
+            model('room')->where(array('id' => $room['id']))->update(array('playcount' => 0, 'gamestatus' => 0));
             return false;
         }
 
@@ -106,9 +106,9 @@ class Room extends Model
             return false;
         }
 
-        $room = $this->where(array('member_id' => $memberid))->find();
+        $room = $this->where(array('member_id' => $memberid))-> order('id desc') ->find();
         //会员的房间存在了，不要再创建了
-        if (!$room) {
+        if (!$room || ($room && $room['playcount'] == 0)) {
             $data['member_id'] = $memberid;
             $data['open_time'] = time();
             $data['rule'] = serialize($rule);
@@ -117,12 +117,12 @@ class Room extends Model
 
             //房间号重复没有关系，好看就行了，A开头
             $data['room_num'] = 'A' . rand(10000, 99999);
-            $ret = $this->insert($data);
+            $ret = $this->save($data);
             if ($ret) {
                 //扣除会员房卡数量
                 model('member')->where(array('id' => $memberid))->setDec('cards', $roomtype[1]);
                 //成功后返回房间的ID，注意这不是房间号
-                return $this ->getLastInsID();
+                return $this ->id;
             } else {
                 return false;
             }
