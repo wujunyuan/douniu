@@ -115,7 +115,7 @@
             </ul>
         </div>
     </div>
-    <form id="formopen" action="{:url('open')}" method="post">
+    <form callback="none1" id="formopen" action="{:url('open')}" method="post">
         <input type="hidden" name="id" value="{$member.id}">
 
     </form>
@@ -127,7 +127,7 @@
     <script type="text/javascript" src="__STATIC__/game/js/jquery-1.12.1.js"></script><script src="__STATIC__/js/setajax.js"></script>
     <script type="text/javascript">
         $(function(){
-            $('#formopen').ajaxsubmit({success:function(ret){
+            $('#formopen').ajaxsubmit({tip:$('<div style="display:none;"><div class="msgbox"></div> </div>'),success:function(ret){
                 //领取成功回调方法，如果要做成功后的动作，可以在这里写
 
                     $(".before").hide();
