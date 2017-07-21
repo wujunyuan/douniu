@@ -65,6 +65,7 @@ class Room extends Model
         if ($room['room_cards_num'] <= 0 && $room['playcount'] >= 10) {
             $this->error = '房卡耗完了';
             $this->account($room['id']);
+            model('room')->where(array('id' => $room['id']))->update(array('playcount' => 0));
             return false;
         }
 
@@ -353,7 +354,7 @@ class Room extends Model
 //获取排名数据
     public function getrankinglist($room){
         //$moneydetailtempdb = model('moneydetailrank');
-        $list = Db::name('moneydetailrank') -> alias('d') -> where(array('d.room_id' => $room)) -> group('member_id') ->field('member_id,sum(num) as money,m.nickname') -> join('__MEMBER__ m', 'm.id = d.member_id', 'left') ->select();
+        $list = Db::name('moneydetailrank') -> alias('d') -> where(array('d.room_id' => $room)) -> group('member_id') ->field('member_id,sum(num) as money,m.nickname') -> join('__MEMBER__ m', 'm.id = d.member_id', 'left') -> order('money desc') -> select();
         return $list;
     }
     //获取分数数据

@@ -145,6 +145,7 @@ class Douniuplaywjy extends Common
             $this->theend();
             return $this->fetch('result:index');
         }
+        $this->assign('rand', time());
         return $this->fetch();
     }
 
