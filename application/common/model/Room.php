@@ -58,10 +58,19 @@ class Room extends Model
             return false;
         }
 
+        $lastwinnerid = (int)model('member') -> where(array('room_id' => $room['id'], 'typemultiple' => 10, 'gamestatus' => array('gt', 0))) -> order('pairet desc') -> value('id');
+        $rule = unserialize($room['rule']);
+        if($lastwinnerid > 0){
+
+            $rule['lastwinnerid'] = $lastwinnerid;
+
+        }
+        $rule = serialize($rule);
+
         $this-> accounttemp($room['id']);
         $map['room_id'] = $room['id'];
         Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
-        model('room')->where(array('id' => $room['id']))->update(array('taipaitime' => time(),'islock' => 0, 'gamestatus' => 0));
+        model('room')->where(array('id' => $room['id']))->update(array('taipaitime' => time(),'islock' => 0, 'gamestatus' => 0, 'rule' => $rule));
         if ($room['room_cards_num'] <= 0 && $room['playcount'] >= 10) {
             $this->error = '房卡耗完了';
             $this->account($room['id']);
@@ -73,7 +82,7 @@ class Room extends Model
             model('room')->where(array('id' => $room['id']))->setDec('room_cards_num', 1);
             model('room')->where(array('id' => $room['id']))->update(array('playcount' => 1, 'gamestatus' => 0));
             //这里10局完了
-            $this->account($room['id']);
+            //$this->account($room['id']);
         }else{
             model('room')->where(array('id' => $room['id']))->setInc('playcount', 1);
         }
@@ -112,7 +121,7 @@ class Room extends Model
             $data['member_id'] = $memberid;
             $data['open_time'] = time();
             $data['rule'] = serialize($rule);
-            $data['room_cards_num'] = $roomtype[1];
+            $data['room_cards_num'] = $roomtype[1] -1 ;
             $data['playcount'] = 1;
 
             //房间号重复没有关系，好看就行了，A开头
@@ -231,8 +240,19 @@ class Room extends Model
         model('member') -> where(array('id' => array('neq', $lastid), 'room_id' => $roomid)) -> update(array('banker' => 0));
         model('member') -> where(array('id' => array('eq', $lastid), 'room_id' => $roomid)) -> update(array('banker' => 1));
         $time = time();
-        $this->where(array('id' => $room['id'])) -> update(array('gamestatus' => 3,'qiangtime' => $time - 1,'taipaitime' => $time + 25,'xiazhutime' => $time + 10, 'setbanker' => serialize($ret)));
+
+        $lastwinnerid = $lastid;
+        $rule = unserialize($room['rule']);
+        if($lastwinnerid > 0){
+            $rule['lastwinnerid'] = $lastwinnerid;
+        }
+        $rule = serialize($rule);
+        $this->where(array('id' => $room['id'])) -> update(array('rule' => $rule,'gamestatus' => 3,'qiangtime' => $time - 1,'taipaitime' => $time + 25,'xiazhutime' => $time + 10, 'setbanker' => serialize($ret)));
         //返回结果
+
+
+
+
 
         return $ret;
     }
@@ -292,9 +312,9 @@ class Room extends Model
             8 => 2,
             9 => 3,
             10 => 4,
-            11 => 5,
-            12 => 6,
-            13 => 8,
+            11 => isset($rule['types'][1])?$rule['types'][1]:1,
+            12 => isset($rule['types'][2])?$rule['types'][2]:1,
+            13 => isset($rule['types'][3])?$rule['types'][3]:1,
         );
         $rulemultiple[2] = array(
             0 => 1,
@@ -308,9 +328,9 @@ class Room extends Model
             8 => 2,
             9 => 3,
             10 => 4,
-            11 => 5,
-            12 => 6,
-            13 => 8,
+            11 => isset($rule['types'][1])?$rule['types'][1]:1,
+            12 => isset($rule['types'][2])?$rule['types'][2]:1,
+            13 => isset($rule['types'][3])?$rule['types'][3]:1,
         );
         $typemultiple = $rulemultiple[$rule['rule']];
         $member = $memberdb->where(array('room_id' => $roomid, 'banker' => 0, 'gamestatus' => 2))->select();

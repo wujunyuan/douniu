@@ -136,13 +136,23 @@
                 {/eq}
             </span></li>
 
-            <li>牌型:<span>五花牛(5倍)  炸弹牛(6倍)  五小牛(8倍)</span></li>
+            <li>牌型:<span>
+                {notempty name="gamerule['types'][1]"}
+                五花牛(5倍)
+                {/notempty}
+                {notempty name="gamerule['types'][2]"}
+                炸弹牛(6倍)
+                {/notempty}
+                {notempty name="gamerule['types'][3]"}
+                五小牛(8倍)
+                {/notempty}
+            </span></li>
             <li>局数:<span>
 {eq name="gamerule['gamenum']" value="10:1"}
                 10局x1房卡
 {/eq}
 
-         {eq name="gamerule['gamenum']" value="20:1"}
+         {eq name="gamerule['gamenum']" value="20:2"}
                 20局x2房卡
 {/eq}
             </span></li>
@@ -472,9 +482,15 @@
 
                 if(ret.isbanker == 1){
                     if(ret.issetbanker == 1){
-                        $('.member__{$memberinfo.id}').find('.bankerimg').show();
+                        $('.zhuangimg').hide();
+
                         $('.member__{$memberinfo.id}').find('.zhuangimg').show();
-                        $('.member__{$memberinfo.id}').find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.multiple + '.png').show();
+                        if(ret.room.rule.gametype != 1 && ret.room.rule.gametype != 5){
+                            $('.member__{$memberinfo.id}').find('.bankerimg').show();
+                            $('.member__{$memberinfo.id}').find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.multiple + '.png').show();
+                        }
+
+
                     }
                 }else{
                     $('.member__{$memberinfo.id}').find('.bankerimg').hide();
@@ -512,7 +528,7 @@
                     $('.tanpaishowplay').remove();
                 }
                 //开始抢庄
-                if (ret.room.gamestatus == 2 && ret.gamestatus > 0) {
+                if (ret.room.gamestatus >= 2 && ret.gamestatus > 0) {
                     //刚准备好，发牌完毕
                     $('.cards').show();
                     $('.readyimg').hide();
@@ -616,9 +632,12 @@ console.log(ret.room.taipaitime);
 
                     if(ret.data[i].banker == 1){
                         if(ret.data[i].issetbanker == 1){
-                            $('.member__' + ret.data[i].id).find('.bankerimg').show();
+                            $('.zhuangimg').hide();
                             $('.member__' + ret.data[i].id).find('.zhuangimg').show();
-                            $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
+                            if(ret.room.rule.gametype != 1 && ret.room.rule.gametype != 5) {
+                                $('.member__' + ret.data[i].id).find('.bankerimg').show();
+                                $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
+                            }
                         }
                     }else{
                         $('.member__' + ret.data[i].id).find('.bankerimg').hide();
@@ -645,7 +664,7 @@ console.log(ret.room.taipaitime);
                     /*if (ret.room.gamestatus != 4) {
                         continue;
                     }*/
-                    if (ret.data[i]['gamestatus'] > 0 && ret.room.gamestatus > 0) {
+                    if (ret.data[i]['gamestatus'] > 0 && ret.room.gamestatus > 1) {
 
                         for (var j = 0; j < ret.data[i]['pai'].length; j++) {
                             $('#player_' + i).find('.cardsbox img').eq(j).attr('src', '__STATIC__/game/img/pai/' + ret.data[i]['pai'][j] + '.png');
