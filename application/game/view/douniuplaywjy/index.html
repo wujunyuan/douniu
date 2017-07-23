@@ -115,7 +115,6 @@
 
 
 
-
             <p>创建房间,游戏未进行,不消耗房卡</p>
             <li>模式:<span>
                 {eq name="gamerule['gametype']" value="1"}牛牛上庄{/eq}
@@ -296,9 +295,13 @@
                 <img onclick="setbanker(0);" src="__STATIC__/game/img/buqiang.png">
             </div>
 <div class="pai">
-            <img src="__STATIC__/game/img/pai/0.png"><img src="__STATIC__/game/img/pai/0.png"><img
-                src="__STATIC__/game/img/pai/0.png"><img src="__STATIC__/game/img/pai/0.png"><img
-                src="__STATIC__/game/img/pai/0.png"></div><div class="niuname">未知</div>
+
+    <img class="pk" src="__STATIC__/game/img/pai/0.png">
+    <img class="pk" src="__STATIC__/game/img/pai/0.png">
+    <img class="pk" src="__STATIC__/game/img/pai/0.png">
+    <img class="pk" src="__STATIC__/game/img/pai/0.png">
+    <img class="pk" src="__STATIC__/game/img/pai/0.png">
+</div><div class="niuname">未知</div>
         </div>
     </div>
     <div class="msg">
@@ -330,6 +333,11 @@
 <script src="__STATIC__/game/js/lib/opentip.js"></script>
 <script src="__STATIC__/js/countdown.js"></script>
 <script src="__STATIC__/game/js/lib/adapter-jquery.js"></script>
+
+<script src="__STATIC__/game/js/jquery-ui.min.js"></script>
+<script src="__STATIC__/game/js/jquery.flip.min.js"></script>
+
+
 
 <script type="text/javascript">
 
@@ -797,6 +805,21 @@ function setflash(img){
         },600);
     },950);
 }
+
+
+
+    function fanpai(pai){
+        var _this = pai;
+        _this.flip({
+            direction: 'lr',
+            content: '',
+            speed: 200,
+            onEnd: function(){
+                _this.addClass('open');
+            }
+        });
+    }
+
 
 
 

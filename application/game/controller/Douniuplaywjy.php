@@ -276,8 +276,8 @@ class Douniuplaywjy extends Common
                 //}
 
             } elseif ($return['gamestatus'] == 1) {
-                $return['pai'] = unserialize($v['pai']);
-                $return['pai'] = array($return['pai'][0], $return['pai'][1], $return['pai'][2], 0, 0);
+                $return['pai'] = unserialize($v['tanpai']);
+                //$return['pai'] = array($return['pai'][0], $return['pai'][1], $return['pai'][2], 0, 0);
             } else {
                 $return['pai'] = array();
 
@@ -392,6 +392,7 @@ class Douniuplaywjy extends Common
                 $pai = $this->douniu->create();
                 $data['pai'] = serialize($pai);
                 $data['typemultiple'] = $this->douniu->getniuname($pai);
+                $data['tanpai'] = serialize(array(0, 0, 0, 0, 0));
                 $map['id'] = $v['id'];
 
                 //写入牌的大小
@@ -411,6 +412,10 @@ class Douniuplaywjy extends Common
         $time = time();
         model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('islock' => 1, 'qiangtime' => $time + 15, 'taipaitime' => $time + 30, 'gamestatus' => 2));
 
+        $this->tombi();
+        $this->mingup();
+        $this->freeup();
+        $this->fixedup();
         $this->niuup();
         $this->allmember();
     }
@@ -452,7 +457,7 @@ class Douniuplaywjy extends Common
             model('member')->gameshowall(array('gamestatus' => 1, 'room_id' => $this->memberinfo['room_id']));
             $gameshowall = true;
         }
-        dump($gameshowall);
+        //dump($gameshowall);
         $this->allmember();
         //游戏可以开始了，通知房间中所有会员
         if ($gameshowall) {
@@ -483,7 +488,7 @@ class Douniuplaywjy extends Common
         }
         $rule = unserialize($room['rule']);
         model('room')->gameinit(array('id' => $this->memberinfo['room_id']));
-        $gamenum = explode(':',$rule['gamenum']);
+        $gamenum = explode(':', $rule['gamenum']);
         if (($room['playcount'] == $gamenum[0] && $room['room_cards_num'] == 0) || $room['playcount'] == 0) {
 
             if (input('room_id')) {
@@ -505,6 +510,21 @@ class Douniuplaywjy extends Common
         $this->allmember();
     }
 
+
+    private function setshownum($num, $room_id)
+    {
+        $allmember = model('room')->getmember(array('id' => $room_id));
+        foreach ($allmember as $k => $v) {
+            $pai = unserialize($v['pai']);
+            $ret = array(0, 0, 0, 0, 0);
+            for ($i = 0; $i < $num; $i++) {
+                $ret[$i] = $pai[$i];
+            }
+            model('member')->where(array('id' => $v['id']))->update(array('tanpai' => serialize($ret)));
+        }
+    }
+
+
     //牛牛上庄，第一局抢庄，玩家牌最大的下局是庄家
     public function niuup()
     {
@@ -512,10 +532,10 @@ class Douniuplaywjy extends Common
         $rule = unserialize($rule);
 
         //规则为1是牛牛上庄，如果lastwinnerid同时存在，那么lastwinnerid就是上庄的会员ID
-
         if ($rule['gametype'] == 1 && isset($rule['lastwinnerid'])) {
-            $member = model('member') -> where(array('id' => $rule['lastwinnerid'],'room_id' => $this->memberinfo['room_id'],'gamestatus' => array('gt', 0))) -> find();
-            if($member){
+            $member = model('member')->where(array('id' => $rule['lastwinnerid'], 'room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('gt', 0)))->find();
+            $this->setshownum(3, $this->memberinfo['room_id']);
+            if ($member) {
                 $time = time();
                 $update['taipaitime'] = $time + 30;
                 $update['qiangtime'] = $time;
@@ -524,8 +544,9 @@ class Douniuplaywjy extends Common
                 //跳过抢庄流程，直接设置游戏为正在下注
                 $update['gamestatus'] = 3;
                 model('room')->where(array('id' => $this->memberinfo['room_id']))->update($update);
-                model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'banker' =>0,  'gamestatus' => array('gt', 0)))->update(array( 'issetbanker' => 1));
+                model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'banker' => 0, 'gamestatus' => array('gt', 0)))->update(array('issetbanker' => 1));
                 model('member')->where(array('id' => $rule['lastwinnerid']))->update(array('banker' => 1));
+
             }
 
         }
@@ -534,13 +555,21 @@ class Douniuplaywjy extends Common
     //固定庄家：房主为庄家，退出后，随机选择一位固定
     public function fixedup()
     {
-
+        $rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
+        $rule = unserialize($rule);
+        if($rule['gametype'] == 2) {
+            $this->setshownum(3, $this->memberinfo['room_id']);
+        }
     }
 
     //自由抢庄：玩家自由抢庄，三张牌显示，剩余两张不显示
     public function freeup()
     {
-
+        $rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
+        $rule = unserialize($rule);
+        if($rule['gametype'] == 3) {
+            $this->setshownum(5, $this->memberinfo['room_id']);
+        }
     }
 
     /**
@@ -548,7 +577,11 @@ class Douniuplaywjy extends Common
      */
     public function mingup()
     {
-
+        $rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
+        $rule = unserialize($rule);
+        if ($rule['gametype'] == 4) {
+            $this->setshownum(4, $this->memberinfo['room_id']);
+        }
     }
 
     /**
@@ -556,16 +589,43 @@ class Douniuplaywjy extends Common
      */
     public function tombi()
     {
-        $time = time();
-        $update['taipaitime'] = $time + 15;
-        $update['qiangtime'] = $time;
-        $update['xiazhutime'] = $time;
-        $update['starttime'] = $time;
-        $update['gamestatus'] = 4;
-        mode('room')->where(array('id' => $this->memberinfo['room_id']))->update($update);
-        //房间牌最大的id
-        $bankermemberid = model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('gt', 0)))->order('pairet desc')->value('id');
-        model('member')->where(array('id' => $bankermemberid))->update(array('banker' => 1));
-        model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('gt', 0)))->update(array('issetmultiple' => 1, 'issetbanker' => 1));
+
+        $rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
+        $rule = unserialize($rule);
+        if ($rule['gametype'] == 5) {
+            $time = time();
+            $update['taipaitime'] = $time + 15;
+            $update['qiangtime'] = $time;
+            $update['xiazhutime'] = $time;
+            $update['starttime'] = $time;
+            $update['gamestatus'] = 4;
+            mode('room')->where(array('id' => $this->memberinfo['room_id']))->update($update);
+            //房间牌最大的id
+            $bankermemberid = model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('gt', 0)))->order('pairet desc')->value('id');
+            model('member')->where(array('id' => $bankermemberid))->update(array('banker' => 1));
+            model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('gt', 0)))->update(array('issetmultiple' => 1, 'issetbanker' => 1));
+        }
+
+    }
+
+    public function showone(){
+        $key = input('key');
+        $map['id'] = $this->memberinfo['id'];
+        $member = model('member') -> where($map) -> find();
+        if($member){
+            $member -> toArray();
+        }else{
+            $this->error('会员不存在');
+        }
+        $pai = unserialize($member['pai']);
+        $tanpai = unserialize($member['tanpai']);
+        $tanpai[$key] = $pai[$key];
+        $data['tanpai'] = serialize($tanpai);
+        $ret = model('member') ->where($map) -> update($data);
+        if($ret){
+            $this->success('翻牌成功');
+        }else{
+            $this->error('翻牌失败'.model('member') ->getError());
+        }
     }
 }
