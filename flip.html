@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>翻牌测试</title>
+    <script src="static/game/js/jquery-1.12.1.js"></script>
+    <script src="static/game/js/jquery-ui.min.js"></script>
+    <script src="static/game/js/jquery.flip.min.js"></script>
+    <script src="static/js/pokershow.js"></script>
+</head>
+<body>
+
+
+<style>
+    .poker {
+        display: inline-block;
+        width: 40px;
+    }
+    .poker img {
+        width: 100%;
+        vertical-align: top;
+    }
+</style>
+<div class="pai">
+    <div class="poker box1" onclick="poker.fanpai(this, 'static/game/img/pai/',5)"><img src="static/game/img/pai/0.png"></div>
+    <div class="poker box2" onclick="poker.fanpai(this, 'static/game/img/pai/',8)"><img src="static/game/img/pai/0.png"></div>
+    <div class="poker box3" onclick="poker.fanpai(this, 'static/game/img/pai/',10)"><img src="static/game/img/pai/0.png">
+    </div>
+    <div class="poker box4" onclick="poker.fanpai(this, 'static/game/img/pai/',11)"><img src="static/game/img/pai/0.png">
+    </div>
+    <div class="poker box5" onclick="poker.fanpai(this, 'static/game/img/pai/',0)"><img src="static/game/img/pai/0.png">
+    </div>
+</div>
+<a href="##" onclick="poker.init('.poker');">重置</a> <a href="##" onclick="poker.fanpaiall($('.poker'), 'static/game/img/pai/', [2,30,22,5,0]);">全部翻开</a>
+</body>
+</html>
