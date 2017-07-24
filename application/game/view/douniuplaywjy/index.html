@@ -42,7 +42,9 @@
     }
 
     .cardsbox{position: relative; display: none;}
-    .cardsbox .poker {width: 40px;}
+    .cards .poker{width:12%; display: inline-block;}
+    .cards .poker img{width:100%;}
+    .cardsbox .poker {width: 40px; display:inline-block;}
     .cardsbox .poker img{width:100%;}
     .cardsbox .box1 {position: absolute; left: 0px; z-index: 1;}
     .cardsbox .box2 {position: absolute; left: 10px; z-index: 1;}
@@ -297,11 +299,11 @@
             </div>
 <div class="pai">
 
-    <div class="poker box1"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box2"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box3"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box4"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box5"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+    <div class="poker box1" onclick="poker.ajaxshow('{:url('showone')}',0,'__STATIC__/game/img/pai/',this);"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+    <div class="poker box2" onclick="poker.ajaxshow('{:url('showone')}',1,'__STATIC__/game/img/pai/',this);"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+    <div class="poker box3" onclick="poker.ajaxshow('{:url('showone')}',2,'__STATIC__/game/img/pai/',this);"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+    <div class="poker box4" onclick="poker.ajaxshow('{:url('showone')}',3,'__STATIC__/game/img/pai/',this);"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+    <div class="poker box5" onclick="poker.ajaxshow('{:url('showone')}',4,'__STATIC__/game/img/pai/',this);"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
 </div><div class="niuname">未知</div>
         </div>
     </div>
@@ -337,7 +339,7 @@
 <script src="__STATIC__/game/js/jquery-ui.min.js"></script>
 <script src="__STATIC__/game/js/jquery.flip.min.js"></script>
 
-
+<script src="__STATIC__/js/pokershow.js?v=2"></script>
 
 <script type="text/javascript">
 
@@ -528,6 +530,7 @@
                     if(ret.gamestatus == 0) {
                         $('#gameready').show();
                     }
+                    poker.init('.poker');
                     $('.tanpai').hide();
                     $('.xiazhu').hide();
                     $('.xiazhubox img').hide();
@@ -541,9 +544,11 @@
                     $('.cards').show();
                     $('.readyimg').hide();
                     $('#gameready').hide();
-                    for (var k = 0; k < ret.pai.length; k++) {
+
+                    poker.fanpaiall($('.cards .poker'), '__STATIC__/game/img/pai/', ret.pai);
+                    //for (var k = 0; k < ret.pai.length; k++) {
                         //$('.cards .pai img').eq(k).attr('src', '__STATIC__/game/img/pai/' + ret.pai[k] + '.png');
-                    }
+                    //}
                     //点击过了，不再显示
 
                     setbankercountdown(ret.room.qiangtime);
@@ -677,9 +682,10 @@ console.log(ret.room.taipaitime);
                     }*/
                     if (ret.data[i]['gamestatus'] > 0 && ret.room.gamestatus > 1) {
 
-                        for (var j = 0; j < ret.data[i]['pai'].length; j++) {
-                            $('#player_' + i).find('.cardsbox img').eq(j).attr('src', '__STATIC__/game/img/pai/' + ret.data[i]['pai'][j] + '.png');
-                        }
+
+                       // for (var j = 0; j < ret.data[i]['pai'].length; j++) {
+                            //$('#player_' + i).find('.cardsbox img').eq(j).attr('src', '__STATIC__/game/img/pai/' + ret.data[i]['pai'][j] + '.png');
+                       // }
                         $('.member__' + ret.data[i].id + ' .readyimg').hide();
                         if (ret.data[i]['gamestatus'] == 2) {
                             if($('.member__' + ret.data[i].id+' .tanpaishowplay').length == 0){
@@ -693,6 +699,7 @@ console.log(ret.room.taipaitime);
                             $('#player_' + i).find('.cardsbox .niuname').show();
                         }
                         $('#player_' + i).find('.cardsbox').show();
+                        poker.fanpaiall($('#player_' + i+' .poker'), '__STATIC__/game/img/pai/', ret.data[i]['pai']);
                     }
 
 

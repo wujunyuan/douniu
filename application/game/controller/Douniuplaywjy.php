@@ -609,6 +609,10 @@ class Douniuplaywjy extends Common
     }
 
     public function showone(){
+        $gamestatus = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('gamestatus');
+        if($gamestatus != 4){
+            $this ->error('目前不能翻牌！');
+        }
         $key = input('key');
         $map['id'] = $this->memberinfo['id'];
         $member = model('member') -> where($map) -> find();
@@ -623,7 +627,9 @@ class Douniuplaywjy extends Common
         $data['tanpai'] = serialize($tanpai);
         $ret = model('member') ->where($map) -> update($data);
         if($ret){
-            $this->success('翻牌成功');
+            $return['code'] = 1;
+            $return['msg'] = $tanpai[$key];
+            echo json_encode($return);
         }else{
             $this->error('翻牌失败'.model('member') ->getError());
         }
