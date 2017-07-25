@@ -67,7 +67,10 @@
         position: absolute;
         left: 0;
         top: 0; display: none;}
-
+    .gameret{color: #F6C312;
+        text-shadow: -2px -2px 1px #734E10;
+        font-size: 16px;
+        font-weight: bold; display: none;}
 
     /* 弹窗显示排名的样式 */
     .window{position: absolute; z-index: 10;
@@ -197,7 +200,7 @@
                     <div class="poker box4"><img class="pic4" src="__STATIC__/game/img/pai/0.png"></div>
                     <div class="poker box5"><img class="pic5" src="__STATIC__/game/img/pai/0.png"></div>
                     <div class="niuname">未知</div>
-                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> </div>
+                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> <span class="gameret"></span> </div>
                 </div>
             </div>
             <div class="photo" id="player_2">
@@ -231,7 +234,7 @@
                     <div class="poker box4"><img class="pic4" src="__STATIC__/game/img/pai/0.png"></div>
                     <div class="poker box5"><img class="pic5" src="__STATIC__/game/img/pai/0.png"></div>
                     <div class="niuname">未知</div>
-                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> </div>
+                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> <span class="gameret"></span></div>
                 </div>
 
 
@@ -249,7 +252,7 @@
                     <div class="poker box4"><img class="pic4" src="__STATIC__/game/img/pai/0.png"></div>
                     <div class="poker box5"><img class="pic5" src="__STATIC__/game/img/pai/0.png"></div>
                     <div class="niuname">未知</div>
-                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> </div>
+                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> <span class="gameret"></span></div>
                 </div>
 
             </div>
@@ -268,7 +271,7 @@
                     <div class="poker box4"><img class="pic4" src="__STATIC__/game/img/pai/0.png"></div>
                     <div class="poker box5"><img class="pic5" src="__STATIC__/game/img/pai/0.png"></div>
                     <div class="niuname">未知</div>
-                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> </div>
+                    <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> <span class="gameret"></span></div>
                 </div>
             </div>
         </div>
@@ -316,7 +319,7 @@
 
 
 
-            <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> </div>
+            <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> <span class="gameret"></span></div>
         </div>
         <div class="base-bet">
             <p>底注：<span>{$gamerule.score}</span>分</p>
@@ -339,8 +342,8 @@
 <script src="__STATIC__/game/js/jquery-ui.min.js"></script>
 <script src="__STATIC__/game/js/jquery.flip.min.js"></script>
 
-<script src="__STATIC__/js/pokershow.js?v=2"></script>
-
+<script src="__STATIC__/js/pokershow.js?v=1.3"></script>
+<script src="__STATIC__/js/gold-fly.js"></script>
 <script type="text/javascript">
 
     function tanpaicountdown1(initcount){
@@ -471,7 +474,10 @@
             if (ret.type == 1) {
                 msgshow(ret.info, ret.from);
             }
-
+            if (ret.type == 999) {
+                console.log(ret.data);
+                $.jinbiflyall('<img style="border-radius: 20px;" width="15" src=\'__STATIC__/game/img/jinbi.png\'>','.member__',ret.data,function(){ })
+            }
             if (ret.type == 99) {
                 $('.window').html(ret.html).show();
                 console.log(ret);
@@ -540,6 +546,7 @@
                 }
                 //开始抢庄
                 if (ret.room.gamestatus >= 2 && ret.gamestatus > 0) {
+
                     //刚准备好，发牌完毕
                     $('.cards').show();
                     $('.readyimg').hide();
@@ -591,7 +598,7 @@
                 }
                 //闲家下注，摊牌倒计时
                 if (ret.room.gamestatus == 4) {
-console.log(ret.room.taipaitime);
+
                     tanpaicountdown(ret.room.taipaitime);
                     if(ret.gamestatus == 2) {
                         $('.tanpai').hide();
@@ -670,7 +677,6 @@ console.log(ret.room.taipaitime);
                     if (ret.room.gamestatus == 0) {
                         //当前会员未准备状态，重置游戏界面，把准备按钮显示出来，合理的这里其实是一个再来一局的按钮，没关系
                         if(ret.gamestatus == 0){
-
                             $('#gameready').show();
                         }
 

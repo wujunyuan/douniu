@@ -1,10 +1,9 @@
-var     showed=0;
+var showed=0;
 var poker = {
     timer: 1,
 
     fanpai: function (pai, imgpath, key) {
         var _this = pai;
-
 
         if (_this.hasClass('open') || key == 0) {
             if (key == 0) {
@@ -48,14 +47,17 @@ var poker = {
                 'position': 'fixed',
                 'top': '50%',
                 left: '50%',
+                'margin-left':'-20px',
+                'margin-top':'-25px',
                 'max-width':'40px',
                 opacity:1,
                 'z-index':5
-            }).show().animate({'top': dy + 'px', left: dx + 'px'}, 300,'', function () {
+            }).show().animate({'margin-top':0,'margin-left':0,'top': dy + 'px', left: dx + 'px'}, 300,'', function () {
                 img.css({'position': 'static','max-width':'none'});
                 //_this.html(img);
                 showed ++ ;
-                poker.fanpai(pai, imgpath, key);
+                setTimeout(function(){poker.fanpai(pai, imgpath, key);},750);
+
             });
         }, 150 * poker.timer);
         poker.timer++;
@@ -68,13 +70,15 @@ var poker = {
         }, 'json');
     },
     fanpaiall: function (elements, imgpath, keys) {
-        poker.timer = 1;console.log(poker.showed);
+        poker.timer = 1;
+        $(elements).find('img').css('opacity', 0);
         $(elements).each(function (index, element) {
             if (typeof(keys[index]) != 'undefined') {
                 if (showed >= $(elements).length) {
+                    $(elements).find('img').css('opacity', 1);
                     poker.fanpai($(element), imgpath, keys[index]);
                 } else {
-                    $(element).find('img').css('opacity', 0);
+                    $(elements).find('img').attr('src', '/static/game/img/pai/0.png');
                     poker.fly($(element), imgpath, keys[index]);
                 }
             }
@@ -83,6 +87,7 @@ var poker = {
     init: function (poker) {
         $(poker).removeClass('open');
         $(poker).removeClass('showed');
+        $(poker).css({'background-color':'rgba(0,0,0,0)'});
         showed= 0;
     }
 }

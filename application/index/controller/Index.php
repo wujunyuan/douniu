@@ -11,9 +11,7 @@ class Index extends Common
 {
 	public function index()
 	{
-		$ret = model('room')->getrankinglist(3);
-		dump($ret);
-		dump(model('room') -> getError());
+		dump(json_encode(unserialize('a:3:{i:0;a:1:{i:0;a:3:{i:0;i:2;i:1;i:8;i:2;i:1;}}i:1;a:0:{}i:2;a:2:{i:8;i:0;i:2;i:0;}}')));
 
 	}
 

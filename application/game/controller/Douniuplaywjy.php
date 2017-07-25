@@ -202,6 +202,7 @@ class Douniuplaywjy extends Common
         if ($room) {
             $room = $room->toArray();
             $room['rule'] = unserialize($room['rule']);
+
             $room['taipaitime'] = (int)$room['taipaitime'] - time();
             $room['starttime'] = (int)$room['starttime'] - time();
             $room['qiangtime'] = (int)$room['qiangtime'] - time();
@@ -486,6 +487,8 @@ class Douniuplaywjy extends Common
         if ($room) {
             $room = $room->toArray();
         }
+
+
         $rule = unserialize($room['rule']);
         model('room')->gameinit(array('id' => $this->memberinfo['room_id']));
         $gamenum = explode(':', $rule['gamenum']);
@@ -507,7 +510,19 @@ class Douniuplaywjy extends Common
                 $this->workermansend($v['id'], json_encode($rank));
             }
         }
+
         $this->allmember();
+        /*通知前端显示金币动画*/
+        $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
+        if($allmember){
+            foreach ($allmember as $k => $v) {
+                $rank['data'] = unserialize($room['jinbi']);
+                $rank['type'] = 999;
+                $this->workermansend($v['id'], json_encode($rank));
+            }
+        }
+
+        /*通知金币动画结束*/
     }
 
 

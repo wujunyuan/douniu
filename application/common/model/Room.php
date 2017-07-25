@@ -69,7 +69,7 @@ class Room extends Model
 
         $this-> accounttemp($room['id']);
         $map['room_id'] = $room['id'];
-        Db::name('member')->where(array('room_id' => $room['id']))->update(array('pai' => '', 'gamestatus' => 0));
+        Db::name('member')->where(array('room_id' => $room['id']))->update(array('tanpai' => '','pai' => '', 'gamestatus' => 0));
         model('room')->where(array('id' => $room['id']))->update(array('taipaitime' => time(),'islock' => 0, 'gamestatus' => 0, 'rule' => $rule));
         if ($room['room_cards_num'] <= 0 && $room['playcount'] >= 10) {
             $this->error = '房卡耗完了';
@@ -334,6 +334,9 @@ class Room extends Model
         );
         $typemultiple = $rulemultiple[$rule['rule']];
         $member = $memberdb->where(array('room_id' => $roomid, 'banker' => 0, 'gamestatus' => 2))->select();
+
+        $jinbi = array(array(),array());
+        $win = array();
         foreach ($member as $k => $v) {
 
             $v = $v -> toArray();
@@ -349,10 +352,31 @@ class Room extends Model
                 $data['num'] = $v['multiple'] * $banker['multiple'] * $score * $typemultiple[$banker['typemultiple']];
                 $moneydetailtempdb -> insert($data);
 
+                if(!isset($win[$banker['id']])){
+                    $win[$banker['id']] = 0;
+                    $win[$banker['id']] += $data['num'];
+                }else{
+                    $win[$banker['id']] += $data['num'];
+                }
+
                 $data['member_id'] = $v['id'];
                 $data['reason'] = '输给庄家【'.$banker['nickname'].'】';
                 $data['num'] = $data['num']*-1;
                 $moneydetailtempdb -> insert($data);
+                if(!isset($win[$v['id']])){
+                    $win[$v['id']] = 0;
+                    $win[$v['id']] += $data['num'];
+                }else{
+                    $win[$v['id']] += $data['num'];
+                }
+                //组合庄家赢了的金币数据
+                $jinbidata = array();
+                $jinbidata[] = $v['id'];
+                $jinbidata[] = $banker['id'];
+                $jinbidata[] = abs($data['num']);
+                $jinbi[0][] = $jinbidata;
+
+
             }else{
                 //闲赢
                 $data['reason'] = '赢了庄家【'.$banker['nickname'].'】';
@@ -361,15 +385,41 @@ class Room extends Model
                 $data['num'] = $v['multiple'] * $banker['multiple'] * $score * $typemultiple[$v['typemultiple']];
                 $moneydetailtempdb -> insert($data);
 
+                if(!isset($win[$v['id']])){
+                    $win[$v['id']] = 0;
+                    $win[$v['id']] += $data['num'];
+                }else{
+                    $win[$v['id']] += $data['num'];
+                }
+
                 $data['member_id'] = $banker['id'];
                 $data['reason'] = '做庄输了【'.$v['nickname'].'】';
                 $data['num'] = $data['num']*-1;
                 $moneydetailtempdb -> insert($data);
 
-            }
-            //这里接着写入库操作
+                if(!isset($win[$banker['id']])){
+                    $win[$banker['id']] = 0;
+                    $win[$banker['id']] += $data['num'];
+                }else{
+                    $win[$banker['id']] += $data['num'];
+                }
 
+
+                //组合闲家赢了的金币数据
+                $jinbidata = array();
+                $jinbidata[] = $banker['id'];
+                $jinbidata[] = $v['id'];
+                $jinbidata[] = abs($data['num']);
+                $jinbi[1][] = $jinbidata;
+
+            }
         }
+        $jinbi[2] = $win;
+        //这里入库，建议把数据保存在room一个字段中，新建一个字段
+        $save['jinbi'] = serialize($jinbi);
+        $this->where(array('id' => $roomid)) -> update($save);
+
+
     }
 //获取排名数据
     public function getrankinglist($room){
