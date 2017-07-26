@@ -428,13 +428,8 @@
 
     })
 
-
-
-
-
-
     function strToJson(str) {
-        //console.log(str);
+
         var json = eval('(' + str + ')');
         return json;
     }
@@ -485,11 +480,6 @@
             //传来房间中其它会员的信息，得到后加入到界面中显示出来，数据是一个json数组
             if(ret.type == 4) {
 
-
-
-
-               //console.log(ret);
-                //alert(ret.data.length);
                 $('#playcount').html(ret.room['playcount']);
                 //更新房卡
                 $('#roomcards').html(ret.room['room_cards_num']);
@@ -553,9 +543,7 @@
                     $('#gameready').hide();
 
                     poker.fanpaiall($('.cards .poker'), '__STATIC__/game/img/pai/', ret.pai);
-                    //for (var k = 0; k < ret.pai.length; k++) {
-                        //$('.cards .pai img').eq(k).attr('src', '__STATIC__/game/img/pai/' + ret.pai[k] + '.png');
-                    //}
+
                     //点击过了，不再显示
 
                     setbankercountdown(ret.room.qiangtime);
@@ -628,14 +616,6 @@
 
 
 
-                    //for (var k = 0; k < ret.pai.length; k++) {
-
-
-                        //poker.fanpaiall($('.poker'), 'static/game/img/pai/', ret.pai);
-                        //$('.cards .pai img').eq(k).attr('src', '__STATIC__/game/img/pai/' + ret.pai[k] + '.png');
-                   // }
-
-
                 }
 
 
@@ -652,26 +632,26 @@
                         $('.member__' + ret.data[i].id + ' .readyimg').show();
                     }
 //显示抢庄倍数
-
-                    if(ret.data[i].banker == 1){
-                        if(ret.data[i].issetbanker == 1){
-                            $('.zhuangimg').hide();
-                            $('.member__' + ret.data[i].id).find('.zhuangimg').show();
-                            if(ret.room.rule.gametype != 1 && ret.room.rule.gametype != 5) {
-                                $('.member__' + ret.data[i].id).find('.bankerimg').show();
+                    if (ret.room.gamestatus == 3) {
+                        if (ret.data[i].banker == 1) {
+                            if (ret.data[i].issetbanker == 1) {
+                                $('.zhuangimg').hide();
+                                $('.member__' + ret.data[i].id).find('.zhuangimg').show();
+                                if (ret.room.rule.gametype != 1 && ret.room.rule.gametype != 5) {
+                                    $('.member__' + ret.data[i].id).find('.bankerimg').show();
+                                    $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
+                                }
+                            }
+                        } else {
+                            $('.member__' + ret.data[i].id).find('.bankerimg').hide();
+                            $('.member__' + ret.data[i].id).find('.zhuangimg').hide();
+                            if (ret.data[i].issetmultiple == 1) {
                                 $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
+                            } else {
+                                $('.member__' + ret.data[i].id).find('.multipleimg').hide();
                             }
                         }
-                    }else{
-                        $('.member__' + ret.data[i].id).find('.bankerimg').hide();
-                        $('.member__' + ret.data[i].id).find('.zhuangimg').hide();
-                        if(ret.data[i].issetmultiple == 1) {
-                            $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
-                        }else{
-                            $('.member__' + ret.data[i].id).find('.multipleimg').hide();
-                        }
                     }
-
 
 
                     if (ret.room.gamestatus == 0) {
@@ -683,15 +663,8 @@
                         continue;
                     }
 
-                    /*if (ret.room.gamestatus != 4) {
-                        continue;
-                    }*/
                     if (ret.data[i]['gamestatus'] > 0 && ret.room.gamestatus > 1) {
 
-
-                       // for (var j = 0; j < ret.data[i]['pai'].length; j++) {
-                            //$('#player_' + i).find('.cardsbox img').eq(j).attr('src', '__STATIC__/game/img/pai/' + ret.data[i]['pai'][j] + '.png');
-                       // }
                         $('.member__' + ret.data[i].id + ' .readyimg').hide();
                         if (ret.data[i]['gamestatus'] == 2) {
                             if($('.member__' + ret.data[i].id+' .tanpaishowplay').length == 0){

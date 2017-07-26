@@ -11,7 +11,7 @@ class Index extends Common
 {
 	public function index()
 	{
-		dump(json_encode(unserialize('a:3:{i:0;a:1:{i:0;a:3:{i:0;i:2;i:1;i:8;i:2;i:1;}}i:1;a:0:{}i:2;a:2:{i:8;i:0;i:2;i:0;}}')));
+		dump(json_encode(unserialize('a:3:{i:0;a:1:{i:0;a:3:{i:0;i:2;i:1;i:3;i:2;i:2;}}i:1;a:1:{i:0;a:3:{i:0;i:3;i:1;i:8;i:2;i:2;}}i:2;a:3:{i:8;i:2;i:3;i:0;i:2;i:-2;}}')));
 
 	}
 

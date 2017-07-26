@@ -546,10 +546,15 @@ class Douniuplaywjy extends Common
         $rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
         $rule = unserialize($rule);
 
+        if ($rule['gametype'] == 1){
+            $this->setshownum(3, $this->memberinfo['room_id']);
+        }
+
+
         //规则为1是牛牛上庄，如果lastwinnerid同时存在，那么lastwinnerid就是上庄的会员ID
         if ($rule['gametype'] == 1 && isset($rule['lastwinnerid'])) {
             $member = model('member')->where(array('id' => $rule['lastwinnerid'], 'room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('gt', 0)))->find();
-            $this->setshownum(3, $this->memberinfo['room_id']);
+
             if ($member) {
                 $time = time();
                 $update['taipaitime'] = $time + 30;
@@ -622,7 +627,7 @@ class Douniuplaywjy extends Common
         $rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
         $rule = unserialize($rule);
         if ($rule['gametype'] == 3) {
-            $this->setshownum(5, $this->memberinfo['room_id']);
+            $this->setshownum(3, $this->memberinfo['room_id']);
         }
     }
 
