@@ -351,7 +351,7 @@ class Room extends Model
                 //赢了多少呢，闲家倍数*㽵家倍数*底分
                 $data['num'] = $v['multiple'] * $banker['multiple'] * $score * $typemultiple[$banker['typemultiple']];
                 $moneydetailtempdb -> insert($data);
-
+//dump($v['multiple'] .'*'. $banker['multiple'] .'*'. $score .'*'. $typemultiple[$banker['typemultiple']]);
                 if(!isset($win[$banker['id']])){
                     $win[$banker['id']] = 0;
                     $win[$banker['id']] += $data['num'];
@@ -384,7 +384,7 @@ class Room extends Model
                 //赢了多少呢，闲家倍数*㽵家倍数*底分
                 $data['num'] = $v['multiple'] * $banker['multiple'] * $score * $typemultiple[$v['typemultiple']];
                 $moneydetailtempdb -> insert($data);
-
+                //dump($v['multiple'] .'*'. $banker['multiple'] .'*'. $score .'*'. $typemultiple[$banker['typemultiple']]);
                 if(!isset($win[$v['id']])){
                     $win[$v['id']] = 0;
                     $win[$v['id']] += $data['num'];

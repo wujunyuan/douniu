@@ -43,7 +43,7 @@
 
     .cardsbox{position: relative; display: none;}
     .cards .poker{width:12%; display: inline-block;}
-    .cards .poker img{width:100%;}
+    .cards .poker img{width:100%; vertical-align: bottom;}
     .cardsbox .poker {width: 40px; display:inline-block;}
     .cardsbox .poker img{width:100%;}
     .cardsbox .box1 {position: absolute; left: 0px; z-index: 1;}
@@ -72,6 +72,9 @@
         font-size: 16px;
         font-weight: bold; display: none;}
 
+
+
+    .tanpai{position: static; margin-left:0; width:auto !important; margin-bottom: 5px;}
     /* 弹窗显示排名的样式 */
     .window{position: absolute; z-index: 10;
         top:0; bottom: 0;
@@ -95,7 +98,7 @@
 
 
     <!-- 游戏准备按钮 -->
-    <img id="gameready" onclick="gameready1();" src="__STATIC__/game/img/init.png" style="position:absolute;top: 50%; left: 50%; z-index: 3; margin-left:-50px; width: 100px; {eq name="memberinfo['gamestatus']" value="1"}display:none;{/eq}">
+    <img id="gameready" onclick="gameready1(1);" src="__STATIC__/game/img/init.png" style="position:absolute;top: 50%; left: 50%; z-index: 3; margin-left:-50px; width: 100px; {eq name="memberinfo['gamestatus']" value="1"}display:none;{/eq}">
 
 
 
@@ -276,7 +279,10 @@
             </div>
         </div>
         <p class="last-time"><span class="text" style="margin-top:0; width:100%; font-size: 14px;">等待摊牌</span><span class="int">15</span></p>
-        <img src="__STATIC__/game/img/tanpai.png" onclick="tanpai();" class="tanpai">
+
+
+
+
 
         <img style="margin: -25px;
     left: 50%;
@@ -284,16 +290,18 @@
 
 
         <div class="cards">
+            <p style="color:#fff; margin-bottom: 12px; display: none;">等待闲家下注</p>
+            <p style="color:#fff; margin-bottom: 12px;display: none;">点击牌面看牌</p>
+            <img src="__STATIC__/game/img/tanpai.png" onclick="tanpai();" class="tanpai">
 
 
 
-
-            <div class="xiazhu" style="display: none;">
+            <div class="xiazhu" style="display: none; margin-top:12px;">
                 <img onclick="setmultiple(1);" src="__STATIC__/game/img/one.png">
                 <img onclick="setmultiple(2);" src="__STATIC__/game/img/two.png">
                 <img onclick="setmultiple(3);" src="__STATIC__/game/img/three.png">
             </div>
-            <div class="qiang" style="display: none;">
+            <div class="qiang" style="display: none; margin-top:12px;">
                 <img onclick="setbanker(1);" src="__STATIC__/game/img/one.png">
                 <img onclick="setbanker(2);" src="__STATIC__/game/img/two.png">
                 <img onclick="setbanker(4);" src="__STATIC__/game/img/4.png">
@@ -310,7 +318,7 @@
 </div><div class="niuname">未知</div>
         </div>
     </div>
-    <div class="msg">
+    <div class="msg" id="player_99">
         <div class="photo member__{$memberinfo.id}" style="display: block;">
             <img src="{$memberinfo.photo}" style="width: 3.5rem;height: 3.5rem;">
             <img class="zhuangimg" src="__STATIC__/game/img/zhuang.png">
@@ -382,7 +390,7 @@
         $('.last-time span.text').html('准备开始');
         $('.last-time span.int').countdown({initcount:initcount,end:function(){
             $('.last-time').hide();
-            gameready1();
+            gameready1(0);
         }});
         $('.last-time').show();
     }
@@ -471,12 +479,19 @@
             }
             if (ret.type == 999) {
                 console.log(ret.data);
-                $.jinbiflyall('<img style="border-radius: 20px;" width="15" src=\'__STATIC__/game/img/jinbi.png\'>','.member__',ret.data,function(){ })
+                $.jinbiflyall('<img style="border-radius: 20px;" width="15" src=\'__STATIC__/game/img/jinbi.png\'>','.member__',ret.data,function(){
+                    $('.cardsbox').hide();
+                    $('.pai .poker img').hide();
+                    $('.niuname').hide();
+                    if(ret.end == 1){
+                        setTimeout(function(){
+                            window.location.reload();
+                        },2000);
+                    }
+
+                })
             }
-            if (ret.type == 99) {
-                $('.window').html(ret.html).show();
-                console.log(ret);
-            }
+
             //传来房间中其它会员的信息，得到后加入到界面中显示出来，数据是一个json数组
             if(ret.type == 4) {
 
@@ -485,10 +500,10 @@
                 $('#roomcards').html(ret.room['room_cards_num']);
 
                 $('.moneybox').text(ret.money);
-
+                $('.zhuangimg').hide();
                 if(ret.isbanker == 1){
                     if(ret.issetbanker == 1){
-                        $('.zhuangimg').hide();
+
 
                         $('.member__{$memberinfo.id}').find('.zhuangimg').show();
                         if(ret.room.rule.gametype != 1 && ret.room.rule.gametype != 5){
@@ -541,8 +556,8 @@
                     $('.cards').show();
                     $('.readyimg').hide();
                     $('#gameready').hide();
-
                     poker.fanpaiall($('.cards .poker'), '__STATIC__/game/img/pai/', ret.pai);
+
 
                     //点击过了，不再显示
 
@@ -551,11 +566,50 @@
                         $('.qiang').hide();
                     }
 
+
+                    if(ret.room.gamestatus >= 3){
+                        var showall = true;
+                        for(var k=0;k<ret.pai.length; k++){
+                            if(ret.pai[k] == 0){
+                                showall = false;
+                            }
+                        }
+                        if(!showall){
+                            $('.tanpai').hide();
+                            //已经下注才显示这行字
+                            if(ret.issetmultiple == 1){
+                                $('.tanpai').prev().show();
+                            }
+                            if(ret.isbanker == 1 && ret.room.rule.gametype != 5){
+                                if(ret.room.gamestatus == 3){
+                                    $('.tanpai').prev().prev().show();
+                                }else{
+                                    $('.tanpai').prev().prev().hide();
+                                    $('.tanpai').prev().show();
+                                }
+
+                            }
+                        }else{
+                            if(ret.gamestatus != 2){
+                                $('.tanpai').show();
+                            }
+
+                            $('.tanpai').prev().hide();
+                            $('.tanpai').prev().prev().hide();
+                        }
+                    }
+
+
                 }
 
 
                 if (ret.room.gamestatus == 3) {
-                    $('.tanpai').hide();
+
+
+                    if(ret.issetmultiple == 0){
+                        //$('.tanpai').hide();
+                    }
+
 
                     //抢庄动画
                     if($('input.bankerconfirm').length == 0){
@@ -565,15 +619,15 @@
                         $('<input type="hidden" class="bankerconfirm">').appendTo('body');
                     }
                     if(ret.gamestatus == 2) {
-                        $('.tanpai').hide();
+                        //$('.tanpai').hide();
                         $('.cards .niuname').html('<img width="120" src="__STATIC__/game/img/niu' + ret.info + '.png" >').show();
                     }else{
                         if(ret.issetmultiple == 0){
-
                             if(ret.isbanker == 0){
-                                $('.tanpai').hide();
+                                //$('.tanpai').hide();
                                 $('.xiazhu').show();
                             }
+
                         }else{
                             $('.xiazhu').hide();
                         }
@@ -589,7 +643,7 @@
 
                     tanpaicountdown(ret.room.taipaitime);
                     if(ret.gamestatus == 2) {
-                        $('.tanpai').hide();
+                        //$('.tanpai').hide();
                         if($('#cardsshowplay').length == 0){
                             var cardsshowplay = $('<input type="hidden" id="cardsshowplay">');
                             mp3play('mp3niu'+ret.info);
@@ -598,11 +652,11 @@
 
                         $('.cards .niuname').html('<img width="120" src="__STATIC__/game/img/niu' + ret.info + '.png" >').show();
                     }else{
-                        $('.tanpai').show();
+                       // $('.tanpai').show();
                         if(ret.issetmultiple == 0){
 
                             if(ret.isbanker == 0){
-                                $('.tanpai').hide();
+                                //$('.tanpai').hide();
                                 $('.xiazhu').show();
                             }
                         }else{
@@ -630,21 +684,30 @@
                     $('#player_' + i).show();
                     if(ret.data[i].gamestatus == 1){
                         $('.member__' + ret.data[i].id + ' .readyimg').show();
+                        //把
                     }
 //显示抢庄倍数
-                    if (ret.room.gamestatus == 3) {
+
+                    if (ret.data[i].issetbanker == 1 && ret.room.gamestatus >= 2) {
+                        if (!(ret.room.rule.gametype == 1 || ret.room.rule.gametype == 5)) {
+                            $('.member__' + ret.data[i].id).find('.bankerimg').show();
+                            $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
+                        }
+                    }
+
+
+                    if (ret.room.gamestatus >= 3) {
+                        $('.bankerimg').hide();
+
                         if (ret.data[i].banker == 1) {
-                            if (ret.data[i].issetbanker == 1) {
-                                $('.zhuangimg').hide();
+
                                 $('.member__' + ret.data[i].id).find('.zhuangimg').show();
-                                if (ret.room.rule.gametype != 1 && ret.room.rule.gametype != 5) {
-                                    $('.member__' + ret.data[i].id).find('.bankerimg').show();
-                                    $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
-                                }
-                            }
+
+
                         } else {
-                            $('.member__' + ret.data[i].id).find('.bankerimg').hide();
-                            $('.member__' + ret.data[i].id).find('.zhuangimg').hide();
+
+
+                            //console.log(ret.data[i].issetmultiple);
                             if (ret.data[i].issetmultiple == 1) {
                                 $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
                             } else {
@@ -678,6 +741,8 @@
                             $('#player_' + i).find('.cardsbox .niuname').show();
                         }
                         $('#player_' + i).find('.cardsbox').show();
+
+
                         poker.fanpaiall($('#player_' + i+' .poker'), '__STATIC__/game/img/pai/', ret.data[i]['pai']);
                     }
 
@@ -699,27 +764,37 @@
         var myInput = $('.member__'+memberid);
         var config = {};
 
+
+
+
+
+
+
         switch (playerid){
             case 'player_0' : config = {target:true, hideDelay:0.2, tipJoint:"center top",removeElementsOnHide:true}; break;
             case 'player_1' : config =  {target:true, hideDelay:0.2, tipJoint:"right",removeElementsOnHide:true}; break;
             case 'player_2' : config =  {target:true, hideDelay:0.2, tipJoint:"right", removeElementsOnHide:true}; break;
-
             case 'player_3' : config =   {target:true, hideDelay:0.2, tipJoint:"left",removeElementsOnHide:true}; break;
             case 'player_4' : config =  {target:true, hideDelay:0.2, tipJoint:"left",removeElementsOnHide:true}; break;
         }
         var inputOpentip = new Opentip(myInput, config);
-
         inputOpentip.show();
         inputOpentip.setContent(msg);
         setTimeout(function(){
             inputOpentip.hide();
         },1500);
-
-
-
     }
 
     function sendmsg(msg) {
+
+
+        var inputOpentip1 = new Opentip($('.member__{$memberinfo.id}'), {target:true, hideDelay:0.2, tipJoint:"left bottom", removeElementsOnHide:true});
+        inputOpentip1.show();
+        inputOpentip1.setContent(msg);
+        setTimeout(function(){
+            inputOpentip1.hide();
+        },1500);
+
         $('.msg ul').hide();
         $.post('{:url('sendmsg')}', {data:msg}, function (ret) {
 
@@ -728,13 +803,13 @@
         ;
     }
 
-    function gameready1(){
+    function gameready1(gameready){
 
         $('.niuname').hide();
         $('.cards').hide();
         $('.tanpai').hide();
         $('.cardsbox').hide();
-        $.post('{:url('gameready')}', {}, function (ret) {
+        $.post('{:url('gameready')}', {gameready:gameready}, function (ret) {
 
             $('#gameready').hide();
 
@@ -759,7 +834,7 @@
     function setmultiple(multiple){
         $('.last-time span.int').countdown(0);
         $('.xiazhu').hide();
-        $('.tanpai').show();
+        //$('.tanpai').show();
         $.post('{:url('setmultiple')}', {multiple:multiple}, function (ret) {
 
             //$('.last-time').hide();

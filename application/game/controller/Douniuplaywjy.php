@@ -10,7 +10,7 @@ namespace app\game\controller;
 
 use think\Controller;
 use think\Loader;
-
+use think\Db;
 class Douniuplaywjy extends Common
 {
     public function __construct()
@@ -142,7 +142,14 @@ class Douniuplaywjy extends Common
             $this->error('迷路了，找不到房间！！！');
         }
         if ($room['playcount'] == 0) {
-            $this->theend();
+            if (input('room_id')) {
+                $roomid = input('room_id');
+            } else {
+                $roomid = $this->memberinfo['room_id'];
+            }
+            $list = model('room')->getrankinglist($roomid);
+            $this->assign('list', $list);
+            $this->assign('room', $room);
             return $this->fetch('result:index');
         }
         $this->assign('rand', time());
@@ -300,9 +307,9 @@ class Douniuplaywjy extends Common
         $unmultiple = (int)model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('neq', 0), 'banker' => 0, 'issetmultiple' => 0))->count();
         if ($unmultiple == 0) {
             model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('taipaitime' => time() + 15, 'gamestatus' => 4));
-            $this->allmember();
-        }
 
+        }
+        $this->allmember();
     }
 
     /**
@@ -332,18 +339,22 @@ class Douniuplaywjy extends Common
             //都没有进房间，开始什么呀，有毛病
             $this->error('都还没有进房间呢');
         }
-        $ret = model('member')->gameready(array('gamestatus' => 0, 'id' => $this->memberinfo['id']));
+        $ret = true;
+        if(input('gameready') == 1){
+            $ret = model('member')->gameready(array('gamestatus' => 0, 'id' => $this->memberinfo['id']));
+        }
+
         $gameinit = 0;
         //所有准备好的人数
         $roomdb = model('room');
-        $map = array('id' => $this->memberinfo['room_id']);
-        $allmember = $roomdb->getmember($map);
+        $map = array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => 1);
+        $allmember = Db::name('member') -> where($map) -> select();
         foreach ($allmember as $v) {
             if ($v['gamestatus'] == 1) {
                 //发现有人未准备，游戏不开始
                 $gameinit++;
             }
-        }
+        }dump($allmember);
         if ($ret) {
             //两个准备就开始倒计时
             if ($gameinit == 2) {
@@ -492,31 +503,19 @@ class Douniuplaywjy extends Common
         $rule = unserialize($room['rule']);
         model('room')->gameinit(array('id' => $this->memberinfo['room_id']));
         $gamenum = explode(':', $rule['gamenum']);
-        if (($room['playcount'] == $gamenum[0] && $room['room_cards_num'] == 0) || $room['playcount'] == 0) {
 
-            if (input('room_id')) {
-                $roomid = input('room_id');
-            } else {
-                $roomid = $this->memberinfo['room_id'];
-            }
-            $list = model('room')->getrankinglist($roomid);
-            $this->assign('list', $list);
-            $this->assign('room', $room);
-            $allmember = model('room')->getmember(array('id' => $roomid));
-            $html = $this->fetch('ranking');
-            foreach ($allmember as $k => $v) {
-                $rank['html'] = $html;
-                $rank['type'] = 99;
-                $this->workermansend($v['id'], json_encode($rank));
-            }
-        }
 
         $this->allmember();
         /*通知前端显示金币动画*/
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
         if ($allmember) {
+            $rank['end'] = 0;
+            if (($room['playcount'] == $gamenum[0] && $room['room_cards_num'] == 0) || $room['playcount'] == 0) {
+                $rank['end'] = 1;
+            }
+            $jinbi = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('jinbi');
             foreach ($allmember as $k => $v) {
-                $rank['data'] = unserialize($room['jinbi']);
+                $rank['data'] = unserialize($jinbi);
                 $rank['type'] = 999;
                 $this->workermansend($v['id'], json_encode($rank));
             }
@@ -546,7 +545,7 @@ class Douniuplaywjy extends Common
         $rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
         $rule = unserialize($rule);
 
-        if ($rule['gametype'] == 1){
+        if ($rule['gametype'] == 1) {
             $this->setshownum(3, $this->memberinfo['room_id']);
         }
 
@@ -577,8 +576,8 @@ class Douniuplaywjy extends Common
     {
         //$rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
         $room = model('room')->where(array('id' => $this->memberinfo['room_id']))->find();
-        if($room){
-            $room = $room -> toArray();
+        if ($room) {
+            $room = $room->toArray();
         }
         $rule = unserialize($room['rule']);
         if ($rule['gametype'] == 2) {
@@ -671,16 +670,21 @@ class Douniuplaywjy extends Common
     public function showone()
     {
         $gamestatus = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('gamestatus');
-        if ($gamestatus != 4) {
+        if ($gamestatus < 3) {
             $this->error('目前不能翻牌！');
         }
+
         $key = input('key');
         $map['id'] = $this->memberinfo['id'];
         $member = model('member')->where($map)->find();
+
         if ($member) {
             $member->toArray();
         } else {
             $this->error('会员不存在');
+        }
+        if ($member['banker'] == 0 && $member['issetmultiple'] != 1) {
+            $this->error('目前不能翻牌！');
         }
         $pai = unserialize($member['pai']);
         $tanpai = unserialize($member['tanpai']);
@@ -694,5 +698,7 @@ class Douniuplaywjy extends Common
         } else {
             $this->error('翻牌失败' . model('member')->getError());
         }
+
+        $this->allmember();
     }
 }
