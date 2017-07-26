@@ -12,14 +12,44 @@
 <audio id="mp3niu11" src="__STATIC__/game/video/nv_wuhua.mp3"></audio>
 <audio id="mp3niu12" src="__STATIC__/game/video/nv_zha.mp3"></audio>
 <audio id="mp3niu13" src="__STATIC__/game/video/nv_wuxiao.mp3"></audio>
-<audio id="background" autoplay="autoplay" loop="loop" src="__STATIC__/game/video/background.mp3"></audio>
+<audio id="background" autoplay="autoplay" loop="loop" src="__STATIC__/game/video/background.mp3" autoplay preload></audio>
 
 <script>
     function mp3play(id){
         document.getElementById(id).play();
     }
 
-        mp3play('background');
+//        mp3play('background');
 
 
+</script>
+
+<!--<audio src="bg.mp3" id="Jaudio" class="media-audio" autoplay preload loop="loop"></audio>-->
+<script>
+    function audioAutoPlay(id){
+        var audio = document.getElementById(id),
+        play = function(){
+            audio.play();
+            document.removeEventListener("touchstart",play, false);
+        };
+        audio.play();
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            play();
+         }, false);
+        document.addEventListener('YixinJSBridgeReady', function() {
+            play();
+        }, false);
+        document.addEventListener("touchstart",play, false);
+     }
+    audioAutoPlay('background');
+    audioAutoPlay('mp3niu0');
+    audioAutoPlay('mp3niu1');
+    audioAutoPlay('mp3niu2');
+    audioAutoPlay('mp3niu3');
+    audioAutoPlay('mp3niu4');
+    audioAutoPlay('mp3niu5');
+    audioAutoPlay('mp3niu6');
+    audioAutoPlay('mp3niu7');
+    audioAutoPlay('mp3niu8');
+    audioAutoPlay('mp3niu9');
 </script>

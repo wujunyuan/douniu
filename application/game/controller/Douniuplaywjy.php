@@ -514,7 +514,7 @@ class Douniuplaywjy extends Common
         $this->allmember();
         /*通知前端显示金币动画*/
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
-        if($allmember){
+        if ($allmember) {
             foreach ($allmember as $k => $v) {
                 $rank['data'] = unserialize($room['jinbi']);
                 $rank['type'] = 999;
@@ -570,10 +570,49 @@ class Douniuplaywjy extends Common
     //固定庄家：房主为庄家，退出后，随机选择一位固定
     public function fixedup()
     {
-        $rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
-        $rule = unserialize($rule);
-        if($rule['gametype'] == 2) {
+        //$rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
+        $room = model('room')->where(array('id' => $this->memberinfo['room_id']))->find();
+        if($room){
+            $room = $room -> toArray();
+        }
+        $rule = unserialize($room['rule']);
+        if ($rule['gametype'] == 2) {
             $this->setshownum(3, $this->memberinfo['room_id']);
+
+
+            //房间中存在固定庄家
+            if ($room['fixedid'] > 0) {
+                //设置的最后一位庄家在不在，在的话可以设置他为庄家
+
+                $banker = model('member')->where(array('id' => $room['fixedid'], 'gamestatus' => array('gt', 0), 'room_id' => $this->memberinfo['room_id']))->find();
+                if ($banker) {
+                    //他参与了游戏
+                    $bankermemberid = $room['fixedid'];
+                } else {
+                    $ret = model('room')->setbanker($this->memberinfo['id']);
+                    $bankermemberid = $ret[(count($ret) - 1)];
+                }
+            }
+
+            $banker = model('member')->where(array('id' => $room['member_id'], 'gamestatus' => array('gt', 0), 'room_id' => $this->memberinfo['room_id']))->find();
+            //房主存在房间中并且参与游戏
+            if ($banker) {
+                $bankermemberid = $banker['id'];
+            }
+            $time = time();
+            $update['taipaitime'] = $time + 25;
+            $update['qiangtime'] = $time;
+            $update['xiazhutime'] = $time + 10;
+            $update['starttime'] = $time;
+            $update['gamestatus'] = 3;
+            $update['fixedid'] = $bankermemberid;
+            model('room')->where(array('id' => $this->memberinfo['room_id']))->update($update);
+            //房间牌最大的id
+
+            model('member')->where(array('id' => $bankermemberid))->update(array('banker' => 1));
+            model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('gt', 0)))->update(array('issetbanker' => 1));
+
+
         }
     }
 
@@ -582,7 +621,7 @@ class Douniuplaywjy extends Common
     {
         $rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
         $rule = unserialize($rule);
-        if($rule['gametype'] == 3) {
+        if ($rule['gametype'] == 3) {
             $this->setshownum(5, $this->memberinfo['room_id']);
         }
     }
@@ -608,13 +647,14 @@ class Douniuplaywjy extends Common
         $rule = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('rule');
         $rule = unserialize($rule);
         if ($rule['gametype'] == 5) {
+            $this->setshownum(3, $this->memberinfo['room_id']);
             $time = time();
             $update['taipaitime'] = $time + 15;
             $update['qiangtime'] = $time;
             $update['xiazhutime'] = $time;
             $update['starttime'] = $time;
             $update['gamestatus'] = 4;
-            mode('room')->where(array('id' => $this->memberinfo['room_id']))->update($update);
+            model('room')->where(array('id' => $this->memberinfo['room_id']))->update($update);
             //房间牌最大的id
             $bankermemberid = model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('gt', 0)))->order('pairet desc')->value('id');
             model('member')->where(array('id' => $bankermemberid))->update(array('banker' => 1));
@@ -623,30 +663,31 @@ class Douniuplaywjy extends Common
 
     }
 
-    public function showone(){
+    public function showone()
+    {
         $gamestatus = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('gamestatus');
-        if($gamestatus != 4){
-            $this ->error('目前不能翻牌！');
+        if ($gamestatus != 4) {
+            $this->error('目前不能翻牌！');
         }
         $key = input('key');
         $map['id'] = $this->memberinfo['id'];
-        $member = model('member') -> where($map) -> find();
-        if($member){
-            $member -> toArray();
-        }else{
+        $member = model('member')->where($map)->find();
+        if ($member) {
+            $member->toArray();
+        } else {
             $this->error('会员不存在');
         }
         $pai = unserialize($member['pai']);
         $tanpai = unserialize($member['tanpai']);
         $tanpai[$key] = $pai[$key];
         $data['tanpai'] = serialize($tanpai);
-        $ret = model('member') ->where($map) -> update($data);
-        if($ret){
+        $ret = model('member')->where($map)->update($data);
+        if ($ret) {
             $return['code'] = 1;
             $return['msg'] = $tanpai[$key];
             echo json_encode($return);
-        }else{
-            $this->error('翻牌失败'.model('member') ->getError());
+        } else {
+            $this->error('翻牌失败' . model('member')->getError());
         }
     }
 }
