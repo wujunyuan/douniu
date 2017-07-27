@@ -612,10 +612,15 @@ class Douniuplaywjy extends Common
                 if ($banker) {
                     //他参与了游戏
                     $bankermemberid = $room['fixedid'];
-                } else {
-                    $ret = model('room')->setbanker($this->memberinfo['id']);
+                }else {
+                    model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('qiangtime' => time()));
+                    $ret = model('room')->setbanker($this->memberinfo['room_id']);
                     $bankermemberid = $ret[(count($ret) - 1)];
                 }
+            }else {
+                model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('qiangtime' => time()));
+                $ret = model('room')->setbanker($this->memberinfo['room_id']);
+                $bankermemberid = $ret[(count($ret) - 1)];
             }
 
             $banker = model('member')->where(array('id' => $room['member_id'], 'gamestatus' => array('gt', 0), 'room_id' => $this->memberinfo['room_id']))->find();

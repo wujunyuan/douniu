@@ -85,6 +85,18 @@ class Login extends Controller
         Session::set('member_id', NULL);
         $this->redirect(url('Index/index'));
     }
+
+
+
+    public function test(){
+        Session::set('member_id', input('id'));
+        $this->redirect(url('Index/index'));
+    }
+
+
+
+
+
     public function comeout()
     {
         //进入房间的ID
