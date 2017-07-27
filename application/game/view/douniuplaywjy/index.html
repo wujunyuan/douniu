@@ -93,7 +93,7 @@
 </style>
 
 <div class="window">
-
+<iframe src="" frameborder="0" scrolling="no" style="position: fixed; width:100%; top: 0; left: 0; right: 0; bottom: 0;"></iframe>
 </div>
 
 
@@ -488,7 +488,12 @@
                     $('.niuname').hide();
                     if(ret.end == 1){
                         setTimeout(function(){
-                            window.location.reload();
+
+                            $('.window iframe').attr('src', window.location.href);
+                            $('.window').show();
+                            $('.window iframe').height($(window).height());
+
+                            //window.location.reload();
                         },2000);
                     }
 

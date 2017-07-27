@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>新页面-可视化布局系统</title>
+    <link href="/Public/Admin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Public/Admin/bootstrap/css/layoutit.css" rel="stylesheet">
+    <script type="text/javascript" src="/Public/Admin/bootstrap/js/jquery.min.js"></script>
+    <script src="/Public/Home/TemplateDefault/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="/Public/Admin/bootstrap/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/Public/Admin/bootstrap/js/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="/Public/Admin/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Public/Admin/bootstrap/js/jquery.htmlClean.js"></script>
+    <script type="text/javascript" src="/Public/Admin/bootstrap/js/scripts.min.js"></script>
+    <script src="/Public/Admin/AdminEX/js/jquery.nicescroll.js"></script>
+    <script src="/Public/Js/star-rating.js"></script>
+
+    <script src="/Public/Js/validform/Validform.js"></script>
+    <script src="/Public/Home/TemplateDefault/js/jquery.cookie.js"></script>
+    <script src="/Public/Js/jquery-ajaxlist-single.js"></script>
+
+    <script src="/Public/Js/ThinkBox/jquery.ThinkBox.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Public/Js/ThinkBox/css/ThinkBox.css" media="all">
+
+    <link rel="stylesheet" type="text/css" href="/Public/Js/validform/style.css">
+    <script src="/Public/Home/TemplateDefault/js/jquery.carousel.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/js/artDialog/skins/blue.css">
+    <link rel="stylesheet" type="text/css" href="/Public/Home/TemplateDefault/css/default.css">
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/AdminEX/css/dialog.reset.css">
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/bootstrap/css/font-awesome.min.css">
+    <script src="/Public/Admin/js/artDialog/artDialog.source.js"></script>
+    <script src="/Public/Admin/js/artDialog/plugins/iframeTools.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Public/Home/TemplateDefault/css/swiper.min.css">
+    <script src="/Public/Home/TemplateDefault/js/swiper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Public/Js/ichsmart/jquery-ichsmart.css"/>
+    <script type="text/javascript" charset="utf-8" src="/Public/Js/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/Public/Js/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/Public/Js/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="/Public/Js/ichsmart/jquery.ichsmart.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=QMDvD2Anle2gLOINIBUZ1Lhh"></script>
+    <style>
+        .navbar-nav {
+            margin: 0;
+        }
+
+        .navbar-collapse {
+            padding: 0;
+        }
+
+        .navbar {
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+
+        .container {
+            padding: 0;
+            width: auto;
+        }
+
+        .row {
+            margin: 0;
+        }
+
+        .column {
+            padding: 15px !important;
+        }
+
+        .aui_main {
+            display: block;
+        }
+
+        .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .thumbnail {
+            border-radius: 0;
+            margin-bottom: 0.5em;
+        }
+
+        .panel-primary {
+            border: none;
+        }
+
+        .panel {
+            background-color: transparent;
+        }
+
+        .dropdown-menu {
+            border-radius: 0;
+        }
+
+        .navbar-form {
+            margin: 0;
+            margin-top: 8px;
+        }
+
+        .navbar-form input {
+            margin-right: 5px;
+        }
+
+        .navbar {
+            min-height: 0;
+        }
+
+        .navbar-toggle {
+            padding: 0;
+        }
+
+        #rightmenu_ .list-group-item {
+            padding: 0;
+            border: none;
+            background: #f0f0f0;
+            margin-bottom: 0;
+        }
+
+        #rightmenu_ .list-group-item a {
+            font-size: 12px;
+            border: 1px solid #fff;
+            border-color: transparent;
+            color: #000;
+            border-bottom: 1px solid #e0e0e0;
+            border-top: 1px solid #fff;
+            display: block;
+            padding: 5px 12px;
+        }
+
+        #rightmenu_ .list-group-item a:hover {
+            background: #e6edf6;
+            text-decoration: none;
+            color: #2F5A5B;
+            display: block;
+            border: 1px solid #aecff7;
+            border-radius: 2px;
+        }
+
+        #rightmenu_ .list-group {
+            min-width: 100px;
+            margin-bottom: 0;
+            background: #f0f0f0;
+            border-left: 1px solid #fff;
+        }
+
+        .demo .drag {
+            display: none;
+        }
+    </style>
+</head>
+<body class="edit">
+<div class="navbar navbar-inverse navbar-fixed-top navbar-layoutit">
+    <div class="navbar-header">
+        <button data-target="#navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"><span
+                class="glyphicon-bar"></span> <span class="glyphicon-bar"></span> <span class="glyphicon-bar"></span>
+        </button>
+        <a class="navbar-brand" style="height:auto;" href="/"> <img src="/Public/Admin/bootstrap/images/favicon.png"/>
+            可视化布局系统 </a></div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav pull-right">
+            <li>
+                <div class="btn-group btn-donate pull-right"><span id="pro_rate" style="color:#fff; display:none;"><img
+                        src="/Public/Admin/images/ping.gif" width="16" height="16"> 正在处理……</span></div>
+            </li>
+        </ul>
+        <ul class="nav" id="menu-layoutit">
+            <li>
+                <div class="btn-group" data-toggle="buttons-radio">
+                    <button type="button" id="edit" class="active btn btn-xs btn-primary"><i
+                            class="glyphicon glyphicon-edit "></i> 编辑
+                    </button>
+                    <button type="button" class="btn btn-xs btn-primary" id="devpreview"><i
+                            class="glyphicon-eye-close glyphicon"></i> 布局
+                    </button>
+                    <button type="button" class="btn btn-xs btn-primary" id="sourcepreview"><i
+                            class="glyphicon-eye-open glyphicon"></i> 预览
+                    </button>
+                    <button type="button" class="btn btn-xs btn-primary" onClick="bindSearch();" id="SearchElement"><i
+                            class="glyphicon glyphicon-search"></i> 查找元素
+                    </button>
+                </div>
+
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-xs btn-primary" id="button-download-modal"
+                            data-target="#downloadModal" role="button" data-toggle="modal"><i
+                            class="glyphicon glyphicon-floppy-save"></i> 保存
+                    </button>
+                    <button type="button" class="btn btn-xs btn-primary" id="button-download-modal"
+                            data-target="#feedbackModal" role="button" data-toggle="modal"><i
+                            class="glyphicon glyphicon-paperclip"></i> 页面
+                    </button>
+                    <button class="btn btn-xs btn-primary" href="#clear" id="clear"><i
+                            class="glyphicon-trash glyphicon"></i> 清空
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!--/.navbar-collapse -->
+
+</div>
+
+<!--/.navbar-fixed-top -->
+
+<div class="container">
+    <div class="row">
+        <div class="">
+            <div class="sidebar-nav">
+                <ul class="nav nav-list accordion-group">
+                    <li class="nav-header">
+                        <div class="pull-right popover-info"><i class="glyphicon glyphicon-question-sign"></i>
+
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">帮助</h3>
+
+                                <div class="popover-content"> 在这里设置你的栅格布局, 栅格总数默认为12, 用空格分割每列的栅格值。</div>
+                            </div>
+                        </div>
+                        <i class="glyphicon-plus glyphicon"></i> 布局设置
+                    </li>
+                    <li class="rows" id="estRows">
+                        <div class="lyrow"><a href="#close" class="remove label label-danger"> <i
+                                class="glyphicon-remove glyphicon"></i> 删除 </a> <span class="drag label label-default"> <i
+                                class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">
+                                <input type="text" value="12" class="form-control">
+                            </div>
+                            <div class="view">
+                                <div class="row clearfix">
+                                    <div class="col-xs-12 col-md-12 column"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="lyrow"><a href="#close" class="remove label label-danger"> <i
+                                class="glyphicon-remove glyphicon"></i> 删除 </a> <span class="drag label label-default"> <i
+                                class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">
+                                <input type="text" value="1 10 1" class="form-control">
+                            </div>
+                            <div class="view">
+                                <div class="row clearfix">
+                                    <div class="col-xs-1 col-md-1 column"></div>
+                                    <div class="col-xs-10 col-md-10 column"></div>
+                                    <div class="col-xs-1 col-md-1 column"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="lyrow"><a href="#close" class="remove label label-danger"> <i
+                                class="glyphicon-remove glyphicon"></i> 删除 </a> <span class="drag label label-default"> <i
+                                class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">
+                                <input type="text" value="6 6" class="form-control">
+                            </div>
+                            <div class="view">
+                                <div class="row clearfix">
+                                    <div class="col-xs-6 col-md-6 column"></div>
+                                    <div class="col-xs-6 col-md-6 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lyrow"><a href="#close" class="remove label label-danger"> <i
+                                class="glyphicon-remove glyphicon"></i> 删除 </a> <span class="drag label label-default"> <i
+                                class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">
+                                <input type="text" value="8 4" class="form-control">
+                            </div>
+                            <div class="view">
+                                <div class="row clearfix">
+                                    <div class="col-xs-6 col-md-8 column"></div>
+                                    <div class="col-xs-6 col-md-4 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lyrow"><a href="#close" class="remove label label-danger"> <i
+                                class="glyphicon-remove glyphicon"></i> 删除 </a> <span class="drag label label-default"> <i
+                                class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">
+                                <input type="text" value="4 4 4" class="form-control">
+                            </div>
+                            <div class="view">
+                                <div class="row clearfix">
+                                    <div class="col-md-4 column"></div>
+                                    <div class="col-md-4 column"></div>
+                                    <div class="col-md-4 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lyrow"><a href="#close" class="remove label label-danger"> <i
+                                class="glyphicon-remove glyphicon"></i> 删除 </a> <span class="drag label label-default"> <i
+                                class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">
+                                <input type="text" value="2 6 4" class="form-control">
+                            </div>
+                            <div class="view">
+                                <div class="row clearfix">
+                                    <div class="col-md-2 column"></div>
+                                    <div class="col-md-6 column"></div>
+                                    <div class="col-md-4 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- 模块列表开始 -->
+                <ul class="nav nav-list accordion-group viewEditBox" id="1">
+                    <li class="nav-header"><i class="glyphicon glyphicon-plus"></i> 基本元素
+                        <div class="pull-right popover-info"><i class="glyphicon glyphicon-question-sign "></i>
+
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">帮助</h3>
+
+                                <div class="popover-content"> 将组件元素拖放入你需要放入的栅格列中。之后，你可以设置该元素的样式。</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="boxes" id="elmBase">
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">产品列表</div>
+                            <div class="view">
+                                <input type="hidden" value="产品列表" name="title"/>
+                                <input type="hidden" value="/Uploads/89/Img89-20150613/557b7f43094f0.png"
+                                       name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="productList" name="filename"/>
+                                <input type="hidden" value="1" name="type"/>
+                                <input type="hidden" value="10" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">文章列表</div>
+                            <div class="view">
+                                <input type="hidden" value="文章列表" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672bdff34.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="articleList" name="filename"/>
+                                <input type="hidden" value="2" name="type"/>
+                                <input type="hidden" value="11" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">单页内容模块</div>
+                            <div class="view">
+                                <input type="hidden" value="单页内容模块" name="title"/>
+                                <input type="hidden" value="/Uploads/7/Template_modules7-20150325/551263d2b7aeb.png"
+                                       name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="viewContent" name="filename"/>
+                                <input type="hidden" value="4" name="type"/>
+                                <input type="hidden" value="12" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">布局模块</div>
+                            <div class="view">
+                                <input type="hidden" value="布局模块" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/56206729518e2.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="modelContent" name="filename"/>
+                                <input type="hidden" value="5" name="type"/>
+                                <input type="hidden" value="13" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">空盒子</div>
+                            <div class="view">
+                                <input type="hidden" value="空盒子" name="title"/>
+                                <input type="hidden" value="/Uploads/89/Img89-20150613/557b7f42aa985.png"
+                                       name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="box" name="filename"/>
+                                <input type="hidden" value="6" name="type"/>
+                                <input type="hidden" value="14" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">自定义模块</div>
+                            <div class="view">
+                                <input type="hidden" value="自定义模块" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/56206727c3911.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="diyContent" name="filename"/>
+                                <input type="hidden" value="0" name="type"/>
+                                <input type="hidden" value="18" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">栏目列表</div>
+                            <div class="view">
+                                <input type="hidden" value="栏目列表" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672f6cdd7.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="categoryList" name="filename"/>
+                                <input type="hidden" value="12" name="type"/>
+                                <input type="hidden" value="22" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">带图文章列表</div>
+                            <div class="view">
+                                <input type="hidden" value="带图文章列表" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672ee9390.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="imagesList" name="filename"/>
+                                <input type="hidden" value="2" name="type"/>
+                                <input type="hidden" value="47" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">商城系统（商品列表）</div>
+                            <div class="view">
+                                <input type="hidden" value="商城系统（商品列表）" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="goodsProductList" name="filename"/>
+                                <input type="hidden" value="1" name="type"/>
+                                <input type="hidden" value="58" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">商品详情（购物车组件）</div>
+                            <div class="view">
+                                <input type="hidden" value="商品详情（购物车组件）" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="viewGoods" name="filename"/>
+                                <input type="hidden" value="4" name="type"/>
+                                <input type="hidden" value="59" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">商品分类</div>
+                            <div class="view">
+                                <input type="hidden" value="商品分类" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="goodsProductListSort" name="filename"/>
+                                <input type="hidden" value="1" name="type"/>
+                                <input type="hidden" value="60" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">商品分类列表</div>
+                            <div class="view">
+                                <input type="hidden" value="商品分类列表" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="categoryGoodsList" name="filename"/>
+                                <input type="hidden" value="1" name="type"/>
+                                <input type="hidden" value="61" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">仿微信文章详情</div>
+                            <div class="view">
+                                <input type="hidden" value="仿微信文章详情" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="viewContentWeixin" name="filename"/>
+                                <input type="hidden" value="0" name="type"/>
+                                <input type="hidden" value="76" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">所有分类(商城)</div>
+                            <div class="view">
+                                <input type="hidden" value="所有分类(商城)" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="categoryListAll" name="filename"/>
+                                <input type="hidden" value="12" name="type"/>
+                                <input type="hidden" value="78" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav nav-list accordion-group viewEditBox" id="2">
+                    <li class="nav-header"><i class="glyphicon glyphicon-plus"></i> 动态效果
+                        <div class="pull-right popover-info"><i class="glyphicon glyphicon-question-sign "></i>
+
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">帮助</h3>
+
+                                <div class="popover-content"> 将组件元素拖放入你需要放入的栅格列中。之后，你可以设置该元素的样式。</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="boxes" id="elmBase">
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">图片轮播</div>
+                            <div class="view">
+                                <input type="hidden" value="图片轮播" name="title"/>
+                                <input type="hidden" value="/Uploads/89/Img89-20150613/557b7f4791fec.png"
+                                       name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="focus" name="filename"/>
+                                <input type="hidden" value="3" name="type"/>
+                                <input type="hidden" value="15" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">图片滚动模块</div>
+                            <div class="view">
+                                <input type="hidden" value="图片滚动模块" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672de1df8.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="picslide" name="filename"/>
+                                <input type="hidden" value="10" name="type"/>
+                                <input type="hidden" value="21" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">焦点图(宽高自适应)</div>
+                            <div class="view">
+                                <input type="hidden" value="焦点图(宽高自适应)" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672de1df8.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="Fullfocus" name="filename"/>
+                                <input type="hidden" value="3" name="type"/>
+                                <input type="hidden" value="44" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">轮播图（固定高度）</div>
+                            <div class="view">
+                                <input type="hidden" value="轮播图（固定高度）" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672a5d8d2.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="Fullslide" name="filename"/>
+                                <input type="hidden" value="3" name="type"/>
+                                <input type="hidden" value="45" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">图文列表（划过浮动）</div>
+                            <div class="view">
+                                <input type="hidden" value="图文列表（划过浮动）" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/56206728c6752.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="articleListImage" name="filename"/>
+                                <input type="hidden" value="2" name="type"/>
+                                <input type="hidden" value="55" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">3D图片滚动</div>
+                            <div class="view">
+                                <input type="hidden" value="3D图片滚动" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672de1df8.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="focus3D" name="filename"/>
+                                <input type="hidden" value="3" name="type"/>
+                                <input type="hidden" value="57" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav nav-list accordion-group viewEditBox" id="3">
+                    <li class="nav-header"><i class="glyphicon glyphicon-plus"></i> 工具组件
+                        <div class="pull-right popover-info"><i class="glyphicon glyphicon-question-sign "></i>
+
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">帮助</h3>
+
+                                <div class="popover-content"> 将组件元素拖放入你需要放入的栅格列中。之后，你可以设置该元素的样式。</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="boxes" id="elmBase">
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">地图模块</div>
+                            <div class="view">
+                                <input type="hidden" value="地图模块" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672acd01f.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="baidumap" name="filename"/>
+                                <input type="hidden" value="8" name="type"/>
+                                <input type="hidden" value="17" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">导航条模块</div>
+                            <div class="view">
+                                <input type="hidden" value="导航条模块" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672c65038.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="nav" name="filename"/>
+                                <input type="hidden" value="9" name="type"/>
+                                <input type="hidden" value="19" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">面包屑导航</div>
+                            <div class="view">
+                                <input type="hidden" value="面包屑导航" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672e6a720.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="pagenav" name="filename"/>
+                                <input type="hidden" value="11" name="type"/>
+                                <input type="hidden" value="23" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">二级空盒子</div>
+                            <div class="view">
+                                <input type="hidden" value="二级空盒子" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672b58ee8.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="subbox" name="filename"/>
+                                <input type="hidden" value="14" name="type"/>
+                                <input type="hidden" value="41" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">留言框</div>
+                            <div class="view">
+                                <input type="hidden" value="留言框" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672cdc582.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="guestbook" name="filename"/>
+                                <input type="hidden" value="16" name="type"/>
+                                <input type="hidden" value="42" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">选项卡（空模块）</div>
+                            <div class="view">
+                                <input type="hidden" value="选项卡（空模块）" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672b58ee8.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="slidesbox" name="filename"/>
+                                <input type="hidden" value="14" name="type"/>
+                                <input type="hidden" value="46" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">手机版导航条</div>
+                            <div class="view">
+                                <input type="hidden" value="手机版导航条" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="mobile_nav" name="filename"/>
+                                <input type="hidden" value="9" name="type"/>
+                                <input type="hidden" value="48" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">产品搜索框</div>
+                            <div class="view">
+                                <input type="hidden" value="产品搜索框" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672c65038.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="form" name="filename"/>
+                                <input type="hidden" value="13" name="type"/>
+                                <input type="hidden" value="51" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">下拉特效导航条</div>
+                            <div class="view">
+                                <input type="hidden" value="下拉特效导航条" name="title"/>
+                                <input type="hidden" value="/Uploads/2/Img2-20151016/5620672c65038.png" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="dropmenu" name="filename"/>
+                                <input type="hidden" value="9" name="type"/>
+                                <input type="hidden" value="56" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">详情购物车组件（居上）</div>
+                            <div class="view">
+                                <input type="hidden" value="详情购物车组件（居上）" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="viewGoodsTop" name="filename"/>
+                                <input type="hidden" value="0" name="type"/>
+                                <input type="hidden" value="62" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">商品搜索框</div>
+                            <div class="view">
+                                <input type="hidden" value="商品搜索框" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="indexSearchBox" name="filename"/>
+                                <input type="hidden" value="13" name="type"/>
+                                <input type="hidden" value="63" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">带地区搜索框</div>
+                            <div class="view">
+                                <input type="hidden" value="带地区搜索框" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="areaSearchBox" name="filename"/>
+                                <input type="hidden" value="13" name="type"/>
+                                <input type="hidden" value="64" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">产品评价框</div>
+                            <div class="view">
+                                <input type="hidden" value="产品评价框" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="evaluate" name="filename"/>
+                                <input type="hidden" value="0" name="type"/>
+                                <input type="hidden" value="65" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">购物车商品列表</div>
+                            <div class="view">
+                                <input type="hidden" value="购物车商品列表" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="Cartindex" name="filename"/>
+                                <input type="hidden" value="0" name="type"/>
+                                <input type="hidden" value="66" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">购物车结算模块</div>
+                            <div class="view">
+                                <input type="hidden" value="购物车结算模块" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="CartcheckOut" name="filename"/>
+                                <input type="hidden" value="0" name="type"/>
+                                <input type="hidden" value="67" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">添加地址模块</div>
+                            <div class="view">
+                                <input type="hidden" value="添加地址模块" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="Cartaddress" name="filename"/>
+                                <input type="hidden" value="0" name="type"/>
+                                <input type="hidden" value="68" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">图片放大镜</div>
+                            <div class="view">
+                                <input type="hidden" value="图片放大镜" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="imgzoom" name="filename"/>
+                                <input type="hidden" value="3" name="type"/>
+                                <input type="hidden" value="69" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">PC仿京东分类</div>
+                            <div class="view">
+                                <input type="hidden" value="PC仿京东分类" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="jdCategories" name="filename"/>
+                                <input type="hidden" value="12" name="type"/>
+                                <input type="hidden" value="70" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">拼团购买组件</div>
+                            <div class="view">
+                                <input type="hidden" value="拼团购买组件" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="grouppurchaseviewGoods" name="filename"/>
+                                <input type="hidden" value="0" name="type"/>
+                                <input type="hidden" value="71" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">引用模块</div>
+                            <div class="view">
+                                <input type="hidden" value="引用模块" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="import" name="filename"/>
+                                <input type="hidden" value="17" name="type"/>
+                                <input type="hidden" value="72" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">文章评论框</div>
+                            <div class="view">
+                                <input type="hidden" value="文章评论框" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="evaluateNews" name="filename"/>
+                                <input type="hidden" value="0" name="type"/>
+                                <input type="hidden" value="77" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                        <div class="box box-element viewEditBox" modulesID="0"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">开通站点</div>
+                            <div class="view">
+                                <input type="hidden" value="开通站点" name="title"/>
+                                <input type="hidden" value="" name="img_url"/>
+                                <input type="hidden" value="" name="templatefilename"/>
+                                <input type="hidden" value="viewGoodsCreateSite" name="filename"/>
+                                <input type="hidden" value="0" name="type"/>
+                                <input type="hidden" value="79" name="template_modules_id"/>
+                                <input type="hidden" value="auto" width="width"/>
+                                <input type="hidden" value="0 auto 0 auto" name="margin"/>
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav nav-list accordion-group viewEditBox" id="4">
+                    <li class="nav-header"><i class="glyphicon glyphicon-plus"></i> 手机版模块
+                        <div class="pull-right popover-info"><i class="glyphicon glyphicon-question-sign "></i>
+
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">帮助</h3>
+
+                                <div class="popover-content"> 将组件元素拖放入你需要放入的栅格列中。之后，你可以设置该元素的样式。</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="boxes" id="elmBase">
+                    </li>
+                </ul>
+                <ul class="nav nav-list accordion-group viewEditBox" id="5">
+                    <li class="nav-header"><i class="glyphicon glyphicon-plus"></i> 会员中心
+                        <div class="pull-right popover-info"><i class="glyphicon glyphicon-question-sign "></i>
+
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">帮助</h3>
+
+                                <div class="popover-content"> 将组件元素拖放入你需要放入的栅格列中。之后，你可以设置该元素的样式。</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="boxes" id="elmBase">
+                    </li>
+                </ul>
+                <!-- 模块列表结束 -->
+
+
+                <!-- 复制模块存放区 -->
+
+                <ul class="nav nav-list accordion-group viewEditBox" id="5">
+                    <li class="nav-header"><i class="glyphicon glyphicon-plus"></i> 粘贴板
+                        <div class="pull-right popover-info"><i class="glyphicon glyphicon-question-sign "></i>
+
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">帮助</h3>
+
+                                <div class="popover-content"> 将组件元素拖放入你需要放入的栅格列中。之后，你可以设置该元素的样式。</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="boxes" id="pasteBox_">
+                        <div class="box box-element viewPasteBox" modulesID="60682"><span
+                                class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                            <div class="preview">空盒子</div>
+                            <div class="view">
+
+                                <img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class=""
+                                     width="32" height="32"></div>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- 复制模块存放区结束 -->
+            </div>
+        </div>
+
+        <!--/span-->
+
+        <div class="demo">
+            <style>
+
+
+                .myBox60844 .badge {
+                    background: none;
+                    color: #333;
+                }
+
+                .myBox60844 .badge i {
+                    font-size: 0.7em;
+                }
+
+                .myBox60844 .panel-body {
+                    padding: 0
+                }
+
+                .myBox60844 .panel {
+                    border-radius: 0;
+                    margin-bottom: 0;
+                    border: none;
+                    box-shadow: none;
+                }
+
+                .myBox60844 .panel-heading {
+                    border-radius: 0;
+                }
+
+                .myBox60844 .panel-heading .badge {
+                    float: right;
+                }
+
+                .myBox60844 .list-group {
+                    margin-bottom: 0;
+                }
+
+                .myBox60844 .panel-body p {
+                    margin-bottom: 0;
+                    line-height: 1.75;
+                }
+
+                .myBox60844 .panel-body {
+                }
+
+                .myBox60844 {
+                    width: auto;
+                    height: 320px;
+                    background-color: #fff;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    margin: 0 auto 0 auto;
+                }
+
+                .myBox60844 td {
+                    border: 1px solid #ccc;
+                }
+
+                .myBox60844 .panel-heading {
+                    padding: 0;
+                }
+
+                .myBox60844 .panel-heading .panel-title {
+                    text-align: left;
+                    padding: 0px 15px;
+                    font-size: 14px;
+                    color: #000;
+                    font-weight: 1;
+                    height: 35px;
+                    line-height: 1.5;
+                    background-repeat: no-repeat;
+                }
+
+
+            </style>
+            <div class="lyrow ui-draggable" style="display: block;"><a href="#close"
+                                                                       class="remove label label-danger"><i
+                    class="glyphicon-remove glyphicon"></i> 删除 </a><span class="drag label label-default"><i
+                    class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                <div class="preview"><input type="text" value="12" class="form-control"></div>
+                <div class="view">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-md-12 column ui-sortable">
+                            <div class="box box-element viewEditBox ui-draggable" modulesid="60844"
+                                 style="display: block;"><span class="drag label label-default"><i
+                                    class="glyphicon glyphicon-move"></i> 拖动 </span>
+
+                                <div class="preview">自定义模块</div>
+                                <div class="view">
+                                    <!-- 如果是ajaxlist请求，不输出这部分内容  -->
+                                    <div class="viewBox viewDataBox myBox60844" sortID="0" modulesID="60844"
+                                         title="自定义模块" deleteUrl="/Admin/Modules/delete/id/60844.html"
+                                         settingUrl="/Admin/Modules/edit/id/60844.html" isEdit="0">
+
+                                        <div class="panel panel-primary">
+
+
+                                            <div modulesID="60844" class="panel-heading modulesTitle viewBoxCss">
+                                                <h3 modulesID="60844" class="panel-title viewBoxCss"><span
+                                                        modulesID="60844"
+                                                        class="title TitleName viewBoxCss">自定义模块</span>
+                                                </h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <!-- 如果是ajaxlist请求，不输出这部分内容  -->
+
+
+                                                <!-- 如果是ajaxlist请求，不输出这部分内容  -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 如果是ajaxlist请求，不输出这部分内容  --></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--/span-->
+
+        <div id="download-layout">
+            <div class="container"></div>
+        </div>
+    </div>
+
+    <!--/row-->
+
+</div>
+
+<!--/.fluid-container-->
+
+<script type="text/javascript">
+
+    var mydialog = art.dialog;
+    $(document).ready(function () {
+
+        //粘贴板事件
+        $('.viewPasteBox').draggable({
+            connectToSortable: ".column",
+            helper: "clone",
+            handle: ".drag",
+            drag: function (e, t) {
+                t.helper.width(400)
+            },
+            stop: function (e, u) {
+                pasteModules();
+            }
+        });
+
+
+        $('#save-source-btn').click(function (e) {
+            saveSource();
+        });
+        //alert($('#download-layout').html());
+        //绑定右键菜单
+        $('.demo .viewBox').each(function (index, element) {
+            bindrightbtn(element);
+            //bindrightbtn($(this).children('.viewBox'));
+        });
+        $('.demo .viewBox > .viewBox').each(function (index, element) {
+            bindrightbtn(element);
+        });
+    });
+
+    function saveSource() {
+        $('#pro_rate').show();
+        $('.clone.viewBox').remove();
+        updateModulesSort();
+
+        var source = $($('#save-source').val());
+        source.find('.viewBox .viewBox').remove();
+        source.find('.viewBox').each(function (index, element) {
+            $(this).replaceWith('{' + '$modules_' + index + '}');
+
+        });
+        source.find('style').remove();
+        source = source.html();
+        //alert(source);
+        //替换全代码
+        //包裹代码
+
+        $('.demo:eq(0)').wrap('<div></div>');
+        var full_source = $($('.demo:eq(0)').parent('div').html());
+        //去除包裹层
+        $('.demo:eq(0)').unwrap();
+
+        full_source.find('.viewBox .viewBox').remove();
+        full_source.find('.viewBox').each(function (index, element) {
+            $(this).replaceWith('{' + '$modules_' + index + '}');
+        });
+
+        full_source.find('style').remove();
+        full_source = full_source.html();
+        var id = 8054;
+        $(this).html('正在保存数据');
+        //return false;
+        if ($('.demo:eq(0)').html() == '') {
+            full_source = '';
+        }
+
+        if (source == '' || full_source == '') {
+            alert('代码不完整！无法保存！');
+            return false;
+        }
+
+        $.post('/Admin/Pages/update.html', {'id': id, 'source': source, 'full_source': full_source}, function (data) {
+            if (data.status == 1) {
+                $('#save-source-btn').html('保存成功');
+                $('#pro_rate').hide();
+                setTimeout(function () {
+                            $('#cancel-save-btn').click();
+                        },
+                        500);
+
+            } else {
+                $('#save-source-btn').html('保存失败');
+            }
+        }, 'json');
+    }
+    function saveLayout() {
+
+        $('.demo .viewEditBox').each(function (index, element) {
+            //$(this).keyup(function(e) {
+            $(element).find('.view:eq(0) img').css({'display': 'block'});
+            var title = $(element).find('.view:eq(0)').find("input[name='title']").val();
+            var filename = $(element).find('.view:eq(0)').find("input[name='filename']").val();
+            var type = $(element).find('.view:eq(0)').find("input[name='type']").val();
+            var template_modules_id = $(element).find('.view:eq(0)').find("input[name='template_modules_id']").val();
+
+            var margin = $(element).find('.view:eq(0)').find("input[name='margin']").val();
+            var pages_id = 8054;
+            if ($(this).attr('modulesID') == 0) {
+                if (filename == '')return false;
+                $.post('/Admin/Modules/ajaxInsert.html', {
+                            title: title,
+                            filename: filename,
+                            type: type,
+                            width: 'auto',
+                            margin: margin,
+                            pages_id: pages_id,
+                            template_modules_id: template_modules_id
+                        },
+                        //去除父级绑定---------------------------------------------------------------------------------------------------------------
+                        function (data) {
+                            $(element).attr('modulesID', data.id);
+                            /*$(element).attr('sortID', data.id);
+                             $(element).attr('deleteUrl', data.deleteUrl);
+                             $(element).attr('settingUrl', data.settingUrl);*/
+                            $(element).find('.view:eq(0)').html(data.data);
+                            //绑定右键菜单，绑定子级模块右键菜单
+                            bindrightbtn($(element).find('.view:eq(0) .viewBox:eq(0)'));
+
+
+                        },
+                        'json');
+
+            }
+            //});
+
+
+        });
+
+    }
+
+
+    //绑定右键方法
+    function bindrightbtn(element) {
+        //$('#save-source-btn').to
+        //$('#save-source-btn').toggle('click');
+        //saveSource();
+        $(element).smartedit({
+            title: $(element).attr('title'),
+            isEdit: $(element).attr('isEdit'),
+            close: function () {
+                $('#rightmenu_').remove();
+                if (!confirm('删除模块后无法恢复,确定吗?')) {
+
+                    return false;
+                }
+                $.get($(element).attr('deleteUrl'), {},
+                        function (data) {
+                            if (data.status) {
+                                $(element).animate({
+                                            height: '0px'
+                                        },
+                                        '', '',
+                                        function () {
+                                            //
+                                            var parent = $(element).parent('.view').parent('.box').remove();
+                                            //删除模块
+                                            $(element).remove();
+                                            //删除模块外框
+                                            parent.remove();
+                                        });
+                            } else {
+                                if (data.error == 1) {
+                                    if (!confirm(data.info))return false;
+                                    //删除子级模块
+                                    deleteModuleAll(element);
+                                } else {
+                                    alert(data.info);
+                                }
+                            }
+                        },
+                        'json');
+            },
+            setting: function () {
+
+                $('#rightmenu_').remove();
+                var mydialog1 = mydialog.load($(element).attr('settingUrl'), {
+                    init: function () {
+                        $('.aui_state_focus').addClass('auii_statei_focus');
+
+
+                        mydialog1._reset();
+
+                        $(mydialog1.DOM.outer[0]).find('.aui_main').click(function (e) {
+
+                            //不让滚动条被遮住
+                            var niceScroll = $(mydialog1.DOM.outer[0]).find('.aui_main').niceScroll({
+                                styler: "fb",
+                                cursorcolor: "#65cea7",
+                                cursorwidth: '3',
+                                cursorborderradius: '0px',
+                                background: '#424f63',
+                                spacebarenabled: false,
+                                cursorborder: '0'
+                            });
+                            $('#' + niceScroll.id).css('z-index', $('#' + niceScroll.id).css('z-index') * 1 + 2);
+                        });
+
+
+                        $(mydialog1.DOM.outer[0]).find('.checkoutform:eq(0)').Validform({
+                            ajaxPost: true,
+                            tiptype: function (data, s) {
+                                if (s.type == 1) {
+                                    //$.ThinkBox.success(data,{'delayClose':0, 'close': '关闭'});
+                                }
+                            },
+                            datatype: {
+                                "text": function (gets, obj, curform, regxp) {
+                                    return true;
+                                }, "image": function (gets, obj, curform, regxp) {
+                                    return true;
+                                }
+                            },
+                            callback: function (data) {
+                                //检测登录
+                                $('.ThinkBox-close').trigger('click');
+                                if (data.status == 0) {
+                                    //$.ThinkBox.error(data.info,{'delayClose':200});
+                                    //$.ThinkBox('hide');
+
+
+                                    //$.ThinkBox.error(data.info,{'delayClose':200});
+                                } else {
+                                    $('body .container.containerfirst:eq(0)').show();
+                                    updateModules(data.data);
+                                    mydialog1.close();
+                                }
+                            }
+                        });
+
+                    }, ok: function () {
+                        $(mydialog1.DOM.outer[0]).find('.checkoutform:eq(0)').submit();
+                    }, close: function () {
+                        $('.ueditorelement').each(function (index, element) {
+                            UE.getEditor($(this).attr('id')).destroy();
+                        });
+                    }, width: '900px', height: '600px', lock: true, title: '编辑'
+                });
+                return;
+                $('#settingModal').on('show.bs.modal',
+                        function () {
+                            $('#settingBox').attr('src', $(element).attr('settingUrl'));
+                        });
+                $('#settingModal').modal('show');
+
+            },
+            edit: function () {
+
+
+                $('#viewDataBox_').hide();
+                $('#EditTextBox').hide();
+                $('#EditTextBox_').hide();
+                $(element).addClass('bordergreen');
+                var width = $(window).width();
+                var mydialog = art.dialog;
+                if ($(element).attr('editUrl').indexOf('/407/') == 0) {
+                    var editUrl = $(element).attr('editUrl').replace('/407/', '/');
+                } else {
+                    var editUrl = $(element).attr('editUrl');
+                }
+
+
+                $('#rightmenu_').remove();
+                //$('body .container:eq(0)').hide();
+                var height = $(window).height() - 95;
+                var mydialog1 = mydialog.load(editUrl, {
+                    init: function () {
+                        $('.aui_state_focus').addClass('auii_statei_focus');
+
+
+                        mydialog1._reset();
+
+                        var niceScroll = $(mydialog1.DOM.outer[0]).find('.aui_main').niceScroll({
+                            styler: "fb",
+                            cursorcolor: "#65cea7",
+                            cursorwidth: '3',
+                            cursorborderradius: '0px',
+                            background: '#424f63',
+                            scrollspeed: 20,
+                            spacebarenabled: false,
+                            cursorborder: '0'
+                        });
+                        $(mydialog1.DOM.outer[0]).find('.aui_main').click(function (e) {
+                            //不让滚动条被遮住
+                            var niceScroll = $(mydialog1.DOM.outer[0]).find('.aui_main').niceScroll({
+                                styler: "fb",
+                                cursorcolor: "#65cea7",
+                                cursorwidth: '3',
+                                cursorborderradius: '0px',
+                                background: '#424f63',
+                                scrollspeed: 20,
+                                spacebarenabled: false,
+                                cursorborder: '0'
+                            });
+                            $('#' + niceScroll.id).css('z-index', $('#' + niceScroll.id).css('z-index') * 1 + 2);
+                        });
+
+
+                        $(mydialog1.DOM.outer[0]).find('.checkoutform:eq(0)').Validform({
+                            ajaxPost: true,
+                            tiptype: function (data, s) {
+                                if (s.type == 1) {
+                                    //$.ThinkBox.success(data,{'delayClose':0, 'close': '关闭'});
+                                }
+                            },
+                            datatype: {
+                                "text": function (gets, obj, curform, regxp) {
+                                    return true;
+                                }, "image": function (gets, obj, curform, regxp) {
+                                    return true;
+                                }
+                            },
+                            callback: function (data) {
+                                //检测登录
+                                $('.ThinkBox-close').trigger('click');
+                                if (data.status == 0) {
+                                    //$.ThinkBox.error(data.info,{'delayClose':200});
+                                    //$.ThinkBox('hide');
+
+
+                                    //$.ThinkBox.error(data.info,{'delayClose':200});
+                                } else {
+                                    $('body .container.containerfirst:eq(0)').show();
+                                    updateModules($(element).attr('modulesID'));
+                                    mydialog1.close();
+                                }
+                            }
+                        });
+
+                    }, width: 800, height: 500, lock: true, title: '编辑', ok: function () {
+                        $(mydialog1.DOM.outer[0]).find('.checkoutform:eq(0)').submit();
+                    }, close: function () {
+
+                        updateModules($(element).attr('modulesID'));
+                        //alert($('body .container:eq(0)').attr('class'));
+                        $('.ueditorelement').each(function (index, element) {
+                            UE.getEditor($(this).attr('id')).destroy();
+                        });
+
+                    }
+                });
+                return;
+
+
+                $('#rightmenu_').remove();
+                $('#settingModal').on('show.bs.modal',
+                        function () {
+                            $('#settingBox').attr('src', $(element).attr('editUrl'));
+                            $('#settingBoxid').val($(element).attr('modulesID'));
+                        });
+
+                $('#settingModal').modal('show');
+
+            },
+            sortup: function () {
+                $('#rightmenu_').remove();
+                $(element).after($(element).prev('div.viewBox'));
+                updateModulesSort();
+            },
+            sortdown: function () {
+                $('#rightmenu_').remove();
+                $(element).next('div.viewBox').after($(element));
+                updateModulesSort();
+            },
+            copy: function () {
+                $('#rightmenu_').remove();
+                copystyleall($(element).attr('modulesID'));
+            },
+            paste: function () {
+                $('#rightmenu_').remove();
+
+                parsestyle($(element).attr('modulesID'));
+            },
+            copystyle: function () {
+                $('#rightmenu_').remove();
+
+                copystyle($(element).attr('modulesID'));
+            }
+        });
+    }
+
+    //删除所有模块包含子模块
+    function deleteModuleAll(element) {
+        $.post($(element).attr('deleteUrl'), {deleteAll: 1}, function (d) {
+            if (d.status == 1) {
+                var parent = $(element).parent('.view').parent('.box').remove();
+                //删除模块
+                $(element).remove();
+                //删除模块外框
+                parent.remove();
+                saveSource();
+            } else {
+                alert(d.info);
+            }
+        }, 'json');
+    }
+
+
+    function submitSuccess(status, info, data) {
+
+        updateModules(data);
+
+    }
+
+
+    function updateModulesSort() {
+        var sortstr = new Array();
+        $('.demo .viewBox').each(function (index, element) {
+            $(this).attr('sortID', index);
+            sortstr.push($(this).attr('modulesID') + '_' + $(this).attr('sortID'));
+        });
+        $.post('/Admin/Modules/dosort.html', {
+            'sort': sortstr.toString(),
+            'field': 'sort',
+            'id': 8054
+        }, function (data) {
+            if (data == 'OK') {
+
+            } else {
+                error('更新失败');
+            }
+        });
+    }
+
+
+    //更新模块
+    function updateModules(id) {
+        $('#pro_rate').show();
+        $.post('/Admin/Modules/getOne.html', {
+                    'id': id
+                },
+                function (data) {
+                    if (data.status == 1) {
+
+
+                        //一级元素
+                        $(".demo .myBox" + id).prev("style").remove();
+
+                        $(".demo .myBox" + id).replaceWith(data.data);
+                        $(".demo .myBox" + id).each(function (index, element) {
+                            bindrightbtn(element);
+                        });
+                        $(".demo .myBox" + id).find('.viewBox').each(function (index, element) {
+                            bindrightbtn(element);
+                        });
+                        $('#pro_rate').hide();
+
+                    }
+                },
+                'json');
+    }
+
+
+    //复制模块，生成粘贴板
+    function copystyleall(id) {
+        $('#pro_rate').show();
+        $.post(
+                '/Admin/Modules/copystyle.html',
+                {
+                    'id': id, 'all': 1
+                },
+
+                function (data) {
+                    if (data.status == 1) {
+                        var html = '<div class="box box-element viewPasteBox" modulesID="' + data.id + '"> <span class="drag label label-default"> <i class="glyphicon glyphicon-move"></i> 拖动 </span><div class="preview">' + data.title + '</div><div class="view"><img style="margin:0 auto; display:none;" src="/Public/Admin/images/load.gif" class="" width="32" height="32"></div></div>';
+                        $('#pasteBox_').append(html);
+                        $('.viewPasteBox').draggable({
+                            connectToSortable: ".column",
+                            helper: "clone",
+                            handle: ".drag",
+                            drag: function (e, t) {
+                                t.helper.width(400)
+                            },
+                            stop: function (e, u) {
+                                pasteModules();
+                            }
+                        });
+                        $('#pro_rate').hide();
+                        //updateModules(id);
+                    } else {
+
+                        alert(data.info);
+                    }
+                },
+                'json'
+        );
+    }
+
+    //从粘贴板拖放模块
+    function pasteModules() {
+        $('#pro_rate').show();
+        $('.demo .viewPasteBox').each(function (index, element) {
+            $(this).addClass('viewEditBox');
+            $(this).removeClass('viewPasteBox');
+            $.post(
+                    '/Admin/Modules/pasteModules.html',
+                    {
+                        'pages_id': 8054,
+                        'id': $(element).attr('modulesID')
+                    },
+
+                    function (data) {
+                        if (data.status == 1) {
+                            $(element).find('.view:eq(0)').html(data.data);
+
+                            $(element).find('.view:eq(0)').find('.viewBox').each(function (index, element) {
+                                bindrightbtn(element);
+                            });
+                            $('#pro_rate').hide();
+                        } else {
+                            alert(data.info);
+                        }
+                    },
+                    'json'
+            );
+        });
+
+    }
+
+    //复制样式
+    function copystyle(id) {
+        $('#pro_rate').show();
+        $.post(
+                '/Admin/Modules/copystyle.html',
+                {
+                    'id': id
+                },
+
+                function (data) {
+                    if (data.status == 1) {
+                        //updateModules(id);
+                    } else {
+                        alert(data.info);
+                    }
+                },
+                'json'
+        );
+    }
+    //粘贴样式
+    function parsestyle(id) {
+        $('#pro_rate').show();
+        $.post(
+                '/Admin/Modules/parsestyle.html',
+                {
+                    'id': id
+                },
+                function (data) {
+                    if (data.status == 1) {
+                        updateModules(id);
+                    } else {
+                        alert(data.info);
+                    }
+                },
+                'json'
+        );
+    }
+
+
+    //下载代码
+    function downloadLayout() {
+
+    }
+
+    function downloadHtmlLayout() {
+
+    }
+
+    function undoLayout() {
+
+    }
+
+    function redoLayout() {
+
+    }
+
+    $(document).on('hidden.bs.modal',
+            function (e) {
+
+                $(e.target).removeData('bs.modal');
+
+            });
+
+    $('body').on('click', '#continue-share-non-logged',
+            function () {
+
+                $('#share-not-logged').hide();
+
+                $('#share-logged').removeClass('hide');
+
+                $('#share-logged').show();
+
+            });
+
+    $('body').on('click', '#continue-download-non-logged',
+            function () {
+
+                $('#download-not-logged').hide();
+
+                $('#download').removeClass('hide');
+
+                $('#download').show();
+
+                $('#downloadhtml').removeClass('hide');
+
+                $('#downloadhtml').show();
+
+                $('#download-logged').removeClass('hide');
+
+                $('#download-logged').show();
+
+            });
+
+
+    function bindSearch() {
+        $('#SearchBox').rightClick(function (e) {
+            $('#SearchBox').hide();
+        });
+
+
+        $('.demo .viewBox').each(function (viewBoxindex, viewBoxelement) {
+            $(viewBoxelement).parent().find('*').each(function (index, element) {
+                if (typeof($(element).attr('class')) != 'undefined') {
+                    $(this).mouseenter(function (e) {
+                        var height = $(this).outerHeight() - 2;
+                        var width = $(this).outerWidth() - 2;
+                        var top = $(this).offset().top;
+                        var left = $(this).offset().left;
+                        $('#SearchBox').css({'top': top + 'px', 'left': left + 'px'});
+                        $('#SearchBox').width(width);
+                        $('#SearchBox').height(height);
+                        $('#SearchBox').show();
+                        //绑定事件，准备编辑
+                        //alert($(this).attr('class'));
+                        var className = '.' + $(this).attr('class').replaceAll(' ', '.');
+                        //className = className.replace(/\.myBox[0-9]+/,'');
+                        if (className.search(/\.myBox[0-9]+/) >= 0) {
+                            className = '';
+                        }
+                        $('#SearchBox').attr('cssPath', className);
+
+                        $('#SearchBox').attr('title', $(viewBoxelement).attr('title'));
+                        $('#SearchBox').attr('modulesID', $(viewBoxelement).attr('modulesID'));
+                        stopPropagation(e);
+                    });
+                }
+            });
+        });
+
+    }
+
+    String.prototype.replaceAll = function (s1, s2) {
+        return this.replace(new RegExp(s1, "gm"), s2);
+    }
+    function stopPropagation(e) {
+        e = e || window.event;
+        if (e.stopPropagation) { //W3C阻止冒泡方法
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true; //IE阻止冒泡方法
+        }
+    }
+
+
+    function showCssEditBox() {
+        $('#SearchBox').hide();
+        $('.demo .viewBox').parent().find('*').unbind('mouseenter');
+        art.dialog.data('cssElement', $($('#SearchBox').attr('cssPath')));
+        var csspath = $('#SearchBox').attr('cssPath') == '' ? '.myBox{id}' : '.myBox{id} ' + $('#SearchBox').attr('cssPath');
+        mydialog.open('/Admin/Pages/cssedit.html?cssPath=' + csspath + '&modules_id=' + $('#SearchBox').attr('modulesID'), {
+            width: '305px',
+            height: '450px',
+            title: $('#SearchBox').attr('title') + '-编辑样式',
+            lock: false,
+            ok: function () {
+                var d = this.iframe.contentWindow.document;
+                var css = $(d).find('#target').attr('style');
+                var cssPath_value = $(d).find('#cssPath_value').val();
+                $.post(
+                        '/Admin/Modules/saveCss.html',
+                        {
+                            'media': $(d).find('#media_value').val(),
+                            'css': css,
+                            'modules_id': $('#SearchBox').attr('modulesID'),
+                            'csspath': '.myBox{id}' + cssPath_value.replace('.myBox{id}', '')
+                        },
+                        function (data) {
+                            updateModules($('#SearchBox').attr('modulesID'));
+                        }, 'json');
+            }
+        });
+    }
+
+</script>
+<div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="downloadModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">保存代码</h4>
+            </div>
+            <div class="modal-body">
+                <div id="download-logged" class="">
+                    <div class="alert alert-info"></div>
+                    <p>
+                        <textarea id="save-source"></textarea>
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="save-source-btn">确认</button>
+                <button type="button" class="btn btn-default" id="cancel-save-btn" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="settingBoxid" value="">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        onClick="updateModules(document.getElementById('settingBoxid').value);">&times;</button>
+                <h4 class="modal-title">设置框</h4>
+            </div>
+            <div class="modal-body" style="padding-top:0px;">
+                <iframe src="" class="embed-responsive-item" id="settingBox" width="100%" height="400" frameborder="0"
+                        scrolling="auto"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">设置框</h4>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<!-- 查找元素时用的高亮层 -->
+<div id="SearchBox" cssPath="" modulesID="" onClick="showCssEditBox();"
+     style="background-color:rgba(0,0,0,0.6); position:absolute; z-index:8000000; border:1px dashed #D5D5D5;"></div>
+<!-- 查找元素时用的高亮层end -->
+
+</body>
+</html>
