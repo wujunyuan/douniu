@@ -331,7 +331,7 @@
             <p><span>{$memberinfo.nickname}</span><br/><span class="moneybox">{$memberinfo.money}</span></p>
 
 
-            <span class="gameret"></span>
+            <span style="top: -34px;" class="gameret"></span>
 
             <div class="xiazhubox"><img class="bankerimg" src="__STATIC__/game/img/qiangzhuang.png"><img src="__STATIC__/game/img/X-1.png" class="multipleimg"> </div>
         </div>
@@ -519,7 +519,7 @@
                         if (ret.room.rule.gametype != 5) {
                             $('.member__{$memberinfo.id}').find('.zhuangimg').show();
                         }
-                        if(ret.room.rule.gametype != 1 && ret.room.rule.gametype != 5){
+                        if(ret.room.rule.gametype != 1 && ret.room.rule.gametype != 5 && ret.room.rule.gametype != 2){
                             $('.member__{$memberinfo.id}').find('.bankerimg').show();
                             $('.member__{$memberinfo.id}').find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.multiple + '.png').show();
                         }
@@ -706,8 +706,10 @@
 
                     if (ret.data[i].issetbanker == 1 && ret.room.gamestatus >= 2) {
                         if (!(ret.room.rule.gametype == 1 || ret.room.rule.gametype == 5)) {
-                            $('.member__' + ret.data[i].id).find('.bankerimg').show();
-                            $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
+
+                                $('.member__' + ret.data[i].id).find('.bankerimg').show();
+                                $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
+
                         }
                     }
 
@@ -730,9 +732,17 @@
                                     $('.member__' + ret.data[i].id).find('.multipleimg').hide();
                                 }
                             }
+
                         }
                     }
+                    if(ret.room.rule.gametype == 2 && ret.data[i].banker == 1){
+                        $('.member__' + ret.data[i].id).find('.multipleimg').hide();
 
+                    }
+                    if(ret.data[i].gamestatus == 0){
+                        $('.member__' + ret.data[i].id).find('.multipleimg').hide();
+
+                    }
 
                     if (ret.room.gamestatus == 0) {
                         //当前会员未准备状态，重置游戏界面，把准备按钮显示出来，合理的这里其实是一个再来一局的按钮，没关系
