@@ -164,7 +164,7 @@ class douniu
         $type = $this->getniuname($cards);
         if($type !== false){
             $type += 13;
-            $type = $type*$type;
+            $type = $type*$type*$type*$type;
         }
         $ret = $type + $this -> getmax($cards);
 

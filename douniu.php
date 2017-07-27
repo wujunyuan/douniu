@@ -164,7 +164,7 @@ class douniu
         $type = $this->getniuname($cards);
         if($type !== false){
             $type += 13;
-            $type = $type*$type;
+            $type = $type*$type*$type*$type;
         }
         $ret = $type + $this -> getmax($cards);
 
@@ -178,6 +178,7 @@ class douniu
      */
     public function getniu($cards)
     {
+
         //是否五小
         $ismin = true;
         //是否五花
@@ -203,13 +204,13 @@ class douniu
             $isbomb = true;
         }
         if($ismin){
-            return 12;
+            return 13;
         }
         if($isbomb){
-            return 11;
+            return 12;
         }
         if($ismax){
-            return 10;
+            return 11;
         }
 
         $return = array();
@@ -230,8 +231,9 @@ class douniu
 }
 
 
+
 $n = new douniu();
-$ret = $n->create();
+$ret = array(38,21,8,6,31);
 //$ret = array(1,5,9,13,2);
 echo '<style>td{padding:5px;}</style>';
 echo '牌型：';echo $n->getniuname($ret);
@@ -249,7 +251,7 @@ foreach ($ret as $k => $v) {
 echo '</table>';
 echo '<br>';echo '<br>';echo '<br>';echo '<br>';
 
-$ret = $n->create();
+$ret = array(5,12,17,6,8);
 //$ret = array(1,5,9,13,2);
 echo '牌型：';echo $n->getniuname($ret);
 echo '<br>';

@@ -56,7 +56,7 @@
 					});
 					setTimeout(function() {
 						$('.gameret').hide();
-					},800);
+					},3000);
 					callback();
 				}, nexttime1);
 			}, nexttime);

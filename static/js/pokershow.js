@@ -52,7 +52,7 @@ var poker = {
                 'max-width':'40px',
                 opacity:1,
                 'z-index':5
-            }).show().animate({'margin-top':0,'margin-left':0,'top': dy + 'px', left: dx + 'px'}, 300,'', function () {
+            }).animate({'margin-top':0,'margin-left':0,'top': dy + 'px', left: dx + 'px'}, 300,'', function () {
                 img.css({'position': 'static','max-width':'none'});
                 //_this.html(img);
                 showed ++ ;
