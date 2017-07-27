@@ -328,6 +328,26 @@ class Douniuplaywjy extends Common
         $this->allmember();
     }
 
+
+    public function gamestart(){
+        $gameinit = 0;
+        $map = array('room_id' => $this->memberinfo['room_id']);
+        $allmember = Db::name('member') -> where($map) -> select();
+        foreach ($allmember as $v) {
+            if ($v['gamestatus'] == 1) {
+                //发现有人未准备，游戏不开始
+                $gameinit++;
+            }
+        }
+        $starttime = (int)model('room')->where(array('id' => $this->memberinfo['room_id']))->value('starttime');
+        //人齐了，或者人不齐时间到了，两者其一满足就发牌，开始游戏
+        if (($gameinit > 1 && $starttime <= time()) || ($gameinit == count($allmember) && $gameinit > 1)) {
+            model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('starttime' => time(), 'gamestatus' => 1));
+            //这里发牌
+            $this->init();
+        }
+    }
+
     public function gameready()
     {
         $islock = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('islock');
@@ -347,14 +367,14 @@ class Douniuplaywjy extends Common
         $gameinit = 0;
         //所有准备好的人数
         $roomdb = model('room');
-        $map = array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => 1);
+        $map = array('room_id' => $this->memberinfo['room_id']);
         $allmember = Db::name('member') -> where($map) -> select();
         foreach ($allmember as $v) {
             if ($v['gamestatus'] == 1) {
                 //发现有人未准备，游戏不开始
                 $gameinit++;
             }
-        }dump($allmember);
+        }
         if ($ret) {
             //两个准备就开始倒计时
             if ($gameinit == 2) {

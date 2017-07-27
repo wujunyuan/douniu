@@ -303,6 +303,9 @@
             </div>
             <div class="qiang" style="display: none; margin-top:12px;">
                 <img onclick="setbanker(1);" src="__STATIC__/game/img/one.png">
+
+
+
                 <img onclick="setbanker(2);" src="__STATIC__/game/img/two.png">
                 <img onclick="setbanker(4);" src="__STATIC__/game/img/4.png">
 
@@ -390,7 +393,7 @@
         $('.last-time span.text').html('准备开始');
         $('.last-time span.int').countdown({initcount:initcount,end:function(){
             $('.last-time').hide();
-            gameready1(0);
+            gamestart();
         }});
         $('.last-time').show();
     }
@@ -536,6 +539,7 @@
 
                 if(ret.gamestatus == 1) {
                     $('#myreadyimg').show();
+                    $('#gameready').hide();
                 }
                 if (ret.room.gamestatus == 0) {
                     if(ret.gamestatus == 0) {
@@ -623,7 +627,7 @@
                         $('.cards .niuname').html('<img width="120" src="__STATIC__/game/img/niu' + ret.info + '.png" >').show();
                     }else{
                         if(ret.issetmultiple == 0){
-                            if(ret.isbanker == 0){
+                            if(ret.isbanker == 0 && ret.gamestatus > 0){
                                 //$('.tanpai').hide();
                                 $('.xiazhu').show();
                             }
@@ -679,7 +683,7 @@
                     $('#player_' + i).find('img').eq(0).attr('src', ret.data[i].photo);
                     $('#player_' + i).find('.nickname').html(ret.data[i].nickname);
                     $('#player_' + i).find('.money').html(ret.data[i].money);
-                    $('#player_' + i).removeClass('member__' + ret.data[i].id);
+                    $('.member__' + ret.data[i].id).removeClass('member__' + ret.data[i].id);
                     $('#player_' + i).addClass('member__' + ret.data[i].id);
                     $('#player_' + i).show();
                     if(ret.data[i].gamestatus == 1){
@@ -818,6 +822,21 @@
     )
         ;
     }
+
+
+    function gamestart(){
+
+        $('.niuname').hide();
+        $('.cards').hide();
+        $('.tanpai').hide();
+        $('.cardsbox').hide();
+        $.post('{:url('gamestart')}', { }, function (ret) {
+
+        }, 'json'
+    )
+        ;
+    }
+
     //抢庄
     function setbanker(multiple){
         $('.last-time span.int').countdown(0);
@@ -842,6 +861,10 @@
     )
         ;
     }
+
+
+
+
 
 
 
