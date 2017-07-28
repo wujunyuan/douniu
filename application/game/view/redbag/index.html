@@ -31,14 +31,17 @@
         <p style="color: orange;text-align: center;margin-top: 2.5rem;"><span class="number" style="font-size: 2.5rem;margin-right: 0.3rem;">0</span>张</p>
         <input type="submit" name="makecard" value="制作红包" class="send" style="width: 76%;margin-left:12%;height: 2.2rem;font-size: 1rem;color: white;border-radius: 1rem;line-height: 2.2rem;border: none;outline: none;background: #FEA500;margin-top: 3.5rem;">
     </form>
-    <div style="position:fixed;bottom:2.8rem;">
+    <div style="position:fixed;bottom:2.8rem;" class="footers">
         <p style="color: #efefef;text-align: center;font-size: 0.9rem;width: 80%;margin-left: 10%;">制作红包后，将页面分享给微信好友，即可领取。在红包记录中可查看所有红包。</p>
-        <p style="text-align: center;font-size: 0.9rem;margin-top: 1rem;"><a href="#" style="color: #5686e2;text-decoration: none;">我的红包记录</a></p>
+        <p style="text-align: center;font-size: 0.9rem;margin-top: 1rem;"><a href="{:url('Redbag/history')}" style="color: #5686e2;text-decoration: none;">我的红包记录</a></p>
     </div>
 </div>
 <script src="__STATIC__/game/js/jquery-1.12.1.js"></script>
 <script type="text/javascript">
     $(function(){
+        $(window).resize(function () {
+            $(".footers").toggle();
+        })
         var reg = /^[0-9]*$/;
         $(".num").keyup(function(){
             var s=$(this).val();
