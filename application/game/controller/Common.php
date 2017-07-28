@@ -13,7 +13,7 @@ use think\Db;
 use think\Controller;
 use think\Request;
 use think\Session;
-
+use Hooklife\ThinkphpWechat\Wechat;
 class Common extends Controller
 {
     protected $memberinfo = array();
@@ -40,5 +40,9 @@ class Common extends Controller
         }
         $this->memberinfo = $member;
         $this->assign('memberinfo', $member);
+        //生成js签名
+        $jsconfig = Wechat::app() -> js ->config(array('onMenuShareQQ', 'onMenuShareWeibo','onMenuShareTimeline', 'onMenuShareAppMessage'),false);
+        $this->assign('jsconfig', $jsconfig);
+
     }
 }

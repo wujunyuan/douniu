@@ -24,6 +24,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+
     <![endif]-->
 </head>
 <body>
@@ -358,6 +359,29 @@
 
 <script src="__STATIC__/js/pokershow.js?v=1.4"></script>
 <script src="__STATIC__/js/gold-fly.js?v=1.5"></script>
+<!--微信分享开始-->
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    wx.config({$jsconfig});
+    wx.ready(function () {
+        var shareData = {
+            title: '好友约你牛牛（房间号：{$room.room_num}）',
+            desc: '模式：{eq name="gamerule['gametype']" value="1"}牛牛上庄{/eq}{eq name="gamerule['gametype']" value="2"}固定庄家{/eq}{eq name="gamerule['gametype']" value="3"}自由抢庄{/eq}{eq name="gamerule['gametype']" value="4"}明牌抢庄{/eq}{eq name="gamerule['gametype']" value="5"}通比牛牛{/eq} 底分：{$gamerule['score']}分 规则:{eq name="gamerule['rule']" value="1"}牛牛x3 牛九x2 牛八x2{/eq}{eq name="gamerule['rule']" value="2"}牛牛x4 牛九x3 牛八x2 牛七x2{/eq}',
+            link: '',
+            imgUrl: 'http://douniu.sppcms.com/niu.png',
+            success: function () {
+                //分享成功
+            }
+        };
+        wx.onMenuShareAppMessage(shareData);
+        wx.onMenuShareTimeline(shareData);
+    });
+</script>
+
+<!--微信分享结束-->
+
+
 <script type="text/javascript">
 
     function tanpaicountdown1(initcount){

@@ -19,6 +19,10 @@ class Redbag extends Model
      */
     public function create_bag($memberid ,$num)
     {
+        if(intval($num) === 0){
+            $this->error = '房卡数量必须大于0';
+            return false;
+        }
         $memberdb = model('member');
         $cards = $memberdb->where(array('id' => $memberid))->find();
         $cards = $cards->toArray();
@@ -51,7 +55,8 @@ class Redbag extends Model
             $this->error = '红包已被领取';
             return false;
         }
-        //未被领取，可以领取
+        //24小时内未被领取，可以领取
+
         $data['receive_id'] = $memberid;
         $data['status'] = 1;
         $data['receive_time'] = time();

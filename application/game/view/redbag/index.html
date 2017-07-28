@@ -26,9 +26,13 @@
 <body style="background: url(__STATIC__/game/img/bg4.png) no-repeat;background-size: 100% 100%;">
 <div style="width: 100%;">
     <p style="color: orange;margin-top: 1.5rem;margin-left: 1rem;line-height: 1.8rem;">你的房卡：<span class="mycards" style="margin:0 0.4rem;">{$memberinfo.cards}</span>张</p>
-    <form action="{:url('Redbag/getdata')}" method="post">
-        <p style="background: white;width: 90%;margin-left: 5%;height: 2rem;line-height: 2rem;font-size: 0.9rem;border-radius: 0.2rem;margin-top: 0.5rem;">&nbsp;&nbsp;放入房卡<span style="float: right;margin-right: 0.6rem;">张</span><input type="number" name="roomcard" placeholder="0" class="num" style="float: right;height: 2rem;text-align: right;padding-right: 0.5rem;padding-left: 0.5rem;border: none;outline: none;color: #FEA500;font-size:1rem"></p>
-        <p style="color: orange;text-align: center;margin-top: 2.5rem;"><span class="number" style="font-size: 2.5rem;margin-right: 0.3rem;">0</span>张</p>
+    <form action="{:url('Redbag/getdata')}" method="post" callback="none2" id="redbag">
+        <p style="background: white;width: 90%;margin-left: 5%;height: 2rem;line-height: 2rem;font-size: 0.9rem;border-radius: 0.2rem;margin-top: 0.5rem;">&nbsp;&nbsp;放入房卡
+            <span style="float: right;margin-right: 0.6rem;">张</span>
+            <input type="number" name="roomcard" placeholder="0" class="num" style="float: right;height: 2rem;text-align: right;padding-right: 0.5rem;padding-left: 0.5rem;border: none;outline: none;color: #FEA500;font-size:1rem">
+        </p>
+        <p style="color: orange;text-align: center;margin-top: 2.5rem;">
+            <span class="number" style="font-size: 2.5rem;margin-right: 0.3rem;">0</span>张</p>
         <input type="submit" name="makecard" value="制作红包" class="send" style="width: 76%;margin-left:12%;height: 2.2rem;font-size: 1rem;color: white;border-radius: 1rem;line-height: 2.2rem;border: none;outline: none;background: #FEA500;margin-top: 3.5rem;">
     </form>
     <div style="position:fixed;bottom:2.8rem;" class="footers">
@@ -37,6 +41,7 @@
     </div>
 </div>
 <script src="__STATIC__/game/js/jquery-1.12.1.js"></script>
+<script src="__STATIC__/js/setajax.js"></script>
 <script type="text/javascript">
     $(function(){
         $(window).resize(function () {
@@ -75,6 +80,12 @@
             }
         })
     })
+    $('#redbag').ajaxsubmit({success:function(ret){
+        window.location.href=ret.url;
+    }});
 </script>
+
+
+
 </body>
 </html>

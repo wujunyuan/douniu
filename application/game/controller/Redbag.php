@@ -23,7 +23,8 @@ class Redbag extends Common
         if($result){
             $this->success('创建成功',url('share',array('id'=>$result)));
         }else{
-            $this->error('失败，房卡不够');
+            $error = model('redbag') -> getError();
+            $this->error($error);
         }
     }
     //分享房卡红包
