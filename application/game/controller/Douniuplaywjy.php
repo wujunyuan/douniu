@@ -299,10 +299,21 @@ class Douniuplaywjy extends Common
      */
     public function setmultiple()
     {
+        $room = model('room')->where(array('id' => $this->memberinfo['room_id']))->find();
+        if ($room) {
+            $room = $room->toArray();
+
+
+        }
         model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('setbanker' => ''));
         $multiple = intval(input('multiple'));
         model('member')->settimes($this->memberinfo['id'], $multiple);
         model('member')->where(array('id' => $this->memberinfo['id']))->update(array('issetmultiple' => 1));
+
+        if(time() >= $room['xiazhutime']){
+            model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('neq', 0), 'banker' => 0, 'issetmultiple' => 0))->update(array('issetmultiple' => 1));
+        }
+
         //所有闲家都下注了，就直接开牌
         $unmultiple = (int)model('member')->where(array('room_id' => $this->memberinfo['room_id'], 'gamestatus' => array('neq', 0), 'banker' => 0, 'issetmultiple' => 0))->count();
         if ($unmultiple == 0) {

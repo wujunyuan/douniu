@@ -48,7 +48,7 @@ class Member extends Model
         if($islock == 1){
             $this->error = '房间锁住了，等一会再来吧';
         }
-        return $this->where($where)->update(array('room_id' => $room_id));
+        return $this->where($where)->update(array('online' => 1,'room_id' => $room_id));
     }
 
     /**
@@ -62,13 +62,14 @@ class Member extends Model
         $member = $this->where($where) -> find();
         if($member){
             $member = $member -> toArray();
-            $m = $this -> where(array('room_id' => $member['room_id'])) -> find();
+            $m = $this -> where(array('id' => array('neq', $member['id']),'online' => 1,'room_id' => $member['room_id'])) -> find();
             if(!$m){
-                model('room') -> where(array('id' => $member['room_id'])) -> update(array('islock' => 0));
+                model('room') -> where(array('id' => $member['room_id'])) -> update(array('islock' => 0, 'gamestatus' => 0));
+                $this->where(array('room_id' => $member['room_id']))->update(array('room_id' => 0, 'gamestatus' => 0));
             }
 
         }
-        return $this->where($where)->update(array('room_id' => 0));
+        return $this->where($where)->update(array('online' => 0,'lastcomeouttime' => time()));
     }
 
     /**

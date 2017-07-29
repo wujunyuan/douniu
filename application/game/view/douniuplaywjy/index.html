@@ -494,7 +494,7 @@
         socket.on('update_offline', function (userid) {
             //有人退出\断线时
             $.post('{:url('comeout')}', {memberid:userid}, function (ret) {
-                $('.member__'+userid).hide();
+                //$('.member__'+userid).hide();
             }, 'json'
             );
 

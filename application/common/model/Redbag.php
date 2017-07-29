@@ -49,6 +49,7 @@ class Redbag extends Model
      */
     public function open_bag($memberid , $id)
     {
+        $this -> backredbag($id);
         //查询当前红包的状态
         $redbag = $this->where(array('id' => $id)) -> find();
         if($redbag['status'] == 1){
@@ -56,7 +57,10 @@ class Redbag extends Model
             return false;
         }
         //24小时内未被领取，可以领取
-
+        if($redbag['status'] == -1){
+            $this->error = '红包已经过期';
+            return false;
+        }
         $data['receive_id'] = $memberid;
         $data['status'] = 1;
         $data['receive_time'] = time();
@@ -77,7 +81,10 @@ class Redbag extends Model
     {
         $redbag = $this->where(array('id' => $id)) -> find();
         //房卡未领取，超过24小时，房卡失效
-        $time = $redbag['create_time'] + 24 *3600;
+        if($redbag){
+            $redbag = $redbag -> toArray();
+        }
+        $time = strtotime($redbag['create_time']) + 24 *3600;
         if($redbag['status'] == 0 && time() > $time){
             $data['status'] = -1;//退回
             $result =  model('redbag')->where(array('id' => $id))->find();
