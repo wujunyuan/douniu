@@ -2,7 +2,7 @@ var showed=0;
 var poker = {
     timer: 1,
 
-    fanpai: function (pai, imgpath, key) {
+    fanpai: function (pai, imgpath, key, audio) {
         var _this = pai;
 
         if (_this.hasClass('open') || key == 0) {
@@ -19,13 +19,13 @@ var poker = {
             speed: 150,
             onEnd: function () {
 
-
+                audio();
             }
         });
 
 
     },
-    fly: function (pai, imgpath, key) {
+    fly: function (pai, imgpath, key, audio) {
 
         var _this = pai;
         if (_this.hasClass('showed')) {
@@ -56,30 +56,32 @@ var poker = {
                 img.css({'position': 'static','max-width':'none'});
                 //_this.html(img);
                 showed ++ ;
-                setTimeout(function(){poker.fanpai(pai, imgpath, key);},750);
+                audio();
+                setTimeout(function(){poker.fanpai(pai, imgpath, key, audio);},750);
 
             });
         }, 150 * poker.timer);
         poker.timer++;
     },
-    ajaxshow:function(url, key,imgpath, element){
+    ajaxshow:function(url, key,imgpath, element, audio){
         $.post(url, {key:key}, function(ret){
             if(ret.code == 1){
-                poker.fanpai($(element),imgpath,ret.msg);
+                poker.fanpai($(element),imgpath,ret.msg, audio);
             }
         }, 'json');
     },
-    fanpaiall: function (elements, imgpath, keys) {
+    fanpaiall: function (elements, imgpath, keys, audio) {
         poker.timer = 1;
         $(elements).find('img').css('opacity', 0);
         $(elements).each(function (index, element) {
             if (typeof(keys[index]) != 'undefined') {
                 if (showed >= $(elements).length) {
                     $(elements).find('img').css('opacity', 1);
-                    poker.fanpai($(element), imgpath, keys[index]);
+                    poker.fanpai($(element), imgpath, keys[index],audio);
                 } else {
                     $(elements).find('img').attr('src', '/static/game/img/pai/0.png');
-                    poker.fly($(element), imgpath, keys[index]);
+
+                    poker.fly($(element), imgpath, keys[index],audio);
                 }
             }
         });

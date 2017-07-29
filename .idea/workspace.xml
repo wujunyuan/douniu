@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="964cfe10-aedc-4c04-9962-49fdce51b171" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aaaa.html" afterPath="$PROJECT_DIR$/aaaa.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/game/view/douniuplaywjy/index.html" afterPath="$PROJECT_DIR$/application/game/view/douniuplaywjy/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/game/view/douniuplaywjy/mp3.html" afterPath="$PROJECT_DIR$/application/game/view/douniuplaywjy/mp3.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/gold-fly.js" afterPath="$PROJECT_DIR$/static/js/gold-fly.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/pokershow.js" afterPath="$PROJECT_DIR$/static/js/pokershow.js" />
     </list>
     <ignored path="niuniu.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,8 +78,18 @@
       <file leaf-file-name="Member.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/common/model/Member.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.8">
               <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pokershow.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/pokershow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -86,8 +98,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/game/view/douniuplaywjy/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4311726">
-              <caret line="685" column="55" selection-start-line="685" selection-start-column="55" selection-end-line="685" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.3943525">
+              <caret line="301" column="0" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#iframe#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -140,17 +152,17 @@
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#2;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#2;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1501339864000" expanded="true" signature="24085:24105" placeholder="..." />
+                <marker date="1501342530000" expanded="true" signature="24279:24299" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Paihistory.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/common/model/Paihistory.php">
+      <file leaf-file-name="gold-fly.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/gold-fly.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-1.2830188">
+              <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -159,8 +171,8 @@
       <file leaf-file-name="mp3.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/game/view/douniuplaywjy/mp3.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-49.6">
-              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+            <state vertical-scroll-proportion="-10.866667">
+              <caret line="18" column="42" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -232,10 +244,8 @@
         <option value="$PROJECT_DIR$/application/game/view/douniuplaywjy/ranking.html" />
         <option value="$PROJECT_DIR$/application/game/controller/Login.php" />
         <option value="$PROJECT_DIR$/dfsdfasdf.html" />
-        <option value="$PROJECT_DIR$/static/js/pokershow.js" />
         <option value="$PROJECT_DIR$/douniu.php" />
         <option value="$PROJECT_DIR$/application/extend/Game/douniu.php" />
-        <option value="$PROJECT_DIR$/static/js/gold-fly.js" />
         <option value="$PROJECT_DIR$/application/game/controller/Douniuplay.php" />
         <option value="$PROJECT_DIR$/application/common/model/Room.php" />
         <option value="$PROJECT_DIR$/application/game/view/result/index.html" />
@@ -248,7 +258,9 @@
         <option value="$PROJECT_DIR$/application/common/model/Redbag.php" />
         <option value="$PROJECT_DIR$/application/game/controller/Douniuplaywjy.php" />
         <option value="$PROJECT_DIR$/aaaa.html" />
+        <option value="$PROJECT_DIR$/static/js/gold-fly.js" />
         <option value="$PROJECT_DIR$/application/game/view/douniuplaywjy/mp3.html" />
+        <option value="$PROJECT_DIR$/static/js/pokershow.js" />
         <option value="$PROJECT_DIR$/application/game/view/douniuplaywjy/index.html" />
       </list>
     </option>
@@ -633,7 +645,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38841343" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1819532" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2279895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22778143" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.399605" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -885,21 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/gold-fly.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/pokershow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="53" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/game/controller/Douniuplay.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3265876">
@@ -997,14 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/common/model/Member.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/game/view/redbag/historysended.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.5333333">
@@ -1043,18 +1032,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/common/model/Member.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.8">
+          <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/pokershow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/gold-fly.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2830188">
+          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/game/view/douniuplaywjy/mp3.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-49.6">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        <state vertical-scroll-proportion="-10.866667">
+          <caret line="18" column="42" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/game/view/douniuplaywjy/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4311726">
-          <caret line="685" column="55" selection-start-line="685" selection-start-column="55" selection-end-line="685" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.3943525">
+          <caret line="301" column="0" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#iframe#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1107,7 +1120,7 @@
             <element signature="n#style#0;n#img#0;n#div#0;n#div#2;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#2;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1501339864000" expanded="true" signature="24085:24105" placeholder="..." />
+            <marker date="1501342530000" expanded="true" signature="24279:24299" placeholder="..." />
           </folding>
         </state>
       </provider>

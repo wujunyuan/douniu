@@ -12,6 +12,15 @@
 <audio onended="mp3playandpause('mp3niu11');" id="mp3niu11" src="__STATIC__/game/video/nv_wuhua.mp3"></audio>
 <audio onended="mp3playandpause('mp3niu12');" id="mp3niu12" src="__STATIC__/game/video/nv_zha.mp3"></audio>
 <audio onended="mp3playandpause('mp3niu13');" id="mp3niu13" src="__STATIC__/game/video/nv_wuxiao.mp3"></audio>
+
+<audio onended="mp3playandpause('mp3daojishi');" id="mp3daojishi" src="__STATIC__/game/video/daojishi.mp3"></audio>
+<audio onended="mp3playandpause('mp3gold');" id="mp3gold" src="__STATIC__/game/video/gold.mp3"></audio>
+<audio onended="mp3playandpause('mp3kaiju');" id="mp3kaiju" src="__STATIC__/game/video/kaiju.mp3"></audio>
+<audio onended="mp3playandpause('mp3xiazhu');" id="mp3xiazhu" src="__STATIC__/game/video/xiazhu.mp3"></audio>
+<audio onended="mp3playandpause('mp3fapai');" id="mp3fapai" src="__STATIC__/game/video/fapai.mp3"></audio>
+
+
+
 <audio id="background" autoplay="autoplay" loop="loop" src="__STATIC__/game/video/background.mp3" autoplay preload></audio>
 
 <script>
@@ -60,8 +69,23 @@
     audioAutoPlay('mp3niu13');
     audioAutoPlay('background');
 
+    audioAutoPlay('mp3daojishi');
+    audioAutoPlay('mp3gold');
+    audioAutoPlay('mp3kaiju');
+    audioAutoPlay('mp3xiazhu');
 
+    audioAutoPlay('mp3fapai');
+
+
+
+
+
+
+
+setTimeout(function(){
     mp3play('background');
+},2000)
+
 
 
 </script>

@@ -296,7 +296,7 @@
         <div class="cards">
             <p style="color:#fff; margin-bottom: 12px; display: none;">等待闲家下注</p>
             <p style="color:#fff; margin-bottom: 12px;display: none;">点击牌面看牌</p>
-            <img src="__STATIC__/game/img/tanpai.png" onclick="tanpai();" class="tanpai">
+            <img src="__STATIC__/game/img/tanpai.png" onclick="tanpai(); mp3play('mp3xiazhu');" class="tanpai">
 
 
 
@@ -317,11 +317,11 @@
             </div>
 <div class="pai">
 
-    <div class="poker box1" onclick="poker.ajaxshow('{:url('showone')}',0,'__STATIC__/game/img/pai/',this);"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box2" onclick="poker.ajaxshow('{:url('showone')}',1,'__STATIC__/game/img/pai/',this);"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box3" onclick="poker.ajaxshow('{:url('showone')}',2,'__STATIC__/game/img/pai/',this);"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box4" onclick="poker.ajaxshow('{:url('showone')}',3,'__STATIC__/game/img/pai/',this);"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box5" onclick="poker.ajaxshow('{:url('showone')}',4,'__STATIC__/game/img/pai/',this);"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+    <div class="poker box1" onclick="poker.ajaxshow('{:url('showone')}',0,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+    <div class="poker box2" onclick="poker.ajaxshow('{:url('showone')}',1,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+    <div class="poker box3" onclick="poker.ajaxshow('{:url('showone')}',2,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+    <div class="poker box4" onclick="poker.ajaxshow('{:url('showone')}',3,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+    <div class="poker box5" onclick="poker.ajaxshow('{:url('showone')}',4,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
 </div><div class="niuname">未知</div>
         </div>
     </div>
@@ -357,8 +357,8 @@
 <script src="__STATIC__/game/js/jquery-ui.min.js"></script>
 <script src="__STATIC__/game/js/jquery.flip.min.js"></script>
 
-<script src="__STATIC__/js/pokershow.js?v=1.4"></script>
-<script src="__STATIC__/js/gold-fly.js?v=1.5"></script>
+<script src="__STATIC__/js/pokershow.js?v=1.7"></script>
+<script src="__STATIC__/js/gold-fly.js?v=1.6"></script>
 <!--微信分享开始-->
 
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
@@ -393,6 +393,7 @@
         $('.last-time span.text').html('闲家下注');
     $('.last-time span.int').countdown({initcount:initcount,end:function(){
         $('.last-time').hide();
+
         setmultiple(1);
     }});
         $('.last-time').show();
@@ -509,6 +510,7 @@
             }
             if (ret.type == 999) {
                 console.log(ret.data);
+
                 $.jinbiflyall('<img style="border-radius: 20px;" width="15" src=\'__STATIC__/game/img/jinbi.png\'>','.member__',ret.data,function(){
                     $('.cardsbox').hide();
                     $('.pai .poker img').css('opacity', 0);
@@ -525,6 +527,8 @@
                         },2000);
                     }
 
+                },function(){
+                    mp3play('mp3gold');
                 })
             }
 
@@ -596,7 +600,9 @@
                     $('.cards').show();
                     $('.readyimg').hide();
                     $('#gameready').hide();
-                    poker.fanpaiall($('.cards .poker'), '__STATIC__/game/img/pai/', ret.pai);
+                    poker.fanpaiall($('.cards .poker'), '__STATIC__/game/img/pai/', ret.pai, function(){
+                        mp3play('mp3fapai');
+                    });
 
 
                     //点击过了，不再显示
@@ -891,6 +897,7 @@
     function setbanker(multiple){
         $('.last-time span.int').countdown(0);
         $('.qiang').hide();
+        mp3play('mp3xiazhu');
         $.post('{:url('setbanker')}', {multiple:multiple}, function (ret) {
 
            // $('.last-time').hide();
@@ -903,6 +910,7 @@
     function setmultiple(multiple){
         $('.last-time span.int').countdown(0);
         $('.xiazhu').hide();
+        mp3play('mp3xiazhu');
         //$('.tanpai').show();
         $.post('{:url('setmultiple')}', {multiple:multiple}, function (ret) {
 

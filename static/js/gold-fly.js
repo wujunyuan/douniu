@@ -21,7 +21,7 @@
 				});
 			}
 		},
-		jinbiflyall: function (img, m, data, callback) {
+		jinbiflyall: function (img, m, data, callback, audio) {
 
 			var nexttime = 0;
 			if (data[0].length > 0) {
@@ -31,7 +31,7 @@
 					}, innertime * j);
 					nexttime = (innertime * j + speed);
 				}
-
+				audio();
 			}
 			setTimeout(function () {
 
@@ -43,6 +43,7 @@
 						}, innertime * j);
 						nexttime1 = (innertime * j + speed);
 					}
+					audio();
 				}
 				setTimeout(function () {
 					setTimeout(function(){
