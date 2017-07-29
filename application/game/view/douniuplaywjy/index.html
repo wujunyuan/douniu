@@ -678,17 +678,20 @@
 
 
                 }
+                if(ret.gamestatus == 2) {
+                    //$('.tanpai').hide();
+                    if ($('#cardsshowplay').length == 0) {
+                        var cardsshowplay = $('<input type="hidden" id="cardsshowplay">');
+                        mp3play('mp3niu' + ret.info);
+                        cardsshowplay.appendTo('body');
+                    }
+                }
                 //闲家下注，摊牌倒计时
                 if (ret.room.gamestatus == 4) {
 
                     tanpaicountdown(ret.room.taipaitime);
                     if(ret.gamestatus == 2) {
-                        //$('.tanpai').hide();
-                        if($('#cardsshowplay').length == 0){
-                            var cardsshowplay = $('<input type="hidden" id="cardsshowplay">');
-                            mp3play('mp3niu'+ret.info);
-                            cardsshowplay.appendTo('body');
-                        }
+
 
                         $('.cards .niuname').html('<img width="120" src="__STATIC__/game/img/niu' + ret.info + '.png" >').show();
                     }else{

@@ -1,33 +1,68 @@
-<div style="margin-left:100px;"><img src="/Public/Uploads/407/Img407-20170721/5971a15fe0a16.png"></div>
-<div style="width:440px;margin-top:50px;margin-left:100px;">
-    <ul>
-        <li onmouseover="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771cbd2f2f1.jpg)'"
-            onmouseout="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771b1fb28d8.jpg)'"
-            onclick=bh('/Public/Uploads/407/Ueditor407-20170725/59770ea581436.jpg');><a href="####">厨房卫浴案例</a></li>
-        <li onmouseover="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771cbd2f2f1.jpg)'"
-            onmouseout="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771b1fb28d8.jpg)'"
-            onclick=bh('/Public/Uploads/407/Ueditor407-20170726/5977e7fb66317.jpg');><a href="####">灯饰生产线案例</a></li>
-        <li onmouseover="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771cbd2f2f1.jpg)'"
-            onmouseout="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771b1fb28d8.jpg)'"
-            onclick=bh('/Public/Uploads/407/Ueditor407-20170725/5977139ec007e.jpg');><a href="####">剪刀生产案例</a></li>
-        <li onmouseover="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771cbd2f2f1.jpg)'"
-            onmouseout="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771b1fb28d8.jpg)'"
-            onclick=bh('/Public/Uploads/407/Ueditor407-20170726/5977e86bc2bbb.jpg');><a href="####">螺塞生产案例</a></li>
-        <li onmouseover="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771cbd2f2f1.jpg)'"
-            onmouseout="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771b1fb28d8.jpg)'"
-            onclick=bh('/Public/Uploads/407/Ueditor407-20170726/5977e8bbaea20.jpg');><a href="####">万能成型机案例</a></li>
-        <li onmouseover="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771cbd2f2f1.jpg)'"
-            onmouseout="this.style.backgroundImage='url(/Public/Uploads/407/Ueditor407-20170725/59771b1fb28d8.jpg)'"
-            onclick=bh('/Public/Uploads/407/Ueditor407-20170726/5977e9463c71d.jpg');><a href="####">五金工艺品案例</a></li>
-    </ul>
-</div>
-<div>
-    <img src="/Public/Uploads/407/Ueditor407-20170725/59770ea581436.jpg"
-         style="width:540px;height:368px;margin-left:25px;border:1px solid #2C362A;" id="cg_img">
-</div>
-<?php if(strtolower(GROUP_NAME) != 'admin'){?>
-<script type="text/javascript">
-    function bh(imgs) {
-        $("#cg_img").attr('src', imgs);
+<audio onended="mp3playandpause('mp3niu0');" id="mp3niu0" src="static/game/video/nv_niu0.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu1');" id="mp3niu1" src="static/game/video/nv_niu1.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu2');" id="mp3niu2" src="static/game/video/nv_niu2.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu3');" id="mp3niu3" src="static/game/video/nv_niu3.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu4');" id="mp3niu4" src="static/game/video/nv_niu4.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu5');" id="mp3niu5" src="static/game/video/nv_niu5.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu6');" id="mp3niu6" src="static/game/video/nv_niu6.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu7');" id="mp3niu7" src="static/game/video/nv_niu7.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu8');" id="mp3niu8" src="static/game/video/nv_niu8.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu9');" id="mp3niu9" src="static/game/video/nv_niu9.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu10');" id="mp3niu10" src="static/game/video/nv_niuniu.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu11');" id="mp3niu11" src="static/game/video/nv_wuhua.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu12');" id="mp3niu12" src="static/game/video/nv_zha.mp3"></audio>
+<audio onended="mp3playandpause('mp3niu13');" id="mp3niu13" src="static/game/video/nv_wuxiao.mp3"></audio>
+<audio id="background" autoplay="autoplay" loop="loop" src="static/game/video/background.mp3" autoplay preload></audio>
+
+<script>
+    function mp3play(id){
+        document.getElementById(id).play();
     }
-</script><?php }?>
+    function mp3pause(id){
+        document.getElementById(id).pause();
+    }
+
+    function mp3playandpause(id){
+        mp3play(id);
+        mp3pause(id);
+    }
+
+</script>
+<script>
+    function audioAutoPlay(id){
+        var audio = document.getElementById(id),
+                play = function(){
+                    audio.play();
+                };
+        document.addEventListener("WeixinJSBridgeReady", function () {
+                    play();
+                    mp3pause(id);
+        }, false);
+        document.addEventListener('YixinJSBridgeReady', function() {
+                    play();
+                    mp3pause(id);
+        }, false);
+    }
+
+    audioAutoPlay('mp3niu0');
+    audioAutoPlay('mp3niu1');
+    audioAutoPlay('mp3niu2');
+    audioAutoPlay('mp3niu3');
+    audioAutoPlay('mp3niu4');
+    audioAutoPlay('mp3niu5');
+    audioAutoPlay('mp3niu6');
+    audioAutoPlay('mp3niu7');
+    audioAutoPlay('mp3niu8');
+    audioAutoPlay('mp3niu9');
+    audioAutoPlay('mp3niu10');
+    audioAutoPlay('mp3niu11');
+    audioAutoPlay('mp3niu12');
+    audioAutoPlay('mp3niu13');
+    audioAutoPlay('background');
+
+    setTimeout(function(){
+        mp3play('background');
+    },2000);
+
+</script>
+
