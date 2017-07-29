@@ -803,7 +803,9 @@
                         $('#player_' + i).find('.cardsbox').show();
 
 
-                        poker.fanpaiall($('#player_' + i+' .poker'), '__STATIC__/game/img/pai/', ret.data[i]['pai']);
+                        poker.fanpaiall($('#player_' + i+' .poker'), '__STATIC__/game/img/pai/', ret.data[i]['pai'],function(){
+                            mp3play('mp3fapai');
+                        });
                     }
 
 
