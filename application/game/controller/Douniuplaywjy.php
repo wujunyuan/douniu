@@ -202,10 +202,14 @@ class Douniuplaywjy extends Common
 
         $db = model('member');
 
+        //不知道什么原因会使得会员的牌是空的，然后状态又是摊牌状态，这样会出错，所以把状态改成0
+        $db -> where(array('pai' => '', 'gamestatus' => 2)) -> update(array('gamestatus' => 0));
+
         //会员进入房间时通知所有人更新玩家
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
 
         $room = model('room')->where(array('id' => $this->memberinfo['room_id']))->find();
+
         if ($room) {
             $room = $room->toArray();
             $room['rule'] = unserialize($room['rule']);
