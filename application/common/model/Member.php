@@ -44,9 +44,11 @@ class Member extends Model
         $count = $this -> where(array('room_id' => $room_id)) -> count();
         if($count >= 6){
             $this->error = '房间人数已经满了';
+            return false;
         }
         if($islock == 1){
             $this->error = '房间锁住了，等一会再来吧';
+            return false;
         }
         return $this->where($where)->update(array('online' => 1,'room_id' => $room_id));
     }
