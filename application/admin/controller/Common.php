@@ -11,7 +11,7 @@ class Common extends Controller
 	public $controllername;
 	public $map = array();
 	public $order = '';
-	public $pagesize = 5;
+	public $pagesize = 15;
 	public $userinfo;
 	/*管理后台入口，在这里做权限认证，没有登录的用户让他跳转到登录页面，登录页面是url('Public/login')*/
 	/*Request 依赖注入*/
@@ -72,7 +72,8 @@ class Common extends Controller
 			'member',
 			'shipping',
 			'ad',
-			'comment'
+			'comment',
+			'redbag'
 	    );
 		//当前访问的控制器名称是什么
 

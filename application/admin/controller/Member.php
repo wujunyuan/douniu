@@ -28,14 +28,30 @@ class Member extends Common
 		parent::insert();
 	}	
 	
-//	public function update()
-//	{
-//		if(isset($_POST['password']) && $_POST['password'] == ''){
-//			unset($this->postdata['password']);
-//		}else{
-//			$this->postdata['password'] = md5($_POST['password']);
-//		}
-//		parent::update();
-//	}
+	public function update()
+	{
+		if(intval(input('rate')) > 0){
+			$ratearr = array();
+			$rate = ceil(intval(input('rate'))/10);
+			for($i = 1; $i < 11; $i++){
+				if($i <= $rate){
+					$ratearr[] = 1;
+				}else{
+					$ratearr[] = 0;
+				}
+			}
+			shuffle($ratearr);
+			$this->postdata['ratearr'] = serialize($ratearr);
+		}else{
+			$this->postdata['ratearr'] = '';
+		}
+		if(intval(input('rate')) == 0){
+			unset($this->postdata['rate']);
+		}
+		if(intval(input('cards')) == 0){
+			unset($this->postdata['cards']);
+		}
+		parent::update();
+	}
 	
 }

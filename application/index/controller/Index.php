@@ -11,8 +11,14 @@ class Index extends Common
 {
 	public function index()
 	{
-		dump(json_encode(unserialize('a:3:{i:0;a:1:{i:0;a:3:{i:0;i:2;i:1;i:3;i:2;i:2;}}i:1;a:1:{i:0;a:3:{i:0;i:3;i:1;i:8;i:2;i:2;}}i:2;a:3:{i:8;i:2;i:3;i:0;i:2;i:-2;}}')));
-
+		$list = Db::name('paihistory') -> where(array('room_id' => 49)) -> order('id desc') -> select();
+		//加载斗牛类
+		Loader::import('extend.Game.douniu');
+		//创建一个斗牛实例
+		$douniu = new \douniu(array());
+		foreach($list as $k =>$v){
+			dump($douniu -> getniuname(unserialize($v['pai'])));
+		}
 	}
 
 

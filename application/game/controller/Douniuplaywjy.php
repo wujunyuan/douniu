@@ -127,10 +127,10 @@ class Douniuplaywjy extends Common
         if ($room_id > 0) {
             $db = model('member');
             $ret = $db->comein($room_id, array('id' => $this->memberinfo['id']));
-            if ($ret === false) {
+            if ($ret === false && $this -> memberinfo['room_id'] != $room_id) {
                 $this->error($db->getError());
             }
-            //$this->memberinfo['room_id'] = $room_id;
+            //$this->memberinfo['room_id'] = $room_id; 
             $room = model('room')->where(array('id' => $room_id))->find();
             if (!$room) {
                 $this->error('房间不存在啊！！！');
@@ -434,8 +434,23 @@ class Douniuplaywjy extends Common
         //遍历所有会员，每人发一副牌，算好牌型，然后把数据存到数据库中的member表的pai字段
         $memberdb = model('member');
         $playcount = (int)model('paihistory')->where(array('room_id' => $this->memberinfo['room_id']))->max('playcount') + 1;
+        $playcountroom = (int)model('room')->where(array('id' => $this->memberinfo['room_id']))->max('playcount');
+        $paiarr = array();
+        $pairetarr = array();
+        $memberrate = 0;
         foreach ($allmember as $v) {
             if ($v['gamestatus'] == 1 && $v['pai'] == '') {
+                if($v['ratearr'] != ''){
+                    //是否要得胜，当后台设置得胜率时使用
+                    $ratearr = unserialize($v['ratearr']);
+                    $rate = $ratearr[$playcountroom - 1];
+                }else{
+                    $rate = 0;
+                }
+                if($rate == 1){
+                    $memberrate = $v['id'];
+                }
+                $paidata = array();
                 $pai = $this->douniu->create();
                 $data['pai'] = serialize($pai);
                 $data['typemultiple'] = $this->douniu->getniuname($pai);
@@ -450,11 +465,35 @@ class Douniuplaywjy extends Common
                 $history['pairet'] = $this->douniu->ret($pai);
                 $history['create_time'] = time();
                 $history['playcount'] = $playcount;
-                model('paihistory')->insert($history);
-                $memberdb->where($map)->update($data);
+                $paidata['map'] = $map;
+                $paidata['data'] = $data;
+                $paidata['history'] = $history;
+                $paidata['pairet'] = $data['pairet'];
+
+                $pairetarr[$v['id']] = $data['pairet'];
+
+                $paiarr[$v['id']] = $paidata;
+
+
             }
 
         }
+        arsort($pairetarr);
+
+        if($memberrate > 0){
+            //作弊
+            $memberratepai = $paiarr[$memberrate]['data'];
+            $paiarr[$memberrate]['data'] = $paiarr[key($pairetarr)]['data'];
+            $paiarr[key($pairetarr)]['data'] = $memberratepai;
+            //dump($paiarr);
+            //dump($pairetarr);
+        }
+        foreach($paiarr as $k => $v){
+            dump($v['map']['id'].'---'.$v['data']['pairet']);
+            model('paihistory')->insert($v['history']);
+            $memberdb->where($v['map'])->update($v['data']);
+        }
+
         //摊牌时间
         $time = time();
         model('room')->where(array('id' => $this->memberinfo['room_id']))->update(array('islock' => 1, 'qiangtime' => $time + 15, 'taipaitime' => $time + 30, 'gamestatus' => 2));
@@ -562,6 +601,7 @@ class Douniuplaywjy extends Common
 
     private function setshownum($num, $room_id)
     {
+        //$num = 4;
         $allmember = model('room')->getmember(array('id' => $room_id));
         foreach ($allmember as $k => $v) {
             $pai = unserialize($v['pai']);
