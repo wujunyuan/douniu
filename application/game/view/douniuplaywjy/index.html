@@ -54,7 +54,7 @@
     .cardsbox .box5 {position: absolute; left: 40px; z-index: 1;}
     .niuname{position: absolute; display: none; z-index: 5; top:15px; font-size: 14px; width:100%; text-align: center; color:#f00;}
     .niuname img{width: 80px;}
-.last-time{display: none;}
+    .last-time{display: none;}
     .tanpai{display:none;}
     .cards{display: none;}
     .photo{position: relative;}
@@ -89,17 +89,17 @@
     .window ul li span:first-child{float: left;margin-left: 2rem;max-width: 5rem;overflow: hidden; text-overflow:ellipsis;white-space:nowrap;}
     .window ul li span:last-child{float: right;margin-right: 2rem;}
     .window .add{color:#F5D203!important;}
-.window>img{position: absolute;top:0;left: 0;width: 100%;z-index: -1;}
+    .window>img{position: absolute;top:0;left: 0;width: 100%;z-index: -1;}
     .window .win{background: url(__STATIC__/game/img/win.png) left top no-repeat;background-size: 12%;}
 </style>
 
 <div class="window">
-<iframe src="" frameborder="0" scrolling="no" style="position: fixed; width:100%; top: 0; left: 0; right: 0; bottom: 0;"></iframe>
+    <iframe src="" frameborder="0" scrolling="no" style="position: fixed; width:100%; top: 0; left: 0; right: 0; bottom: 0;"></iframe>
 </div>
 
 
-    <!-- 游戏准备按钮 -->
-    <img id="gameready" onclick="gameready1(1);" src="__STATIC__/game/img/init.png" style="position:absolute;top: 50%; left: 50%; z-index: 3; margin-left:-50px; width: 100px; {eq name="memberinfo['gamestatus']" value="1"}display:none;{/eq}">
+<!-- 游戏准备按钮 -->
+<img id="gameready" onclick="gameready1(1);" src="__STATIC__/game/img/init.png" style="position:absolute;top: 50%; left: 50%; z-index: 3; margin-left:-50px; width: 100px; {eq name="memberinfo['gamestatus']" value="1"}display:none;{/eq}">
 
 
 
@@ -315,14 +315,14 @@
 
                 <img onclick="setbanker(0);" src="__STATIC__/game/img/buqiang.png">
             </div>
-<div class="pai">
+            <div class="pai">
 
-    <div class="poker box1" onclick="poker.ajaxshow('{:url('showone')}',0,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box2" onclick="poker.ajaxshow('{:url('showone')}',1,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box3" onclick="poker.ajaxshow('{:url('showone')}',2,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box4" onclick="poker.ajaxshow('{:url('showone')}',3,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-    <div class="poker box5" onclick="poker.ajaxshow('{:url('showone')}',4,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
-</div><div class="niuname">未知</div>
+                <div class="poker box1" onclick="poker.ajaxshow('{:url('showone')}',0,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+                <div class="poker box2" onclick="poker.ajaxshow('{:url('showone')}',1,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+                <div class="poker box3" onclick="poker.ajaxshow('{:url('showone')}',2,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+                <div class="poker box4" onclick="poker.ajaxshow('{:url('showone')}',3,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+                <div class="poker box5" onclick="poker.ajaxshow('{:url('showone')}',4,'__STATIC__/game/img/pai/',this,function(){ mp3play('mp3fapai');});"><img class="pk" src="__STATIC__/game/img/pai/0.png"></div>
+            </div><div class="niuname">未知</div>
         </div>
     </div>
     <div class="msg" id="player_99">
@@ -341,10 +341,10 @@
         </div>
         <img src="__STATIC__/game/img/xiaoxi.png" style="width: 2.6rem;height: 2.2rem;">
         <ul>
-            <li onclick="sendmsg('我出去叫人');">我出去叫人</li>
-            <li onclick="sendmsg('裤衩都输掉了啊');">裤衩都输掉了啊</li>
-            <li onclick="sendmsg('整快点好不好');">整快点好不好</li>
-            <li onclick="sendmsg('我等到花儿都谢了');">我等到花儿都谢了</li>
+            <li onclick="sendmsg('我出去叫人','message1');">我出去叫人</li>
+            <li onclick="sendmsg('你的牌好靓哇','message2');">你的牌好靓哇</li>
+            <li onclick="sendmsg('我当年横扫澳门五条街','message3');">我当年横扫澳门五条街</li>
+            <li onclick="sendmsg('算你牛逼','message4');">算你牛逼</li>
         </ul>
     </div>
 </div>
@@ -391,11 +391,11 @@
             return false;
         }
         $('.last-time span.text').html('闲家下注');
-    $('.last-time span.int').countdown({initcount:initcount,end:function(){
-        $('.last-time').hide();
+        $('.last-time span.int').countdown({initcount:initcount,end:function(){
+            $('.last-time').hide();
 
-        setmultiple(1);
-    }});
+            setmultiple(1);
+        }});
         $('.last-time').show();
     }
 
@@ -506,16 +506,20 @@
             var ret = strToJson(msg);
             //msg.type 1是接收用户发送的信息
             if (ret.type == 1) {
-                msgshow(ret.info, ret.from);
+                msgshow(ret.info, ret.from,ret.msgid);
             }
             if (ret.type == 999) {
                 console.log(ret.data);
-
+                if(ret.end == 1){
+                    $('#gameready').remove();
+                }
                 $.jinbiflyall('<img style="border-radius: 20px;" width="15" src=\'__STATIC__/game/img/jinbi.png\'>','.member__',ret.data,function(){
                     $('.cardsbox').hide();
                     $('.pai .poker img').css('opacity', 0);
                     $('.poker').css({'background-color':'rgba(0,0,0,0)'});
                     $('.niuname').hide();
+                    //移除准备按钮，不能再开始游戏了
+
                     if(ret.end == 1){
                         setTimeout(function(){
 
@@ -659,7 +663,7 @@
 
                     //抢庄动画
                     if($('input.bankerconfirm').length == 0){
-                       for (var b = 0; b < ret.banker.length; b++) {
+                        for (var b = 0; b < ret.banker.length; b++) {
                             setflash($('.member__' + ret.banker[b]).find('img:eq(0)'));
                         }
                         $('<input type="hidden" class="bankerconfirm">').appendTo('body');
@@ -701,7 +705,7 @@
 
                         $('.cards .niuname').html('<img width="120" src="__STATIC__/game/img/niu' + ret.info + '.png" >').show();
                     }else{
-                       // $('.tanpai').show();
+                        // $('.tanpai').show();
                         if(ret.issetmultiple == 0){
 
                             if(ret.isbanker == 0){
@@ -740,8 +744,8 @@
                     if (ret.data[i].issetbanker == 1 && ret.room.gamestatus >= 2) {
                         if (!(ret.room.rule.gametype == 1 || ret.room.rule.gametype == 5)) {
 
-                                $('.member__' + ret.data[i].id).find('.bankerimg').show();
-                                $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
+                            $('.member__' + ret.data[i].id).find('.bankerimg').show();
+                            $('.member__' + ret.data[i].id).find('.multipleimg').attr('src', '__STATIC__/game/img/X-' + ret.data[i].multiple + '.png').show();
 
                         }
                     }
@@ -752,7 +756,7 @@
 
                         if (ret.data[i].banker == 1 && ret.room.rule.gametype != 5) {
 
-                                $('.member__' + ret.data[i].id).find('.zhuangimg').show();
+                            $('.member__' + ret.data[i].id).find('.zhuangimg').show();
 
 
                         } else {
@@ -821,14 +825,14 @@
     });
 
 
-    function msgshow(msg, memberid){
+    function msgshow(msg, memberid,msgid){
         var playerid =$('.member__'+memberid).attr('id');
         var myInput = $('.member__'+memberid);
         var config = {};
 
 
 
-
+mp3play(msgid);
 
 
 
@@ -847,9 +851,9 @@
         },1500);
     }
 
-    function sendmsg(msg) {
+    function sendmsg(msg,id) {
 
-
+mp3play(id);
         var inputOpentip1 = new Opentip($('.member__{$memberinfo.id}'), {target:true, hideDelay:0.2, tipJoint:"left bottom", removeElementsOnHide:true});
         inputOpentip1.show();
         inputOpentip1.setContent(msg);
@@ -858,7 +862,7 @@
         },1500);
 
         $('.msg ul').hide();
-        $.post('{:url('sendmsg')}', {data:msg}, function (ret) {
+        $.post('{:url('sendmsg')}', {data:msg,id:id}, function (ret) {
 
         }, 'json'
     )
@@ -902,7 +906,7 @@
         mp3play('mp3xiazhu');
         $.post('{:url('setbanker')}', {multiple:multiple}, function (ret) {
 
-           // $('.last-time').hide();
+            // $('.last-time').hide();
         }, 'json'
     )
         ;
@@ -940,18 +944,18 @@
     }
 
 
-function setflash(img){
-    $(img).css({"boxShadow":"0 0px 20px orange","transition":"boxShadow 3s ease-in-out"});
-    setTimeout(function(){
-        $(img).css({"boxShadow":"none","transition":"boxShadow 3s ease-in-out"})
-    },600);
-    setTimeout(function(){
+    function setflash(img){
         $(img).css({"boxShadow":"0 0px 20px orange","transition":"boxShadow 3s ease-in-out"});
         setTimeout(function(){
             $(img).css({"boxShadow":"none","transition":"boxShadow 3s ease-in-out"})
         },600);
-    },950);
-}
+        setTimeout(function(){
+            $(img).css({"boxShadow":"0 0px 20px orange","transition":"boxShadow 3s ease-in-out"});
+            setTimeout(function(){
+                $(img).css({"boxShadow":"none","transition":"boxShadow 3s ease-in-out"})
+            },600);
+        },950);
+    }
 
 
 

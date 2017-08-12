@@ -117,7 +117,7 @@ class Room extends Model
 
         $room = $this->where(array('member_id' => $memberid))-> order('id desc') ->find();
         //会员的房间存在了，不要再创建了
-        if (!$room || ($room && $room['playcount'] == 0)) {
+        if (true) {
             $data['member_id'] = $memberid;
             $data['open_time'] = time();
             $data['rule'] = serialize($rule);

@@ -19,7 +19,7 @@ class Index extends Common
      */
     public function index()
     {
-        model('room') -> accounttemp(2);
+        //model('room') -> accounttemp(2);
         //echo '这里游戏大厅';
         return $this->fetch();
     }
