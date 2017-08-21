@@ -186,6 +186,7 @@ class douniu
         //是否炸弹
         $isbomb = false;
         $isbombcount = array();
+        $totalscore = 0;
         foreach($cards as $k => $v){
             if($this->getscore($v) > 5){
                 //五小不成立
@@ -195,6 +196,7 @@ class douniu
                 //五花牛不成立
                 $ismax = false;
             }
+            $totalscore += $this->getscore($v);
             $isbombcount[] = (int)$this->getscoreorigin($v);
         }
 
@@ -203,7 +205,7 @@ class douniu
         if(max($isbombarr) >= 4){
             $isbomb = true;
         }
-        if($ismin){
+        if($ismin && $totalscore < 10){
             return 13;
         }
         if($isbomb){

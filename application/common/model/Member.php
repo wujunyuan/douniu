@@ -38,11 +38,11 @@ class Member extends Model
      * @param $room_id
      * @return $this
      */
-    public function comein($room_id, $where = array())
+    public function comein($room_id, $where = array(), $num = 6)
     {
         $islock = model('room') -> where(array('id' => $room_id))->value('islock');
         $count = $this -> where(array('room_id' => $room_id)) -> count();
-        if($count >= 6){
+        if($count >= $num){
             $this->error = '房间人数已经满了';
             return false;
         }

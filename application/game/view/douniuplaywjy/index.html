@@ -341,10 +341,10 @@
         </div>
         <img src="__STATIC__/game/img/xiaoxi.png" style="width: 2.6rem;height: 2.2rem;">
         <ul>
-            <li onclick="sendmsg('我出去叫人');">我出去叫人</li>
-            <li onclick="sendmsg('裤衩都输掉了啊');">裤衩都输掉了啊</li>
-            <li onclick="sendmsg('整快点好不好');">整快点好不好</li>
-            <li onclick="sendmsg('我等到花儿都谢了');">我等到花儿都谢了</li>
+            <li onclick="sendmsg('我出去叫人','message1');">我出去叫人</li>
+            <li onclick="sendmsg('你的牌好靓哇','message2');">你的牌好靓哇</li>
+            <li onclick="sendmsg('我当年横扫澳门五条街','message3');">我当年横扫澳门五条街</li>
+            <li onclick="sendmsg('算你牛逼','message4');">算你牛逼</li>
         </ul>
     </div>
 </div>
@@ -506,11 +506,13 @@
             var ret = strToJson(msg);
             //msg.type 1是接收用户发送的信息
             if (ret.type == 1) {
-                msgshow(ret.info, ret.from);
+                msgshow(ret.info, ret.from,ret.msgid);
             }
             if (ret.type == 999) {
                 console.log(ret.data);
-                $('.readyimg').remove();
+                if(ret.end == 1){
+                    $('#gameready').remove();
+                }
                 $.jinbiflyall('<img style="border-radius: 20px;" width="15" src=\'__STATIC__/game/img/jinbi.png\'>','.member__',ret.data,function(){
                     $('.cardsbox').hide();
                     $('.pai .poker img').css('opacity', 0);
@@ -823,14 +825,14 @@
     });
 
 
-    function msgshow(msg, memberid){
+    function msgshow(msg, memberid,msgid){
         var playerid =$('.member__'+memberid).attr('id');
         var myInput = $('.member__'+memberid);
         var config = {};
 
 
 
-
+mp3play(msgid);
 
 
 
@@ -849,9 +851,9 @@
         },1500);
     }
 
-    function sendmsg(msg) {
+    function sendmsg(msg,id) {
 
-
+mp3play(id);
         var inputOpentip1 = new Opentip($('.member__{$memberinfo.id}'), {target:true, hideDelay:0.2, tipJoint:"left bottom", removeElementsOnHide:true});
         inputOpentip1.show();
         inputOpentip1.setContent(msg);
@@ -860,7 +862,7 @@
         },1500);
 
         $('.msg ul').hide();
-        $.post('{:url('sendmsg')}', {data:msg}, function (ret) {
+        $.post('{:url('sendmsg')}', {data:msg,id:id}, function (ret) {
 
         }, 'json'
     )

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="556e3c75-26ce-45e0-a2e2-db81b7d91827" name="121.42.29.115" url="http://121.42.29.115">
+        <fileTransfer host="121.42.29.115" port="22" rootFolder="/home/wwwroot/douniu.sppcms.com/douniu" accessType="SFTP" password="df9bdf92df98df9adf9adf9ddf9fdf9ddf9adf9adf98dfebdfcedfc7dfc3dfc4" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

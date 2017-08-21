@@ -45,9 +45,9 @@ class Member extends Common
 		}else{
 			$this->postdata['ratearr'] = '';
 		}
-		if(intval(input('rate')) == 0){
-			unset($this->postdata['rate']);
-		}
+		//if(intval(input('rate')) == 0){
+			$this->postdata['rate'] = intval(input('rate'));
+		//}
 		if(intval(input('cards')) == 0){
 			unset($this->postdata['cards']);
 		}

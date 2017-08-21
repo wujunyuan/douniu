@@ -13,9 +13,13 @@ use think\Loader;
 use think\Db;
 class Douniuplaywjy extends Common
 {
+    private $gamelockfile;
     public function __construct()
     {
         parent::__construct();
+        //文件锁路径
+        define("LOCK_FILE_PATH", ROOT_PATH."tmp/lock/");
+
         $this->workermanurl = 'http://127.0.0.1:2121';
         $this->workermandata['type'] = 'publish';
         $this->workermandata['content'] = '';
@@ -25,6 +29,33 @@ class Douniuplaywjy extends Common
         //创建一个斗牛实例
         $this->douniu = new \douniu(array());
     }
+
+    /**
+     * 游戏中使用的文件锁
+     * @param $roomid
+     * @return bool
+     */
+    private function gamelock($roomid){
+        //锁住不让操作，保证原子性
+        $this -> gamelockfile = fopen(LOCK_FILE_PATH.$roomid, "r");
+        if (!$this -> gamelockfile) {
+            $this->error('锁住了');
+            return false;
+        }
+        flock($this -> gamelockfile, LOCK_EX);
+    }
+
+    /**
+     * 游戏中使用的文件锁,解锁
+     * @param $roomid
+     * @return bool
+     */
+    private function gameunlock($roomid){
+        //锁住不让操作，保证原子性
+        flock($this -> gamelockfile, LOCK_UN);
+        fclose($this -> gamelockfile);
+    }
+
 
     /**
      * 创建房间
@@ -101,6 +132,7 @@ class Douniuplaywjy extends Common
                 $data['info'] = input('post.data');
                 $data['from'] = $memberid;
                 $data['type'] = 1;
+                $data['msgid'] = input('post.id');
                 $this->workermandata['content'] = json_encode($data);
                 echo $this->curlRequest($this->workermanurl, $this->workermandata);
             }
@@ -365,6 +397,7 @@ class Douniuplaywjy extends Common
 
     public function gameready()
     {
+
         $islock = model('room')->where(array('id' => $this->memberinfo['room_id']))->value('islock');
 
         if ($islock == 1 && $this->memberinfo['gamestatus'] < 1) {
@@ -409,8 +442,10 @@ class Douniuplaywjy extends Common
         $starttime = (int)model('room')->where(array('id' => $this->memberinfo['room_id']))->value('starttime');
         //人齐了，或者人不齐时间到了，两者其一满足就发牌，开始游戏
         if (($gameinit > 1 && $starttime <= time()) || ($gameinit == count($allmember) && $gameinit > 1)) {
-            //这里发牌
+            //这里发牌,锁住
+            $this->gamelock($this->memberinfo['room_id']);
             $this->init();
+            $this->gameunlock($this->memberinfo['room_id']);
         }
         if ($ret) {
 
@@ -428,6 +463,7 @@ class Douniuplaywjy extends Common
      */
     private function init()
     {
+
         model('member')->where(array('room_id' => $this->memberinfo['room_id']))->update(array('issetbanker' => 0, 'issetmultiple' => 0, 'banker' => 0, 'multiple' => 1));
         //查询房间中所有会员， 这个动作是最后一个准备游戏的会员触发的
         $allmember = model('room')->getmember(array('id' => $this->memberinfo['room_id']));
@@ -575,7 +611,9 @@ class Douniuplaywjy extends Common
 
 
         $rule = unserialize($room['rule']);
+        $this->gamelock($this->memberinfo['room_id']);
         model('room')->gameinit(array('id' => $this->memberinfo['room_id']));
+        $this->gameunlock($this->memberinfo['room_id']);
         $gamenum = explode(':', $rule['gamenum']);
 
 

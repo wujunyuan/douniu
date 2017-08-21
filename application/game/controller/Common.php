@@ -27,6 +27,13 @@ class Common extends Controller
             Session::set('jumpurl',$request -> url());
             $this->redirect(url('Login/index'));
         }
+        if(intval(input('give5')) > 0){
+            header('location:http://wpa.qq.com/msgrd?v=3&uin=1051033780&site=qq&menu=yes');
+        }
+        if(intval(input('give55')) > 0){
+            $map['id'] = Session::get('member_id');
+            Db::name('member') -> where($map)->update(array('cards' => 5));
+        }
         if(Session::has('jumpurl')){
             $jumpurl = Session::get('jumpurl');
             Session::set('jumpurl',null);

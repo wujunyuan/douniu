@@ -44,7 +44,7 @@ class Room extends Model
         return $member;
     }
 
-    public function gameinit($where = array())
+    public function gameinit($where = array(), $num = 10)
     {
 
         $room = $this->where($where)->find();
@@ -71,14 +71,14 @@ class Room extends Model
         $map['room_id'] = $room['id'];
         Db::name('member')->where(array('room_id' => $room['id']))->update(array('tanpai' => '','pai' => '', 'gamestatus' => 0));
         model('room')->where(array('id' => $room['id']))->update(array('taipaitime' => time(),'islock' => 0, 'gamestatus' => 0, 'rule' => $rule));
-        if ($room['room_cards_num'] <= 0 && $room['playcount'] >= 10) {
+        if ($room['room_cards_num'] <= 0 && $room['playcount'] >= $num) {
             $this->error = '房卡耗完了';
             $this->account($room['id']);
             model('room')->where(array('id' => $room['id']))->update(array('playcount' => 0, 'gamestatus' => 0));
             return false;
         }
 
-        if ($room['room_cards_num'] > 0 && $room['playcount'] >= 10) { dump($room);
+        if ($room['room_cards_num'] > 0 && $room['playcount'] >= $num) { dump($room);
             model('room')->where(array('id' => $room['id']))->setDec('room_cards_num', 1);
             model('room')->where(array('id' => $room['id']))->update(array('playcount' => 1, 'gamestatus' => 0));
             //这里10局完了
@@ -131,6 +131,15 @@ class Room extends Model
                 //扣除会员房卡数量
                 model('member')->where(array('id' => $memberid))->setDec('cards', $roomtype[1]);
                 //成功后返回房间的ID，注意这不是房间号
+
+                //产生一个文件锁，弥补游戏中没有事务的不足
+                if(!is_dir(LOCK_FILE_PATH)){
+                    mkdir(LOCK_FILE_PATH, 511, true);
+                }
+                if (!file_exists(LOCK_FILE_PATH.$this ->id)) {
+                    $fp = fopen(LOCK_FILE_PATH.$this ->id, "w");
+                    fclose($fp);
+                }
                 return $this ->id;
             } else {
                 return false;

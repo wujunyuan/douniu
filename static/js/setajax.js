@@ -3,7 +3,7 @@
 	//传入的$为jq对象
 	$.fn.ajaxsubmit = function(options){
 		var defaults = {
-            tip: $('<div class="showtip" style="position:fixed; display:none; background:rgba(0,0,0,0.5); z-index:9000; top:0; bottom:0; left:0; right:0;"><div  style="position:absolute; top:40%; text-align:center; width:100%;"><span class="msgbox" style="border:1px solid #ffffff;box-shadow: 0px 2px 5px #000;padding:15px 40px; background:#FFFFFF; border-radius:4px;"></span></div></div>'),
+            tip: $('<div class="showtip" style="position:fixed; display:none; background:rgba(0,0,0,0.5); z-index:107009; top:0; bottom:0; left:0; right:0;"><div  style="position:absolute; top:40%; text-align:center; width:100%;"><span class="msgbox" style="border:1px solid #ffffff;box-shadow: 0px 2px 5px #000;padding:15px 40px; background:#FFFFFF; border-radius:4px;"></span></div></div>'),
 			success: function(ret){
 				
 			},
