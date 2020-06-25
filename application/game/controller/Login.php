@@ -23,6 +23,7 @@ class Login extends Controller
         //使用微信登录，直接跳转到微信授权地址，这里要用微信的开发包了
         //return Wechat::app()->oauth->scopes(['snsapi_userinfo'])->redirect();
         //dump($list);
+        return $this->fetch();
     }
 
     /**
